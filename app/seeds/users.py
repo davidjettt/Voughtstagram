@@ -1,4 +1,4 @@
-from app.models import db, User
+from app.models import db, User, Post
 
 
 # Adds a demo user, you can add other users here if you want
@@ -16,7 +16,15 @@ def seed_users():
 
     db.session.commit()
 
+def seed_posts():
+    post1 = Post(
+        image_url='https://i.ytimg.com/vi/2iGcta6R_Nk/maxresdefault.jpg',
+        description='Congratulations to the Deep for becoming Chief Sustainability Officer for Liquid Death!',
+        user_id=1,
+    )
 
+    db.session.add(post1)
+    db.session.commit()
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
 # TRUNCATE Removes all the data from the table, and RESET IDENTITY
@@ -24,4 +32,8 @@ def seed_users():
 # dependent entities
 def undo_users():
     db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.commit()
+
+def undo_posts():
+    db.session.execute('TRUNCATE posts RESTART IDENTITY CASCADE;')
     db.session.commit()
