@@ -89,6 +89,22 @@ class Post(db.Model):
     post_comments = db.relationship('Comment', back_populates='post', cascade='all, delete') #  Post can have many comments
 
 
+    def to_dict_with_user(self):
+        return {
+            'id': self.id,
+            'imageUrl': self.image_url,
+            'description': self.description,
+            'userId': self.user_id,
+            # not necessary, but might help deal with post on frontend
+            # if we include username with all posts?
+            'user': {
+                'username': User.query.get(self.user_id).username
+            },
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
+        }
+
+
 class Comment(db.Model):
     __tablename__ = 'comments'
 
