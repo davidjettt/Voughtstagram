@@ -12,9 +12,10 @@ def get_all_posts():
 
 
 # create new post
-# current_user for interacting with current logged in user
-# and making new post with user_id
-@post_routes.post('/')
+
+# use current_user for interacting with current logged in user
+# and making new post with user_id (current set to get to view curr_user object)
+@post_routes.get('/')
 @login_required
 def create_post():
     return {'my_info': current_user.to_dict()}
