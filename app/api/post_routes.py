@@ -48,5 +48,6 @@ def get_my_posts():
 @login_required
 def delete_post(id):
     post = Post.query.get_or_404(id)
-    # delete the post
+    db.session.delete(post)
+    db.session.commit()
     return {'message': 'Successfully deleted'}

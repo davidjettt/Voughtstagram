@@ -2,7 +2,11 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-export default function NewPostForm() {
+
+// should eventually be a modal
+// can also be used for edit form by using props
+
+export default function PostForm() {
     const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch()
 
@@ -24,14 +28,11 @@ export default function NewPostForm() {
 
         console.log(payload)
 
-        await dispatch(
-            // thunk for creating post here
-        )
     }
 
     useEffect(() => {
         // form error handling here
-    },[])
+    },[imageUrl, description])
 
 
     if (!sessionUser) {

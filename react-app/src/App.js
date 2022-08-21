@@ -8,7 +8,9 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import NewPostForm from './components/posts/NewPostForm';
+import PostForm from './components/posts/PostForm';
+import { getAllPosts } from './store/posts';
+import Feed from './components/posts/PostFeed';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -20,6 +22,10 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getAllPosts())
+  }, [dispatch])
 
   if (!loaded) {
     return null;
@@ -41,8 +47,11 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <Route path="/feed">
+          <Feed />
+        </Route>
         <ProtectedRoute path='/posts/new/' exact={true} >
-          <NewPostForm />
+          <PostForm />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
