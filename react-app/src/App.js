@@ -11,6 +11,8 @@ import { authenticate } from './store/session';
 import PostForm from './components/posts/PostForm';
 import { getAllPosts } from './store/posts';
 import Feed from './components/posts/PostFeed';
+import SinglePost from './components/posts/SinglePost';
+import EditForm from './components/posts/EditPost';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,8 +49,14 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path="/feed">
+        <Route exact path="/feed">
           <Feed />
+        </Route>
+        <Route exact path="/feed/:postId">
+          <SinglePost />
+        </Route>
+        <Route exact path="/feed/:postId/edit">
+          <EditForm />
         </Route>
         <ProtectedRoute path='/posts/new/' exact={true} >
           <PostForm />
