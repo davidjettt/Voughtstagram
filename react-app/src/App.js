@@ -10,7 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import PostForm from './components/posts/PostForm';
 import { getAllPosts } from './store/posts';
-import Feed from './components/posts/PostFeed';
+// import Feed from './components/posts/PostFeed';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,9 +23,9 @@ function App() {
     })();
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getAllPosts())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getAllPosts())
+  // }, [dispatch])
 
   if (!loaded) {
     return null;
@@ -47,9 +47,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path="/feed">
+        {/* <Route path="/feed">
           <Feed />
-        </Route>
+        </Route> */}
         <ProtectedRoute path='/posts/new/' exact={true} >
           <PostForm />
         </ProtectedRoute>
