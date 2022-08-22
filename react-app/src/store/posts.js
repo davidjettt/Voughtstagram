@@ -55,9 +55,10 @@ export default function postsReducer(state = initialState, action) {
             })
             return newState
         case NEW_POST:
-            newState = {...state}
-            newState[action.post.new_post.id] = action.data
-            return newState
+            let test = JSON.stringify(state)
+            let test1 = JSON.parse(test)
+            test1.normalizedPosts[action.post.new_post.id] = action.data
+            return test1
         default:
             return state
     }

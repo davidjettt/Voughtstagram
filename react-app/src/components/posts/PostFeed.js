@@ -12,7 +12,7 @@ export default function Feed() {
             <div>
             {Object.values(visiblePosts).map(post => (
                 <div key={post.id}>
-                    <img src={post.imageUrl}></img>
+                    <img src={post.imageUrl} alt="" ></img>
                     <div>{post.description}</div>
                 </div>
                 ))}
@@ -23,6 +23,7 @@ export default function Feed() {
         // this code is same as above to prevent errors, but should only show posts
         // from users that the current user follows
         visiblePosts = {...allPosts}
+        console.log(visiblePosts, "logged in posts")
         return (
             <div>
             {Object.values(visiblePosts).map(post => (
