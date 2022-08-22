@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux"
+import { NavLink } from "react-router-dom"
 import { getAllPosts } from "../../store/posts"
+import './post.css'
 
 export default function Feed() {
     const sessionUser = useSelector(state => state.session.user)
@@ -24,10 +26,10 @@ export default function Feed() {
         return (
             <div>
             {Object.values(visiblePosts).map(post => (
-                <div key={post.id}>
+                <NavLink to={`/feed/${post.id}`} key={post.id}>
                     <img src={post.imageUrl} alt=" "></img>
                     <div>{post.description}</div>
-                </div>
+                </NavLink>
 
                 ))}
             </div>
