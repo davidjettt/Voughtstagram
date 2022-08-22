@@ -1,4 +1,6 @@
 import { useSelector } from "react-redux"
+import CommentForm from "../Comments/CommentForm"
+import Comments from "../Comments/Comments"
 
 export default function Feed() {
     const sessionUser = useSelector(state => state.session.user)
@@ -29,6 +31,8 @@ export default function Feed() {
                 <div key={post.id}>
                     <img src={post.imageUrl} alt=" "></img>
                     <div>{post.description}</div>
+                    <Comments />
+                    <CommentForm postId={post.id} />
                 </div>
 
                 ))}

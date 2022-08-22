@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from app.models import Comment, db
-from flask_login import login_required
+from app.models import Comment, db, User
+from flask_login import login_required, current_user
 from app.forms import CommentForm
 
 
@@ -26,7 +26,21 @@ def update_comment(comment_id):
         #     comment = data['comment']
         # ).where(Comment.id == comment_id)
         updated_comment = Comment.query.filter(Comment.id == comment_id).one()
-        print(updated_comment, "***********************************")
+        # print(updated_comment, "***********************************")
         updated_comment.comment = data['comment']
         db.session.commit()
         return {"updated_comment": updated_comment.comment_to_dict_user()}
+
+
+# LIKE AND UNLIKE A COMMENT
+@comment_routes.post('/<int:comment_id>/likes')
+@login_required
+def like_unlike_a_comment(comment_id):
+    comment = Comment.query.get(comment_id)
+    if current_user not in comment.comment_likes:
+        comment.comment_likes.append(current_user)
+        db.session.commit()
+    else:
+        comment.comment_likes.remove(current_user)
+        db.session.commit()
+    return { 'liked_users': [user.to_dict() for user in comment.comment_likes] }

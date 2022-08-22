@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import PostForm from './components/posts/PostForm';
 import { getAllPosts } from './store/posts';
 import Feed from './components/posts/PostFeed';
+import { loadCommentsThunk } from './store/comments';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -25,6 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllPosts())
+    dispatch(loadCommentsThunk())
   }, [dispatch])
 
   if (!loaded) {

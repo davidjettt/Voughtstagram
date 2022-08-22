@@ -68,7 +68,8 @@ def seed_comments():
     comment2 = Comment(
         comment = "Unreal, this was all caught on video. Vought's days are numbered. #voughtliedpeopledied",
         user_id=3,
-        post_id=5
+        post_id=5,
+        comment_likes=[]
     )
 
     comment3 = Comment(
