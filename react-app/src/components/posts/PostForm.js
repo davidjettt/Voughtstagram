@@ -27,13 +27,10 @@ export default function PostForm() {
             description,
             imageUrl
         }
-        console.log(payload)
-        await dispatch(createNewPost(payload))
-    }
 
-    useEffect(() => {
-        // form error handling here
-    },[imageUrl, description])
+        dispatch(createNewPost(payload))
+        history.push('/feed')
+    }
 
 
     if (!sessionUser) {

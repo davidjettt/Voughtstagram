@@ -1,8 +1,15 @@
-import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getAllPosts } from "../../store/posts"
 
 export default function Feed() {
     const sessionUser = useSelector(state => state.session.user)
     const allPosts = useSelector(state => state.posts.normalizedPosts)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getAllPosts())
+    }, [dispatch])
 
     let visiblePosts
 

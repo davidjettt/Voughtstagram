@@ -43,18 +43,26 @@ def create_post():
 
     # Return the validation errors, and put 403 at end
     else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 403
 
 
 @post_routes.put('/<int:id>')
 @login_required
 def edit_post(id):
     form = PostForm()
+    post = Post.query.get_or_404(id)
+
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
-        pass
-    pass
+        post.image_url = data['imageUrl']
+        post.description = data['description']
+        db.session.commit()
+        return {'post': post.to_dict_with_user()}
+
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 403
+
 
 # get all posts by users that the logged in user follows for feed
 # Post.query.filter(post.user_id in user.following).all()
