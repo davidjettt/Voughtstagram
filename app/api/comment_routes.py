@@ -30,3 +30,11 @@ def update_comment(comment_id):
         updated_comment.comment = data['comment']
         db.session.commit()
         return {"updated_comment": updated_comment.comment_to_dict_user()}
+
+@comment_routes.delete('/<int:comment_id>')
+@login_required
+def delete_comment(comment_id):
+    comment = Comment.query.filter(Comment.id == comment_id).one()
+    db.session.delete(comment)
+    db.session.commit()
+    return {'message': 'Successfully deleted comment'}
