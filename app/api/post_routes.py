@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import User, Post, db
+from app.models import User, Post, db, Comment
 from app.forms import PostForm
 
 post_routes = Blueprint('posts', __name__)
@@ -59,3 +59,14 @@ def delete_post(id):
     db.session.delete(post)
     db.session.commit()
     return {'message': 'Successfully deleted'}
+
+
+# Get all comments for a post based off of post id
+@post_routes.get('/<int:id>/comments')
+@login_required
+def post_comments(id):
+    comments = Comment.query.filter(Comment.post_id == id)
+
+    comments_list_dict = [comment.comment_to_dict_user() for comment in comments]
+
+    return {'Comments': comments_list_dict}

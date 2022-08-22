@@ -120,3 +120,18 @@ class Comment(db.Model):
     post = db.relationship('Post', back_populates='post_comments')  # Comment can only belong to one post
 
     comment_likes = db.relationship('User', secondary=comment_likes, back_populates='user_comment_likes')
+
+
+    def comment_to_dict_user(self):
+        return {
+            'id': self.id,
+            'comment': self.comment,
+            'userId': self.user_id,
+            'postId': self.post_id,
+            'user': {
+                'username': User.query.get(self.user_id).username
+            },
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at,
+            'likes': len(self.comment_likes)
+        }
