@@ -132,5 +132,6 @@ class Comment(db.Model):
                 'username': User.query.get(self.user_id).username
             },
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'likes': len(self.comment_likes)
         }
