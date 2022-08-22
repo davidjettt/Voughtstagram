@@ -11,12 +11,10 @@ import { authenticate } from './store/session';
 import PostForm from './components/posts/PostForm';
 import { getAllPosts } from './store/posts';
 import Feed from './components/posts/PostFeed';
-<<<<<<< HEAD
 import SinglePost from './components/posts/SinglePost';
 import EditForm from './components/posts/EditPost';
-=======
 import { loadCommentsThunk } from './store/comments';
->>>>>>> comment-likes
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
