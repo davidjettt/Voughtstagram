@@ -39,7 +39,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/feed' />;
+    return <Redirect to='/' />;
   }
 
   return (

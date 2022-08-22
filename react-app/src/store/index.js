@@ -4,7 +4,7 @@ import session from './session'
 import posts from './posts'
 
 const rootReducer = combineReducers({
-  posts,
+  // posts,
   session,
 });
 
