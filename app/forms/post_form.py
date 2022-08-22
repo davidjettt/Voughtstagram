@@ -13,4 +13,4 @@ def character_check(form, field):
 class PostForm(FlaskForm):
 
     description = StringField('description', validators=[DataRequired(), character_check])
-    image_url = StringField('image_url', validators=[DataRequired()])
+    imageUrl = StringField('imageUrl', validators=[DataRequired()])
