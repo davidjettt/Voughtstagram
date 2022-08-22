@@ -75,9 +75,17 @@ def post_comments(id):
 # Create a comment for a post
 @post_routes.post('/<int:id>/comments')
 @login_required
-def create_comment():
+def create_comment(id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        pass
+        new_comment = Comment(
+            comment=form.data['comment'],
+            user_id=current_user.id,
+            post_id=id
+        )
+
+        db.session.add(new_comment)
+        db.session.commit()
+        return new_comment.comment_to_dict_user()
