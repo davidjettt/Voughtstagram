@@ -102,7 +102,7 @@ class Post(db.Model):
             },
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            'comments': [ comment.comment_to_dict_user() for comment in self.comments ]
+            'comments': [comment.comment_to_dict_user() for comment in self.post_comments]
         }
 
 

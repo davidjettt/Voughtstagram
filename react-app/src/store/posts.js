@@ -28,7 +28,7 @@ export const getAllPosts = () => async (dispatch) => {
             'Content-Type': 'application/json'
         }
     })
-
+    console.log('RESPONSE', response)
     if (response.ok) {
         const data = await response.json()
         if (data.errors) {
