@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 import { createNewPost } from "../../store/posts"
 
 
@@ -10,6 +10,7 @@ import { createNewPost } from "../../store/posts"
 export default function PostForm() {
     const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const [imageUrl, setImageUrl] = useState('')
     const [description, setDescription] = useState('')
@@ -24,16 +25,12 @@ export default function PostForm() {
         const payload = {
             user_id: sessionUser.id,
             description,
-            image_url: imageUrl
+            imageUrl
         }
 
         dispatch(createNewPost(payload))
-
+        history.push('/feed')
     }
-
-    useEffect(() => {
-        // form error handling here
-    },[imageUrl, description])
 
 
     if (!sessionUser) {

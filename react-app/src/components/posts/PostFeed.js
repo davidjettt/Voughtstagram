@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import { getAllPosts } from "../../store/posts"
 
 export default function Feed() {
     const sessionUser = useSelector(state => state.session.user)
@@ -7,17 +8,14 @@ export default function Feed() {
     let visiblePosts
 
     if (!sessionUser) {
-        visiblePosts = {...allPosts}
         return (
-            <div>
-            {Object.values(visiblePosts).map(post => (
-                <div key={post.id}>
-                    <img src={post.imageUrl}></img>
-                    <div>{post.description}</div>
-                </div>
-                ))}
-            </div>
-        )
+        <>
+        {Object.values(allPosts).map(el => (
+                <div key={el.id}>{el.description}</div>
+            ))}
+        </>
+    )
+
 
     } else {
         // this code is same as above to prevent errors, but should only show posts

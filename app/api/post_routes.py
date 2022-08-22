@@ -5,6 +5,18 @@ from app.forms import PostForm, CommentForm
 
 post_routes = Blueprint('posts', __name__)
 
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
+
 @post_routes.get('/')
 def get_all_posts():
     all_posts = Post.query.all()
@@ -15,14 +27,13 @@ def get_all_posts():
 # use current_user for interacting with current logged in user
 # and making new post with user_id (current set to get to view curr_user object)
 @post_routes.post('/')
-@login_required
 def create_post():
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_post = Post(
-            image_url = data['image_url'],
+            image_url = data['imageUrl'],
             description = data['description'],
             user_id = current_user.id
         )
@@ -32,7 +43,26 @@ def create_post():
 
     # Return the validation errors, and put 403 at end
     else:
-        return 'Error'
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 403
+
+
+@post_routes.put('/<int:id>')
+@login_required
+def edit_post(id):
+    form = PostForm()
+    post = Post.query.get_or_404(id)
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        post.image_url = data['imageUrl']
+        post.description = data['description']
+        db.session.commit()
+        return {'post': post.to_dict_with_user()}
+
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 403
+
 
 # get all posts by users that the logged in user follows for feed
 # Post.query.filter(post.user_id in user.following).all()

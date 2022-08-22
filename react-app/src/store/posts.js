@@ -37,9 +37,8 @@ export const createNewPost = (payload) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json()
-        if (data.errors) {
-            return
-        } else dispatch(createPost(data))
+        console.log("returned data from database on succcess", data)
+        return dispatch(createPost(data))
     }
 }
 
@@ -49,14 +48,14 @@ export default function postsReducer(state = initialState, action) {
     let newState
     switch (action.type) {
         case LOAD_POSTS:
-            newState = {...state}
+            newState = JSON.parse(JSON.stringify(state))
             action.posts.allPosts.forEach(el => {
                 newState.normalizedPosts[el.id] = el
             })
             return newState
         case NEW_POST:
-            newState = {...state}
-            newState[action.post.new_post.id] = action.data
+            newState = JSON.parse(JSON.stringify(state))
+            newState.normalizedPosts[action.post.new_post.id] = action.post.new_post
             return newState
         default:
             return state
