@@ -16,6 +16,7 @@ export default function Feed() {
         </>
     )
 
+
     } else {
         // this code is same as above to prevent errors, but should only show posts
         // from users that the current user follows
