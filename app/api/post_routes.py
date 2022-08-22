@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import User, Post, db, Comment
-from app.forms import PostForm
+from app.forms import PostForm, CommentForm
 
 post_routes = Blueprint('posts', __name__)
 
@@ -70,3 +70,14 @@ def post_comments(id):
     comments_list_dict = [comment.comment_to_dict_user() for comment in comments]
 
     return {'Comments': comments_list_dict}
+
+
+# Create a comment for a post
+@post_routes.post('/<int:id>/comments')
+@login_required
+def create_comment():
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        pass
