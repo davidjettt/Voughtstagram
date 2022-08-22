@@ -101,7 +101,8 @@ class Post(db.Model):
                 'username': User.query.get(self.user_id).username
             },
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'comments': [ comment.comment_to_dict_user() for comment in self.comments ]
         }
 
 
@@ -121,6 +122,9 @@ class Comment(db.Model):
 
     comment_likes = db.relationship('User', secondary=comment_likes, back_populates='user_comment_likes')
 
+
+    def __repr__(self):
+        return f"< CommentId: {self.id} Likes: {self.comment_likes} >"
 
     def comment_to_dict_user(self):
         return {
