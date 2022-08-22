@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { createNewPost } from "../../store/posts"
 
 
 // should eventually be a modal
@@ -21,12 +22,12 @@ export default function PostForm() {
         e.preventDefault()
 
         const payload = {
-            userId: sessionUser.id,
+            user_id: sessionUser.id,
             description,
-            imageUrl
+            image_url: imageUrl
         }
 
-        console.log(payload)
+        dispatch(createNewPost(payload))
 
     }
 
