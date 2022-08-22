@@ -36,7 +36,7 @@ export default function Feed() {
                     <img src={post.imageUrl} alt=" "></img>
                     <div>{post.description}</div>
                 </NavLink>
-                    <Comments />
+                    <Comments postId={post.id}/>
                     <CommentForm postId={post.id} />
                 </>
                 ))}

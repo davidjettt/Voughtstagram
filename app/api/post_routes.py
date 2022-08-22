@@ -94,7 +94,7 @@ def delete_post(id):
 # Get all comments for a post based off of post id
 @post_routes.get('/<int:id>/comments')
 @login_required
-def post_comments(id):
+def get_comments(id):
     comments = Comment.query.filter(Comment.post_id == id)
 
     comments_list_dict = [comment.comment_to_dict_user() for comment in comments]
