@@ -7,7 +7,11 @@ const loadPosts = (posts) => ({
 })
 
 export const getAllPosts = () => async (dispatch) => {
-    const response = await fetch('/api/posts')
+    const response = await fetch('/api/posts', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
 
     if (response.ok) {
         const data = await response.json()
