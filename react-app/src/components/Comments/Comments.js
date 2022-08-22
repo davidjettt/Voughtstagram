@@ -6,13 +6,13 @@ import { postCommentThunk } from "../../store/comments"
 
 export default function Comments({ postId }) {
     // const comments = useSelector(state => Object.values(state.comments))
-    const comments = useSelector(state => Object.values(state.normalizedPosts[postId].comments))
+    const comments = useSelector(state => state.posts.normalizedPosts[postId].comments)
     console.log('COMMENTS', comments)
 
 
     return (
         <div>
-            {comments.map(comment => (
+            {comments.length > 0 && comments.map(comment => (
                 <div className="">
 
                 </div>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { postCommentThunk } from "../../store/comments"
 
-export default function CommentForm(postId) {
+export default function CommentForm({ postId }) {
     const [ comment, setComment ] = useState('')
     const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch()
@@ -17,7 +17,7 @@ export default function CommentForm(postId) {
             post_id: postId,
             comment: comment
         }
-
+        console.log('PAYLOAD', payload)
         dispatch(postCommentThunk(payload))
     }
 
