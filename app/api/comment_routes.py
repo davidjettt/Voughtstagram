@@ -31,7 +31,7 @@ def update_comment(comment_id):
         db.session.commit()
         return {"updated_comment": updated_comment.comment_to_dict_user()}
 
-<<<<<<< HEAD
+
 @comment_routes.delete('/<int:comment_id>')
 @login_required
 def delete_comment(comment_id):
@@ -39,7 +39,7 @@ def delete_comment(comment_id):
     db.session.delete(comment)
     db.session.commit()
     return {'message': 'Successfully deleted comment'}
-=======
+
 
 # LIKE AND UNLIKE A COMMENT
 @comment_routes.post('/<int:comment_id>/likes')
@@ -53,4 +53,3 @@ def like_unlike_a_comment(comment_id):
         comment.comment_likes.remove(current_user)
         db.session.commit()
     return { 'liked_users': [user.to_dict() for user in comment.comment_likes] }
->>>>>>> comment-likes

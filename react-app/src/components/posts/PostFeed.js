@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux"
-<<<<<<< HEAD
+
 import { NavLink } from "react-router-dom"
 import { getAllPosts } from "../../store/posts"
 import './post.css'
-=======
+
 import CommentForm from "../Comments/CommentForm"
 import Comments from "../Comments/Comments"
->>>>>>> comment-likes
+
 
 export default function Feed() {
     const sessionUser = useSelector(state => state.session.user)
@@ -31,19 +31,17 @@ export default function Feed() {
         return (
             <div>
             {Object.values(visiblePosts).map(post => (
+                <>
                 <NavLink to={`/feed/${post.id}`} key={post.id}>
                     <img src={post.imageUrl} alt=" "></img>
                     <div>{post.description}</div>
-<<<<<<< HEAD
                 </NavLink>
-=======
                     <Comments />
                     <CommentForm postId={post.id} />
-                </div>
->>>>>>> comment-likes
-
+                </>
                 ))}
             </div>
+
         )
     }
 
