@@ -38,7 +38,9 @@ img {
     display: flex;
     flex-direction: row;
     font-size: 14px;
-    
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
 }
 
 .post-card-description-user {
@@ -52,6 +54,8 @@ img {
     border: none;
     padding: 0;
     text-align: left;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
 }
 
 .all-comments-button:hover {

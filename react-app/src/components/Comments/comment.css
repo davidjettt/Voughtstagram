@@ -1,0 +1,30 @@
+.comment-form {
+    display: flex;
+    flex-direction: row;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.comment-form-input {
+    border: none;
+    background-color: white;
+}
+/* 
+.comment-form-button:invalid {
+    color: rgb(122, 190, 245);
+    font-size: 14px;
+    font-weight: 700;
+    background-color: white;
+    border: none;
+} */
+
+.comment-form-button {
+    color: rgb(0, 140, 255);
+    font-size: 14px;
+    font-weight: 700;
+    background-color: white;
+    border: none;
+}
+
+.comment-form-button:hover {
+    cursor: pointer;
+}
