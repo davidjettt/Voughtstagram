@@ -79,30 +79,31 @@ export const deleteCommentThunk = (comment) => async (dispatch) => {
 
 const initialState = {}
 export default function commentsReducer(state = initialState, action) {
-    switch(action.type) {
-        case LOAD_COMMENTS: {
-            let newState = {...state}
-            action.comments.allComments.forEach(comment => {
-                newState[comment.id] = comment
-            })
-            return newState
-        }
-        case POST_COMMENT: {
-            let newState = {...state}
-            newState[action.comment.id] = action.comment
-            return newState
-        }
-        case EDIT_COMMENT: {
-            let newState = {...state}
-            newState[action.comment.id] = action.comment
-            return newState
-        }
-        case DELETE_COMMENT: {
-            let newState = {...state}
-            delete newState[action.comment.id]
-            return newState
-        }
-        default:
-            return state
+    let newState
+        switch(action.type) {
+            case LOAD_COMMENTS: {
+                newState = JSON.parse(JSON.stringify(state))
+                action.comments.allComments.forEach(comment => {
+                    newState[comment.id] = comment
+                })
+                return newState
+            }
+            case POST_COMMENT: {
+                newState = JSON.parse(JSON.stringify(state))
+                newState[action.comment.id] = action.comment
+                return newState
+            }
+            case EDIT_COMMENT: {
+                newState = JSON.parse(JSON.stringify(state))
+                newState[action.comment.id] = action.comment
+                return newState
+            }
+            case DELETE_COMMENT: {
+                newState = JSON.parse(JSON.stringify(state))
+                delete newState[action.comment.id]
+                return newState
+            }
+            default:
+                return state
     }
 }

@@ -16,9 +16,7 @@ export default function Feed() {
     return (
         <div className="main-posts-container">
             {Object.values(allPosts).map(post => (
-                <NavLink to={`/feed/${post.id}`} >
-                    <Cards key={post.id} post={post}/>
-                </NavLink>
+                <Cards key={post.id} post={post}/>
             ))}
         </div>
     )
