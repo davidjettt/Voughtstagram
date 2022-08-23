@@ -1,7 +1,7 @@
 import { useParams, Link, useHistory, Redirect } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import './post.css'
-import { removePost } from "../../store/posts"
+import '../post.css'
+import { removePost } from "../../../store/posts"
 
 
 export default function SinglePost() {

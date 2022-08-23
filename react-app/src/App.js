@@ -11,7 +11,7 @@ import { authenticate } from './store/session';
 import PostForm from './components/posts/PostForm';
 import { getAllPosts } from './store/posts';
 import Feed from './components/posts/PostFeed';
-import SinglePost from './components/posts/SinglePost';
+import SinglePost from './components/posts/SinglePostModal/SinglePost';
 import EditForm from './components/posts/EditPost';
 import { loadCommentsThunk } from './store/comments';
 
