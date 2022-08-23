@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './LoginForm.css'
+
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -27,39 +29,59 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const handleDemoUser = () => {
+    setEmail('demo@aa.io')
+    setPassword('password')
+  }
+
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/feed' />;
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+    <div className='login-form-container-main'>
+      <div className='login-title-container'>
+        <h1>Voughtstagram</h1>
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-      </div>
+      <form className='login-form' onSubmit={onLogin}>
+        <div className='errors'>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <div className='email-container'>
+          <label className='custom' htmlFor='email'>
+            <input
+              name='email'
+              type='text'
+              placeholder='Email'
+              value={email}
+              onChange={updateEmail}
+            />
+            {/* <span className='placeholder'>Email</span> */}
+          </label>
+        </div>
+        <div className='password-container'>
+          <label htmlFor='password'></label>
+          <input
+            name='password'
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={updatePassword}
+          />
+        </div>
+        <button className='login-button' type='submit'>Log In</button>
+        <div className='login-or'>
+            <div className='login-line'></div>
+            <div className='login-or-word'>OR</div>
+            <div className='login-line'></div>
+        </div>
+        <div className='demo-user-container'>
+            <button onClick={handleDemoUser} className='login-button'>Demo User</button>
+        </div>
     </form>
+    </div>
   );
 };
 
