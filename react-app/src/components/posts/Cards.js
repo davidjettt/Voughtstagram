@@ -2,6 +2,7 @@ import CommentForm from "../Comments/CommentForm"
 import Comments from "../Comments/Comments"
 import PostLikes from "../Likes/PostLikes"
 import { NavLink } from "react-router-dom"
+import SinglePostModal from "./SinglePostModal"
 
 export default function Cards({post}) {
 
@@ -12,6 +13,7 @@ export default function Cards({post}) {
             </NavLink>
             <PostLikes postId={post.id}/>
             <p>{post.description}</p>
+            <SinglePostModal postId={post.id}/>
             <Comments postId={post.id}/>
             <CommentForm postId={post.id} />
         </div>
