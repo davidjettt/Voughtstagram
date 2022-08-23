@@ -8,7 +8,7 @@ function SinglePostModal({postId}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Show All Comments</button>
+      <button className='all-comments-button' onClick={() => setShowModal(true)}>View All Comments</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
             <SinglePost postId={postId}/>
