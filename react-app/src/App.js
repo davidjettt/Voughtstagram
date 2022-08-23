@@ -29,7 +29,10 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllPosts())
-    // dispatch(loadCommentsThunk())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(loadCommentsThunk())
   }, [dispatch])
 
   if (!loaded) {

@@ -1,24 +1,17 @@
-import { useState, useEffect } from "react"
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import { postCommentThunk } from "../../store/comments"
-
+import { useSelector } from 'react-redux'
 
 export default function Comments({ postId }) {
-    // const comments = useSelector(state => Object.values(state.comments))
-    const comments = useSelector(state => state.posts.normalizedPosts[postId].comments)
-    console.log('COMMENTS', comments)
 
+    const allComments = useSelector(state => state.comments)
+    const postComments = Object.values(allComments).filter(el => el.postId == postId)
 
     return (
         <div>
-            {comments.length > 0 && comments.map(comment => (
-                <div className="">
-
+            {postComments.length > 0 && postComments.map(comment => (
+                <div key={comment.id} className="">
+                    <p>{comment.user.username}: {comment.comment}</p>
                 </div>
             ))}
         </div>
     )
-
-
 }

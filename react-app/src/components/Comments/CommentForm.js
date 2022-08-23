@@ -8,7 +8,6 @@ export default function CommentForm({ postId }) {
     const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch()
 
-
     const onSubmit = (e) => {
         e.preventDefault()
 
@@ -17,8 +16,8 @@ export default function CommentForm({ postId }) {
             post_id: postId,
             comment: comment
         }
-        console.log('PAYLOAD', payload)
         dispatch(postCommentThunk(payload))
+        setComment('')
     }
 
     return (
