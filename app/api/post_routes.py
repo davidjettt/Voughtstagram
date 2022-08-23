@@ -90,6 +90,19 @@ def delete_post(id):
     db.session.commit()
     return {'message': 'Successfully deleted'}
 
+##backend routes for liking/unliking a post. should be similar to comment_likes
+@post_routes.post('/<int:id>/likes')
+@login_required
+def like_unlike_a_post(id):
+    post = Post.query.get(id)
+    if current_user not in post.post_likes:
+        post.post_likes.append(current_user)
+        db.session.commit()
+    else:
+        post.post_likes.remove(current_user)
+        db.session.commit()
+    return { 'liked_users_posts': [user.to_dict() for user in post.post_likes] }
+
 
 # Get all comments for a post based off of post id
 @post_routes.get('/<int:id>/comments')
@@ -98,7 +111,6 @@ def get_comments(id):
     comments = Comment.query.filter(Comment.post_id == id)
 
     comments_list_dict = [comment.comment_to_dict_user() for comment in comments]
-
     return {'Comments': comments_list_dict}
 
 
