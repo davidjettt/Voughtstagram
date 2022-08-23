@@ -1,4 +1,4 @@
-import { Link, useHistory, Redirect } from "react-router-dom"
+import { useHistory, Redirect } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import '../post.css'
 import { removePost } from "../../../store/posts"
