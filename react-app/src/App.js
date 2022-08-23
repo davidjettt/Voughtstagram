@@ -11,8 +11,6 @@ import { authenticate } from './store/session';
 import PostForm from './components/posts/PostForm';
 import { getAllPosts } from './store/posts';
 import Feed from './components/posts/PostFeed';
-import SinglePost from './components/posts/SinglePostModal/SinglePost';
-import EditForm from './components/posts/EditPost';
 import { loadCommentsThunk } from './store/comments';
 import LandingPage from './components/LandingPage/LandingPage';
 
@@ -62,9 +60,6 @@ function App() {
         </ProtectedRoute>
         <Route exact path="/feed">
           <Feed />
-        </Route>
-        <Route exact path="/feed/:postId/edit">
-          <EditForm />
         </Route>
         <ProtectedRoute path='/posts/new/' exact={true} >
           <PostForm />
