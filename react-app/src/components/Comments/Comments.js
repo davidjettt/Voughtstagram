@@ -7,7 +7,6 @@ import { postCommentThunk } from "../../store/comments"
 export default function Comments({ postId }) {
     // const comments = useSelector(state => Object.values(state.comments))
     const comments = useSelector(state => state.posts.normalizedPosts[postId].comments)
-    console.log('COMMENTS', comments)
 
 
     return (

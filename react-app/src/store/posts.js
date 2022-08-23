@@ -3,8 +3,6 @@ const NEW_POST = '/posts/new'
 const UPDATE_POST = '/posts/update'
 const DELETE_POST = '/posts/delete'
 
-
-
 const createPost = (post) => ({
     type: NEW_POST,
     post
@@ -28,7 +26,6 @@ export const getAllPosts = () => async (dispatch) => {
             'Content-Type': 'application/json'
         }
     })
-    console.log('RESPONSE', response)
     if (response.ok) {
         const data = await response.json()
         if (data.errors) {
@@ -47,7 +44,6 @@ export const createNewPost = (payload) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json()
-        console.log("returned data from database on succcess", data)
         return dispatch(createPost(data))
     }
 }
@@ -60,8 +56,7 @@ export const editPost = (payload) => async dispatch => {
     });
     if (response.ok) {
       const post = await response.json();
-      dispatch(updatePost(post));
-      return post;
+      return dispatch(updatePost(post));
     }
   };
 
