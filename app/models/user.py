@@ -28,6 +28,7 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(40))
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -50,15 +51,18 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
+            'name': self.name,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'followers': [user.username for user in self.followers],
+            'following': [user.username for user in self.following]
         }
 
     followers = db.relationship(
             'User',
             secondary=follows,
-            primaryjoin=(follows.c.follower_id == id),
-            secondaryjoin=(follows.c.following_id == id),
+            primaryjoin=(follows.c.following_id == id),
+            secondaryjoin=(follows.c.follower_id == id),
             backref=db.backref("following", lazy="dynamic"),
             lazy="dynamic",
             cascade='all, delete'
