@@ -2,6 +2,7 @@ import { Link, useHistory, Redirect } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import '../post.css'
 import { removePost } from "../../../store/posts"
+import EditPostModal from "../EditPostModal"
 
 
 export default function SinglePost({postId}) {
@@ -25,9 +26,7 @@ export default function SinglePost({postId}) {
             <p>user: {post.user.username}</p>
 
             {sessionUser?.id === post.userId && <>
-                <Link to={`/feed/${post.id}/edit`}>
-                    <button>Edit</button>
-                </Link>
+                <EditPostModal postId={postId}/>
                 <button onClick={handleDelete}>Delete</button>
             </>
             }
