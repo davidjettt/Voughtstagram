@@ -9,3 +9,59 @@ img {
     margin-top: 2px;
     margin-bottom: -10px;
 }
+
+.main-posts-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(249, 249, 249);
+}
+
+.post-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 40%;
+    height: 60%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 1%;
+}
+
+.post-card-user {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 1rem;
+}
+
+.post-card-description {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+}
+
+.post-card-description-user {
+    font-weight: bold;
+    
+}
+
+.all-comments-button {
+    background-color: white;
+    color: rgb(150, 150, 150);
+    border: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+}
+
+.all-comments-button:hover {
+    cursor: pointer;
+}
+
+.post-card-submit-comment {
+    border-top: 1px solid rgb(237, 237, 237);
+}
