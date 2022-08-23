@@ -13,7 +13,7 @@ export default function Cards({post}) {
             </NavLink>
             <PostLikes postId={post.id}/>
             <p>{post.description}</p>
-            <SinglePostModal />
+            <SinglePostModal postId={post.id}/>
             <Comments postId={post.id}/>
             <CommentForm postId={post.id} />
         </div>

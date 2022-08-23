@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Modal } from '../../../context/modal';
+import { Modal } from '../../../context/Modal';
 import SinglePost from './SinglePost';
 
 
-function SinglePostModal() {
+function SinglePostModal({postId}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ function SinglePostModal() {
       <button onClick={() => setShowModal(true)}>Show All Comments</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <SinglePost />
+            <SinglePost postId={postId}/>
         </Modal>
       )}
     </>

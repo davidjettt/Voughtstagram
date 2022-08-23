@@ -1,11 +1,10 @@
-import { useParams, Link, useHistory, Redirect } from "react-router-dom"
+import { Link, useHistory, Redirect } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import '../post.css'
 import { removePost } from "../../../store/posts"
 
 
-export default function SinglePost() {
-    const { postId } = useParams()
+export default function SinglePost({postId}) {
     const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const history = useHistory()

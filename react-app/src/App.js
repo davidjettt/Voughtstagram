@@ -58,9 +58,6 @@ function App() {
         <Route exact path="/feed">
           <Feed />
         </Route>
-        <Route exact path="/feed/:postId">
-          <SinglePost />
-        </Route>
         <Route exact path="/feed/:postId/edit">
           <EditForm />
         </Route>
