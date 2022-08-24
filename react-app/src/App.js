@@ -13,6 +13,7 @@ import { getAllPosts } from './store/posts';
 import Feed from './components/posts/PostFeed';
 import { loadCommentsThunk } from './store/comments';
 import LandingPage from './components/LandingPage/LandingPage';
+import { loadAllUsers } from './store/users';
 
 
 function App() {
@@ -26,6 +27,10 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
+
+  useEffect(() =>{
+    dispatch(loadAllUsers())
+   }, [dispatch])
 
   useEffect(() => {
     dispatch(getAllPosts())
