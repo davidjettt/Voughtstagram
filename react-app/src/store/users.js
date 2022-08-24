@@ -52,7 +52,7 @@ export const unfollowThunk = (profileId) => async (dispatch) => {
 }
 
 export const loadAllUsers = () => async (dispatch) => {
-    const response = await fetch('/api/users', {
+    const response = await fetch('/api/users/', {
       headers: {
         'Content-Type': 'application/json'
       }
