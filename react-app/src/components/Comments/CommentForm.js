@@ -5,10 +5,16 @@ import { editCommentThunk, loadCommentsThunk, postCommentThunk } from "../../sto
 import './comment.css'
 
 
-export default function CommentForm({ postId, commentToEdit, formType, setShowModal }) {
+export default function CommentForm({ postId, commentToEdit, formType, setShowCommentModal, setShowCommentOptionsModal }) {
     const [ comment, setComment ] = useState(commentToEdit?.comment || '')
+    const [ commentModal, setCommentModal ] = useState(false)
     const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (formType === 'edit comment') setCommentModal(true)
+    }, [])
+
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -20,7 +26,8 @@ export default function CommentForm({ postId, commentToEdit, formType, setShowMo
 
         if (formType === 'edit comment') {
             await dispatch(editCommentThunk(commentToEdit))
-            setShowModal(false)
+            setShowCommentModal(false)
+            setShowCommentOptionsModal(false)
             await dispatch(loadCommentsThunk())
         } else {
             const payload = {
@@ -33,10 +40,16 @@ export default function CommentForm({ postId, commentToEdit, formType, setShowMo
         }
     }
 
+    const handleCancel = () => {
+        setShowCommentOptionsModal(false)
+    }
+
     return (
-        <form className="comment-form" onSubmit={onSubmit}>
-            <input className="comment-form-input" required type='text' placeholder="Add a comment..." value={comment} onChange={(e) => setComment(e.target.value)} />
-            <button className="comment-form-button">Post</button>
+        <form className={commentModal ? 'comment-modal-form' :"comment-form"} onSubmit={onSubmit}>
+            {commentModal && <div className="edit-comment-title">Edit Comment</div>}
+            <input className={commentModal ? 'comment-modal-form-input' :"comment-form-input"} required type='text' placeholder="Add a comment..." value={comment} onChange={(e) => setComment(e.target.value)} />
+            <button className={commentModal ? 'comment-modal-form-button' :"comment-form-button"}>Post</button>
+            {commentModal && <button className="cancel-edit-comment-button" onClick={handleCancel}>Cancel</button>}
         </form>
     )
 }

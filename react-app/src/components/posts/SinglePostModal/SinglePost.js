@@ -24,22 +24,30 @@ export default function SinglePost({postId}) {
 
     return (
         <div className="single-post-container">
-            <div className="single-post-image-container">
-                <img className="single-post-image" src={post.imageUrl} alt=''></img>
+            <div className="single-post-left">
+                <div className="single-post-image-container">
+                    <img className="single-post-image" src={post.imageUrl} alt=''></img>
+                </div>
+
             </div>
             <div className="single-post-text">
+                <div className="single-post-header">
+                    {post.user.username}
+                </div>
                 <div className="single-post-description">
-                    <p>{post.user.username}</p>
+                    <p className="single-post-description-user">{post.user.username}</p>
                     <p>{post.description}</p>
                 </div>
                 <div className="single-post-comments">
                     <Comments postId={postId}/>
                 </div>
-                <div> 
-                    <PostLikes postId={post.id}/>
-                </div>
-                <div className="post-card-submit-comment">
-                    <CommentForm postId={post.id} />
+                <div className="single-post-footer">
+                    <div className="single-post-likes"> 
+                        <PostLikes postId={post.id}/>
+                    </div>
+                    <div className="post-card-submit-comment">
+                        <CommentForm postId={post.id} />
+                    </div>
                 </div>
                 {sessionUser?.id === post.userId && <>
                     <EditPostModal postId={postId}/>

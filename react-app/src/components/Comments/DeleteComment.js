@@ -18,10 +18,6 @@ export default function DeleteComment({ comment }) {
     // }
 
     return (
-        <>
-            <span>
-                <button className="delete-comment-button" onClick={handleDeleteComment}>X</button>
-            </span>
-        </>
+            <button className="delete-comment-button" onClick={handleDeleteComment}>Delete Comment</button>
     )
 }
