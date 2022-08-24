@@ -10,6 +10,11 @@
     margin-top: 1rem;
 }
 
+.login-button:disabled {
+    opacity: .4;
+    cursor: default;
+}
+
 input {
     width: 250px;
     height: 30px;

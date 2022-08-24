@@ -112,7 +112,7 @@ const SignUpForm = () => {
               placeholder='Repeat Password'
             ></input>
           </div>
-          <button className='login-button' type='submit'>Sign Up</button>
+          <button className='login-button' type='submit' disabled={username.length < 1 || email.length < 1 || password.length < 1 || repeatPassword < 1}>Sign Up</button>
         </form>
       </div>
       <div className='back-to-login-container'>
