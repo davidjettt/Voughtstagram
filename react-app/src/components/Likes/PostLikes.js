@@ -21,12 +21,6 @@ useEffect(() => {
 
 const handleClick = () => {
 dispatch(postLikeToggle(postId, userId))
-// IF NO ERRRORS DO BELOW
-if (liked === false) {
-    setLiked(true)
-} else {
-    setLiked(false)
-    }
 }
 
     return (
