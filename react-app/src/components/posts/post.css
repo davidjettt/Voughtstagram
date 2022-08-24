@@ -1,4 +1,4 @@
-img {
+.post-card-image {
     max-width: 470px;
     max-height: 587.5px;
 }
@@ -43,11 +43,12 @@ img {
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .post-card-description-user {
     font-weight: bold;
-    
+    margin-right: 0.5rem;
 }
 
 .all-comments-button {
@@ -66,4 +67,63 @@ img {
 
 .post-card-submit-comment {
     border-top: 1px solid rgb(237, 237, 237);
+}
+
+.single-post-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.single-post-left {
+    background-color: black;
+}
+
+.single-post-image-container {
+    margin: 5% 0;
+}
+
+.single-post-image {
+    max-width: 470px;
+    max-height: 587.5px;
+}
+
+.single-post-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.single-post-header {
+    font-weight: bold;
+    border-bottom: 1px solid rgb(237, 237, 237);
+    padding-left: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    position: sticky;
+}
+
+.single-post-description {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.single-post-description-user {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.single-post-footer {
+    border-top: 1px solid rgb(237, 237, 237);
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.single-post-likes {
+    padding: 1rem;
 }
