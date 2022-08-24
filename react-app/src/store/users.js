@@ -74,6 +74,13 @@ export default function reducer(state = initialState, action) {
             newState = JSON.parse(JSON.stringify(state))
             action.users.users.forEach(user => newState[user.id] = user)
             return newState
+        case FOLLOW_USER:
+            newState = JSON.parse(JSON.stringify(state))
+            loadAllUsers()
+            return newState
+        case UNFOLLOW_USER:
+            newState = JSON.parse(JSON.stringify(state))
+            loadAllUsers()
         default:
             return state;
     }

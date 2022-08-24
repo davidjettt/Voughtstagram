@@ -7,7 +7,7 @@ export default function FollowButton({following, userId, setFollowing}) {
 
     let displayButton
 
-    function handleFollow() {
+    async function handleFollow() {
         if (following) {
             dispatch(unfollowThunk(userId))
             setFollowing(false)

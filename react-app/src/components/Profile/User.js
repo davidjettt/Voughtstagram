@@ -17,7 +17,7 @@ function User() {
   const userPosts = posts.filter(post => post.userId == userId)
 
   useEffect(() => {
-    if (sessionUser) sessionUser.following.includes(profileUser.id) ? setFollowing(true) : setFollowing(false)
+    if (sessionUser && profileUser) sessionUser.following.includes(profileUser.id) ? setFollowing(true) : setFollowing(false)
   },[sessionUser, profileUser])
 
   useEffect(() => {
