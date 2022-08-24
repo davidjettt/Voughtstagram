@@ -12,26 +12,26 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to='/feed' exact={true} activeClassName='active'>
             My Feed
           </NavLink>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to='/posts/new' exact={true} activeClassName='active'>
             Create New Post
