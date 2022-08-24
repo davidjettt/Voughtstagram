@@ -52,4 +52,4 @@ def like_unlike_a_comment(comment_id):
     else:
         comment.comment_likes.remove(current_user)
         db.session.commit()
-    return { 'liked_users_comments': [user.to_dict() for user in comment.comment_likes] }
+    return { 'liked_users': [user.to_dict() for user in comment.comment_likes] }
