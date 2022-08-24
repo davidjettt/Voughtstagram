@@ -1,0 +1,33 @@
+.nav-bar-container{
+    display:flex;
+    flex-direction: row;
+    height: 60px;
+}
+
+.nav-button-right {
+    display:flex;
+}
+
+.home-logo {
+    width:200px;
+    height:53px;
+    margin-left: 500px;
+}
+
+.house-logo {
+    height:29px;
+    width: 26px;
+    margin-left:587px;
+    margin-top: 12px;
+}
+
+.new-post-button {
+    height:27px;
+    width: 27px;
+    margin-left:60px;
+}
+
+.logout-button {
+    margin-left:758px;
+    margin-top:-29px;
+}
