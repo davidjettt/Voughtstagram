@@ -11,23 +11,23 @@
 .home-logo {
     width:200px;
     height:53px;
-    margin-left: 500px;
+    margin-left: 30rem;
 }
 
 .house-logo {
     height:29px;
     width: 26px;
-    margin-left:587px;
-    margin-top: 12px;
+    margin-left:37rem;
+    margin-top: 0.6rem;
 }
 
 .new-post-button {
     height:27px;
     width: 27px;
-    margin-left:60px;
+    margin-left:3.5rem;
 }
 
 .logout-button {
-    margin-left:758px;
-    margin-top:-29px;
+    margin-left:47rem;
+    margin-top: -1.8rem;
 }
