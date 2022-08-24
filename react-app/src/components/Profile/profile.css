@@ -27,6 +27,7 @@
 .profile-post-card {
     flex: 33%;
     padding: 1rem;
+    max-width: 33%;
 }
 
 .profile-post-image {

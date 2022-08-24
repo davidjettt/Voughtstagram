@@ -20,11 +20,13 @@
 .post-like-button:hover {
     cursor: pointer;
 }
-
+.feed-container {
+    background-color: rgb(249, 249, 249);
+}
 .main-posts-container {
     display: flex;
     flex-direction: column;
-    background-color: rgb(249, 249, 249);
+    margin-left: 30%;
 }
 
 .post-card {
@@ -34,11 +36,12 @@
     width: 40%;
     height: 60%;
     max-width: 470px;
-    max-height: 800px;
+    max-height: 900px;
     border: 1px solid lightgray;
     border-radius: 10px;
     margin-bottom: 1%;
     margin-top:23px;
+
 }
 
 .post-card-user {
