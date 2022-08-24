@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import '../post.css'
 import { removePost } from "../../../store/posts"
 import EditPostModal from "../EditPostModal"
+import Comments from "../../Comments/Comments"
+import PostLikes from "../../Likes/PostLikes"
+import CommentForm from "../../Comments/CommentForm"
 
 
 export default function SinglePost({postId}) {
@@ -20,17 +23,40 @@ export default function SinglePost({postId}) {
     }
 
     return (
-        <div>
-            <img src={post.imageUrl} alt=''></img>
-            <p>{post.description}</p>
-            <p>user: {post.user.username}</p>
+        <div className="single-post-container">
+            <div className="single-post-left">
+                <div className="single-post-image-container">
+                    <img className="single-post-image" src={post.imageUrl} alt=''></img>
+                </div>
 
-            {sessionUser?.id === post.userId && <>
-                <EditPostModal postId={postId}/>
-                <button onClick={handleDelete}>Delete</button>
-            </>
-            }
+            </div>
+            <div className="single-post-text">
+                <div className="single-post-header">
+                    {post.user.username}
+                </div>
+                <div className="single-post-description">
+                    <p className="single-post-description-user">{post.user.username}</p>
+                    <p>{post.description}</p>
+                </div>
+                <div className="single-post-comments">
+                    <Comments postId={postId}/>
+                </div>
+                <div className="single-post-footer">
+                    <div className="single-post-likes"> 
+                        <PostLikes postId={post.id}/>
+                    </div>
+                    <div className="post-card-submit-comment">
+                        <CommentForm postId={post.id} />
+                    </div>
+                </div>
+                {sessionUser?.id === post.userId && <>
+                    <EditPostModal postId={postId}/>
+                    <button onClick={handleDelete}>Delete</button>
+                </>
+                }
+            </div>
         </div>
 
     )
 }
+
