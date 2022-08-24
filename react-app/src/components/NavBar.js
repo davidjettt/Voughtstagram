@@ -1,17 +1,26 @@
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import navLogo from '../Images/voughtstagramlogo.svg'
+import homeLogo from '../Images/homelogo.svg'
+import newPost from '../Images/createpost.svg'
+import './Profile/NavBar.css'
 
 const NavBar = () => {
   return (
-    <nav>
-      <ul>
-        <li>
+    <nav className='nav-bar-container'>
+      <div className="nav-logo">
+        <NavLink className='home-link' exact to='/feed'>
+          <img className="home-logo" src={navLogo}/>
+        </NavLink>
+      </div>
+      {/* <ul> */}
+      <div className='nav-buttons-right'>
           <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+          <img className='house-logo' src={homeLogo}/>
           </NavLink>
-        </li>
+
         {/* <li>
           <NavLink to='/feed' exact={true} activeClassName='active'>
             My Feed
@@ -32,15 +41,15 @@ const NavBar = () => {
             Users
           </NavLink>
         </li> */}
-        <li>
-          <NavLink to='/posts/new' exact={true} activeClassName='active'>
-            Create New Post
+        <NavLink to='/posts/new' exact={true} activeClassName='active'>
+            <img className='new-post-button' src={newPost}/>
           </NavLink>
-        </li>
-        <li>
+
+        <div className='logout-button'>
           <LogoutButton />
-        </li>
-      </ul>
+        </div>
+        </div>
+      {/* </ul> */}
     </nav>
   );
 }
