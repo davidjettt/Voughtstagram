@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { Modal } from '../../context/Modal'
+import SinglePostModal from '../posts/SinglePostModal';
+import ProfilePostModal from './ProfilePostModal';
+// import SinglePost from '../posts/SinglePostModal/SinglePost';
 
 function User() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
   const posts = useSelector(state => Object.values(state.posts.normalizedPosts))
   const userPosts = posts.filter(post => post.userId == userId)
+  
+  const [showModal, setShowModal] = useState(false);
+
 
 
   useEffect(() => {
@@ -26,20 +33,12 @@ function User() {
 
   return (
     <>
-      <ul>
-        <li>
-          <strong>User Id</strong> {userId}
-        </li>
-        <li>
-          <strong>Username</strong> {user.username}
-        </li>
-        <li>
-          <strong>Email</strong> {user.email}
-        </li>
-      </ul>
+      <div>{user.username}</div>
       {userPosts && userPosts.map(post => {
         return (
-          <img src={post.imageUrl} alt=" "></img>
+          <div key={post.id}>
+            <ProfilePostModal post={post}/>
+          </div>
         )
       })}
     </>
