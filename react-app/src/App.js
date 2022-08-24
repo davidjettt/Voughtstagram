@@ -28,8 +28,7 @@ function App() {
     })();
   }, [dispatch]);
 
-  useEffect(() =>
-   {
+  useEffect(() =>{
     dispatch(loadAllUsers())
    }, [dispatch])
 

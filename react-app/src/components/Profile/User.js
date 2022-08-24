@@ -1,28 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ProfilePostModal from './ProfilePostModal';
-import FollowButton from '../posts/FollowButton/FollowButton';
+import { followThunk, unfollowThunk } from '../../store/users';
 
 function User() {
   const { userId }  = useParams();
+  const dispatch = useDispatch()
+  const sessionUserId = useSelector(state => state.session.user.id)
+
+  // get current user and the user whose profile we're on
   const profileUser = useSelector(state => state.users[Number(userId)])
-  console.log(profileUser)
-  const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = useSelector(state => state.users[sessionUserId])
 
-  const [userFollowers, setUserFollowers] = useState(0)
-  const [following, setFollowing] = useState(false)
-
+  console.log(sessionUser, "session User", "profile user", profileUser)
+  // get all posts from user at their profile page
   const posts = useSelector(state => Object.values(state.posts.normalizedPosts))
   const userPosts = posts.filter(post => post.userId == userId)
 
-  useEffect(() => {
-    if (sessionUser && profileUser) sessionUser.following.includes(profileUser.id) ? setFollowing(true) : setFollowing(false)
-  },[sessionUser, profileUser])
+  const [following, setFollowing] = useState(false)
 
+  // on load and every time the user or profile user changes, check
+  // if user is following
   useEffect(() => {
-    if(profileUser) setUserFollowers(profileUser.followers.length)
-  }, [profileUser])
+    if (sessionUser && profileUser) setFollowing(sessionUser.following.includes(profileUser.id))
+  }, [sessionUser, profileUser])
+
+
+  // if current user is following (their id is in the user's followers) this
+  // button unfollows, otherwise it follows
+  function handleFollow() {
+    console.log(sessionUser.id, profileUser.id, "SESSION AND PROFILE USER IDS")
+    if (following) {
+      dispatch(unfollowThunk(profileUser.id))
+      setFollowing(false)
+    } else {
+      dispatch(followThunk(profileUser.id))
+      setFollowing(true)
+    }
+  }
+
+  let followButton
+
+  following ?
+  followButton = (<button onClick={handleFollow}>Following</button>) :
+  followButton = (<button onClick={handleFollow}>Not Following</button>)
+
 
   if (!sessionUser || !profileUser) {
     return null;
@@ -30,8 +53,14 @@ function User() {
 
   return (
     <>
-      <FollowButton following={following} userId={profileUser.id} setFollowing={setFollowing}/>
-      <div>{profileUser.username} has {userFollowers} followers! </div>
+      {
+      profileUser &&
+      sessionUser &&
+      followButton}
+      {
+
+      <div>{profileUser.username} has {profileUser.followers.length} followers!</div>
+      }
       {userPosts && userPosts.map(post => {
         return (
           <div key={post.id}>

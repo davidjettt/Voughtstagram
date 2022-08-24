@@ -3,17 +3,17 @@ const LOAD_USERS = '/users/ALL'
 const FOLLOW_USER = '/users/FOLLOW'
 const UNFOLLOW_USER = '/users/UNFOLLOW'
 
-const follow = (profileId) => {
+const follow = (data) => {
     return {
         type: FOLLOW_USER,
-        profileId
+        data
     }
 }
 
-const unfollow = (profileId) => {
+const unfollow = (data) => {
     return {
         type: UNFOLLOW_USER,
-        profileId
+        data
     }
 }
 
@@ -24,28 +24,30 @@ const loadUsers = (users) => {
     }
 }
 
-export const followThunk = (id) => async (dispatch) => {
-    const response = await fetch(`/api/follows/follow/${id}`, {
+export const followThunk = (profileId) => async (dispatch) => {
+    const response = await fetch(`/api/follows/follow/${profileId}`, {
       method: 'POST'
     });
     if (response.ok) {
       const data = await response.json();
+      console.log("DATA FOR FOLLOW", data)
       if (data.errors) {
         return;
       }
-      dispatch(follow(id));
+      dispatch(follow(data));
     }
 }
-export const unfollowThunk = (id) => async (dispatch) => {
-    const response = await fetch(`/api/follows/unfollow/${id}`, {
+export const unfollowThunk = (profileId) => async (dispatch) => {
+    const response = await fetch(`/api/follows/unfollow/${profileId}`, {
       method: 'POST'
     });
     if (response.ok) {
       const data = await response.json();
+      console.log(data, "DATA FOR UNFOLLOW")
       if (data.errors) {
-        return;
+        return data.errors;
       }
-      dispatch(unfollow(id));
+      dispatch(unfollow(data));
     }
 }
 
@@ -58,7 +60,7 @@ export const loadAllUsers = () => async (dispatch) => {
     if (response.ok) {
       const data = await response.json();
       if (data.errors) {
-        return;
+        return data.errors;
       }
       dispatch(loadUsers(data));
     }
@@ -76,11 +78,14 @@ export default function reducer(state = initialState, action) {
             return newState
         case FOLLOW_USER:
             newState = JSON.parse(JSON.stringify(state))
-            loadAllUsers()
+            newState[action.data.currentUser.id] = action.data.currentUser
+            newState[action.data.user.id] = action.data.user
             return newState
         case UNFOLLOW_USER:
             newState = JSON.parse(JSON.stringify(state))
-            loadAllUsers()
+            newState[action.data.currentUser.id] = action.data.currentUser
+            newState[action.data.user.id] = action.data.user
+            return newState
         default:
             return state;
     }
