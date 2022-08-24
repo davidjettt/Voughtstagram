@@ -16,9 +16,13 @@ function User() {
   const posts = useSelector(state => Object.values(state.posts.normalizedPosts))
   const userPosts = posts.filter(post => post.userId == userId)
 
-  // useEffect(() => {
-  //   sessionUser.following.includes() ? setFollowing(true) : setFollowing(false)
-  // },[])
+  useEffect(() => {
+    if (sessionUser) sessionUser.following.includes(profileUser.id) ? setFollowing(true) : setFollowing(false)
+  },[sessionUser, profileUser])
+
+  useEffect(() => {
+    if(profileUser) setUserFollowers(profileUser.followers.length)
+  }, [profileUser])
 
   if (!sessionUser || !profileUser) {
     return null;
