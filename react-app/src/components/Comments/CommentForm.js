@@ -23,7 +23,7 @@ export default function CommentForm({ postId }) {
     return (
         <form onSubmit={onSubmit}>
             <input required type='text' value={comment} onChange={(e) => setComment(e.target.value)} />
-            <button>Submit</button>
+            <button>Post</button>
         </form>
     )
 }
