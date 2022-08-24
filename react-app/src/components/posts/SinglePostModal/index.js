@@ -13,7 +13,6 @@ function SinglePostModal({postId}) {
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
             <SinglePost postId={postId}/>
-            <Comments postId={postId}/>
         </Modal>
       )}
     </>

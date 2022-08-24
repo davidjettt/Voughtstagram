@@ -1,4 +1,4 @@
-img {
+.post-card-image {
     max-width: 470px;
     max-height: 587.5px;
 }
@@ -43,11 +43,12 @@ img {
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .post-card-description-user {
     font-weight: bold;
-    
+    margin-right: 0.5rem;
 }
 
 .all-comments-button {
@@ -66,4 +67,22 @@ img {
 
 .post-card-submit-comment {
     border-top: 1px solid rgb(237, 237, 237);
+}
+
+.single-post-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.single-post-image-container {
+
+}
+
+.single-post-image {
+    max-width: 470px;
+    max-height: 587.5px;
+}
+
+.single-post-text {
+    width: 50%;
 }
