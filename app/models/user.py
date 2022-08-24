@@ -54,8 +54,10 @@ class User(db.Model, UserMixin):
             'name': self.name,
             'username': self.username,
             'email': self.email,
-            'followers': [user.username for user in self.followers],
-            'following': [user.username for user in self.following]
+            'followers': [user.id for user in self.followers],
+            'following': [user.id for user in self.following],
+            # 'followerCount': len(self.followers),
+            # 'likes': [post.id for post in self.user_post_likes]
         }
 
     followers = db.relationship(
@@ -104,6 +106,7 @@ class Post(db.Model):
             'user': {
                 'username': User.query.get(self.user_id).username
             },
+            # 'user_likes': [user.id for user in self.post_likes],
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
             'comments': [comment.comment_to_dict_user() for comment in self.post_comments]
