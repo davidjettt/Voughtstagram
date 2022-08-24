@@ -56,8 +56,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'followers': [user.id for user in self.followers],
             'following': [user.id for user in self.following],
-            # 'followerCount': len(self.followers),
-            # 'likes': [post.id for post in self.user_post_likes]
         }
 
     followers = db.relationship(
@@ -101,12 +99,10 @@ class Post(db.Model):
             'imageUrl': self.image_url,
             'description': self.description,
             'userId': self.user_id,
-            # not necessary, but might help deal with post on frontend
-            # if we include username with all posts?
             'user': {
                 'username': User.query.get(self.user_id).username
             },
-            # 'user_likes': [user.id for user in self.post_likes],
+            'userLikes': [user.id for user in self.post_likes],
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
             'comments': [comment.comment_to_dict_user() for comment in self.post_comments]

@@ -25,7 +25,7 @@ const deletePost = (id) => ({
 /*joon:toggle_post_like action creator */
 const togglePostLike = (data) => ({
     type: TOGGLE_POST_LIKE,
-    payload:data
+    data
 })
 
 
@@ -122,10 +122,10 @@ export default function postsReducer(state = initialState, action) {
         // case ADD_POST_LIKE:
         //     newState = JSON.parse(JSON.stringify(state))
         //     newState.normalizedPosts[action.post.post_likes.id] = action.post.
-        // case TOGGLE_POST_LIKE:
-        //     newState = JSON.parse(JSON.stringify(state))
-        //     newState.normalizedPosts[action.payload] = action.payload
-        //     return newState
+        case TOGGLE_POST_LIKE:
+            newState = JSON.parse(JSON.stringify(state))
+            newState.normalizedPosts[action.data.post.id] = action.data.post
+            return newState
         default:
             return state
     }
