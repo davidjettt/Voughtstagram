@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, useHistory, useParams } from 'react-router-dom'
-import { editPost } from "../../store/posts"
+import { Redirect, useHistory } from 'react-router-dom'
+import { editPost } from "../../../store/posts"
 
-export default function EditForm() {
+export default function EditForm({postId}) {
     const sessionUser = useSelector(state => state.session.user)
-    const { postId } = useParams()
     const post = useSelector(state => state.posts.normalizedPosts[Number(postId)])
     const dispatch = useDispatch()
     const history = useHistory()

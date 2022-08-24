@@ -32,7 +32,7 @@ const deleteComment = (comment) => {
 }
 
 export const loadCommentsThunk = () => async (dispatch) => {
-    const response = await fetch('/api/comments')
+    const response = await fetch('/api/comments/')
 
     if (response.ok) {
         const data = await response.json()
@@ -41,8 +41,8 @@ export const loadCommentsThunk = () => async (dispatch) => {
 }
 
 export const postCommentThunk = (comment) => async (dispatch) => {
-    console.log('COMMENT', comment)
-    const response = await fetch(`/api/posts/${comment.post_id}/comments`, {
+
+    const response = await fetch(`/api/posts/${comment.post_id}/comments/`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(comment)
