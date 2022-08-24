@@ -4,10 +4,21 @@ img {
 }
 
 .post-like-button {
-    width: 40px;
-    height: 30px;
-    margin-top: 2px;
-    margin-bottom: -10px;
+    width: 24px;
+    height: 24px;
+    margin-top: 12px;
+    margin-left: 12px;
+    margin-bottom: -8px;
+}
+
+.number-likes {
+    margin-left:12px;
+    font-size: 14px;
+    font-weight:bold;
+}
+
+.post-like-button:hover {
+    cursor: pointer;
 }
 
 .main-posts-container {
@@ -47,7 +58,7 @@ img {
 
 .post-card-description-user {
     font-weight: bold;
-    
+
 }
 
 .all-comments-button {

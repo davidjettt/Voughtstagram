@@ -30,9 +30,9 @@ if (liked === false) {
 }
 
     return (
-        <div className="post-likes-container" onClick={handleClick}>
-        <img className="post-like-button" src={liked ? filledInHeart : heartImage } alt=''/>
-        <p className="number-likes">{post.userLikes.length} Likes</p>
+        <div className="post-likes-container" >
+        <img className="post-like-button" onClick={handleClick} src={liked ? filledInHeart : heartImage } alt=''/>
+        <p className="number-likes">{post.userLikes.length} likes</p>
         </div>
     )
 }
