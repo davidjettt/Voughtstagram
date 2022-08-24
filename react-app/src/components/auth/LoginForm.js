@@ -71,7 +71,7 @@ const LoginForm = () => {
             onChange={updatePassword}
           />
         </div>
-        <button className='login-button' type='submit'>Log In</button>
+        <button className='login-button' type='submit' disabled={email.length < 1 || password.length < 1}>Log In</button>
         <div className='login-or'>
             <div className='login-line'></div>
             <div className='login-or-word'>OR</div>
