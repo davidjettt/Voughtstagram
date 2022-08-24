@@ -66,8 +66,13 @@ function User() {
         profileUser.id !== sessionUser.id &&
         followButton
       }
-      <div className='profile-username'>
-        {profileUser.username}
+      <div className='profile-header'>
+        <div>
+          {profileUser.username}
+        </div>
+        <div>
+          {followButton}
+        </div>
       </div>
       <div className='profile-info-container'>
         <div className='profile-info'>
