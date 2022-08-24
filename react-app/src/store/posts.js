@@ -2,6 +2,9 @@ const LOAD_POSTS = '/posts/all'
 const NEW_POST = '/posts/new'
 const UPDATE_POST = '/posts/update'
 const DELETE_POST = '/posts/delete'
+/*joon-toggle post like action */
+const ADD_POST_LIKE = '/posts/ADD_POST_LIKE'
+const TOGGLE_POST_LIKE = '/posts/TOGGLE_POST_LIKE'
 
 const createPost = (post) => ({
     type: NEW_POST,
@@ -19,6 +22,12 @@ const deletePost = (id) => ({
     type: DELETE_POST,
     id
 })
+/*joon:toggle_post_like action creator */
+const togglePostLike = (data) => ({
+    type: TOGGLE_POST_LIKE,
+    payload:data
+})
+
 
 export const getAllPosts = () => async (dispatch) => {
     const response = await fetch('/api/posts/', {
@@ -69,6 +78,22 @@ export const removePost = (id) => async dispatch => {
     }
 }
 
+
+export const postLikeToggle = (postId, userId) => async dispatch => {
+    const response = await fetch(`/api/posts/${postId}/like`, {
+        method:'POST',
+        headers: { "Content-Type" : 'application/json' },
+        body: {
+            userId
+        }
+    })
+    if (response.ok) {
+        const data = await response.json()
+        console.log(data, "******************************")
+        dispatch(togglePostLike(data))
+    }
+}
+
 const initialState = {normalizedPosts: {}}
 
 export default function postsReducer(state = initialState, action) {
@@ -92,6 +117,12 @@ export default function postsReducer(state = initialState, action) {
             newState = JSON.parse(JSON.stringify(state))
             delete newState.normalizedPosts[action.id]
             return newState
+        // case ADD_POST_LIKE:
+        //     newState = JSON.parse(JSON.stringify(state))
+        //     newState.normalizedPosts[action.post.post_likes.id] = action.post.
+        // case TOGGLE_POST_LIKE:
+        //     newState = JSON.parse(JSON.stringify(state))
+        //     newState.normalizedPosts[action.payload]
         default:
             return state
     }
