@@ -59,7 +59,7 @@ function User() {
   }
 
   return (
-    <>
+    <div className='profile-container'>
       {
         profileUser &&
         sessionUser &&
@@ -67,6 +67,9 @@ function User() {
         followButton
       }
 
+        <h3>
+          Num Posts: {numberOfPosts && numberOfPosts}
+        </h3>
       {
         <div>
           {profileUser.username} has {followerCount} followers!
@@ -89,18 +92,16 @@ function User() {
               ))
           }
         </ul>
-        <h3>
-          Num Posts: {numberOfPosts && numberOfPosts}
-        </h3>
-
-      {userPosts && userPosts.map(post => {
-        return (
-          <div key={post.id}>
-            <ProfilePostModal post={post}/>
-          </div>
-        )
-      })}
-    </>
+      <div className='profile-post-image-container'>
+        {userPosts && userPosts.map(post => {
+          return (
+            <div className="profile-post-card" key={post.id}>
+              <ProfilePostModal post={post}/>
+            </div>
+          )
+        })}
+      </div>
+    </div>
   );
 }
 export default User;
