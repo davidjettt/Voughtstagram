@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import SinglePost from '../posts/SinglePostModal/SinglePost';
+import './profile.css'
 
 
 function ProfilePostModal({post}) {
@@ -9,7 +10,7 @@ function ProfilePostModal({post}) {
   return (
     <>
 
-      <img onClick={() => setShowModal(true)} src={post.imageUrl} alt=" "></img>
+      <img className="profile-post-image" onClick={() => setShowModal(true)} src={post.imageUrl} alt=" "></img>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
             <SinglePost postId={post.id}/>

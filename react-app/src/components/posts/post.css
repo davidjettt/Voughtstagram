@@ -138,3 +138,8 @@
 .single-post-likes {
     padding: 1rem;
 }
+
+.profile-link {
+    text-decoration: none;
+    color:black
+}
