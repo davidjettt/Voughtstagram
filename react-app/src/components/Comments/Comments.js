@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import DeleteComment from './DeleteComment'
 import {AiFillEdit} from 'react-icons/ai'
+import { BsThreeDots } from 'react-icons/bs'
 import EditCommentModal from './EditCommentModal'
+import CommentOptionsModal from './CommentOptionsModal'
 
 
 export default function Comments({ postId }) {
@@ -26,12 +28,11 @@ export default function Comments({ postId }) {
                 <div key={comment.id} className="">
                     <p>{comment.user.username}: {comment.comment}</p>
                     {currentUser.id === comment.userId &&
-                    <EditCommentModal comment={comment} />
-                    // <button className='edit-commit-button'><AiFillEdit /></button>
+                    <CommentOptionsModal comment={comment} />
                     }
-                    {currentUser.id === comment.userId &&
+                    {/* {currentUser.id === comment.userId &&
                     < DeleteComment comment={comment} index={index} />
-                    }
+                    } */}
                 </div>
             ))}
         </div>

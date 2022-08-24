@@ -1,0 +1,87 @@
+
+.comment-options-button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+.comment-options-container {
+    width: 350px;
+    height: 120px;
+    border-radius: 10px;
+}
+
+
+.comment-modal-buttons-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.cancel-button,
+.edit-comment-button,
+.delete-comment-button {
+    /* border-radius: 10px; */
+    max-width: 100%;
+    padding: 14px;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+}
+
+.cancel-button {
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+
+.edit-comment-button {
+    border-radius: 16px;
+    color: rgb(0, 140, 255);
+    font-weight: 700;
+}
+
+.delete-comment-button {
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    color: red;
+    font-weight: 700;
+}
+
+.comment-modal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-modal-form-input {
+    width: 96%;
+    border-radius: 9px;
+    margin-top: 5px;
+}
+
+.edit-comment-title {
+    text-align: center;
+    padding: 10px;
+}
+
+.comment-modal-form-button {
+    padding: 7px;
+    cursor: pointer;
+    color: rgb(0, 140, 255);
+    font-size: 14px;
+    font-weight: 700;
+    background-color: white;
+    border: none;
+    max-width: 100%;
+    /* width: 40%; */
+}
+
+.cancel-edit-comment-button {
+    cursor: pointer;
+    border: none;
+    /* border-top: 1px solid #aaa; */
+    background-color: white;
+    padding: 8px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    margin-bottom: 5px;
+}
