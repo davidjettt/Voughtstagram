@@ -80,17 +80,19 @@ export const removePost = (id) => async dispatch => {
 
 
 export const postLikeToggle = (postId, userId) => async dispatch => {
-    const response = await fetch(`/api/posts/${postId}/like`, {
+    const response = await fetch(`/api/posts/${postId}/likes`, {
         method:'POST',
         headers: { "Content-Type" : 'application/json' },
         body: {
             userId
         }
     })
+    console.log(response, "***********")
     if (response.ok) {
         const data = await response.json()
         console.log(data, "******************************")
         dispatch(togglePostLike(data))
+        return data
     }
 }
 
@@ -122,7 +124,8 @@ export default function postsReducer(state = initialState, action) {
         //     newState.normalizedPosts[action.post.post_likes.id] = action.post.
         // case TOGGLE_POST_LIKE:
         //     newState = JSON.parse(JSON.stringify(state))
-        //     newState.normalizedPosts[action.payload]
+        //     newState.normalizedPosts[action.payload] = action.payload
+        //     return newState
         default:
             return state
     }

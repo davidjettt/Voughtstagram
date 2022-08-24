@@ -24,7 +24,7 @@ if (liked === false) {
     return (
         <div className="post-likes-container" onClick={handleClick}>
         <img className="post-like-button" src={liked ? filledInHeart : heartImage } alt=''/>
-        <p className="number-likes">{post.post_like} Likes</p>
+        {/* <p className="number-likes">{post.post_like} Likes</p> */}
         </div>
     )
 }
