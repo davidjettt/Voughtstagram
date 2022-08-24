@@ -22,6 +22,7 @@ function User() {
   const [following, setFollowing] = useState(false)
   const [followerCount, setFollowerCount] = useState(0)
   const [followerList, setFollowerList] = useState([])
+  const [followingCount, setFollowingCount] = useState(0)
   const [followingList, setFollowingList] = useState([])
   const [numberOfPosts, setNumberOfPosts] = useState(0)
 
@@ -34,11 +35,10 @@ function User() {
 
   useEffect(() => {
     setFollowerCount(profileUser?.followers.length)
+    setFollowingCount(profileUser?.following.length)
     setFollowerList(profileUser?.followers)
     setFollowingList(profileUser?.following)
   }, [profileUser])
-
-  console.log(userPosts)
 
 
   function handleFollow() {
@@ -66,32 +66,39 @@ function User() {
         profileUser.id !== sessionUser.id &&
         followButton
       }
-
-        <h3>
-          Num Posts: {numberOfPosts && numberOfPosts}
-        </h3>
-      {
-        <div>
-          {profileUser.username} has {followerCount} followers!
+      <div className='profile-username'>
+        {profileUser.username}
+      </div>
+      <div className='profile-info-container'>
+        <div className='profile-info'>
+          <strong>{numberOfPosts}</strong> Posts
         </div>
-      }
+        <div className='profile-info'>
+          <strong>{followerCount}</strong> Followers
+        </div>
+        <div className='profile-info'>
+          <strong>{followingCount}</strong> Following
+        </div>
+      </div>
 
-        <ul>
-          <h3>Followers:</h3>
-          {
-            followerList && followerList.map(follower => (
-                <li key={follower}>{allUsers[follower].username}</li>
-              ))
-          }
-        </ul>
-        <ul>
-          <h3>Following:</h3>
-          {
-            followingList && followingList.map(following => (
-                <li key={following}>{allUsers[following].username}</li>
-              ))
-          }
-        </ul>
+{/* 
+      <ul>
+        <h3>Followers:</h3>
+        {
+          followerList && followerList.map(follower => (
+              <li key={follower}>{allUsers[follower].username}</li>
+            ))
+        }
+      </ul>
+      <ul>
+        <h3>Following:</h3>
+        {
+          followingList && followingList.map(following => (
+              <li key={following}>{allUsers[following].username}</li>
+            ))
+        }
+      </ul> */}
+
       <div className='profile-post-image-container'>
         {userPosts && userPosts.map(post => {
           return (
