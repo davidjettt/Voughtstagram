@@ -9,7 +9,7 @@ export default function Cards({post}) {
     return (
         <div className="post-card">
             <div className="post-card-user">{post.user.username}</div>
-            <img src={post.imageUrl} alt=" "></img>
+            <img className="post-card-image" src={post.imageUrl} alt=" "></img>
             <PostLikes postId={post.id}/>
             <div className="post-card-description">
                 <div className="post-card-description-user">{post.user.username}</div>

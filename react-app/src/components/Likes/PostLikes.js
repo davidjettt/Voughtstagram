@@ -8,23 +8,25 @@ import { postLikeToggle } from "../../store/posts"
 
 export default function PostLikes( { postId }) {
 const dispatch = useDispatch()
-const post = useSelector((state) => Object.values(state.posts))
+const post = useSelector((state) => state.posts.normalizedPosts[postId])
 const userId = useSelector((state) => state.session.user.id)
+
 const [liked, setLiked] = useState(false)
+
+useEffect(() => {
+    if (post) {
+        setLiked(post.userLikes.includes(userId))
+    }
+}, [post])
 
 const handleClick = () => {
 dispatch(postLikeToggle(postId, userId))
-if (liked === false) {
-    setLiked(true)
-} else {
-    setLiked(false)
-    }
 }
 
     return (
         <div className="post-likes-container" onClick={handleClick}>
         <img className="post-like-button" src={liked ? filledInHeart : heartImage } alt=''/>
-        {/* <p className="number-likes">{post.post_like} Likes</p> */}
+        <p className="number-likes">{post.userLikes.length} Likes</p>
         </div>
     )
 }

@@ -101,7 +101,7 @@ def like_unlike_a_post(id):
     else:
         post.post_likes.remove(current_user)
         db.session.commit()
-    return { 'liked_users_posts': [user.to_dict() for user in post.post_likes] }
+    return { 'post': post.to_dict_with_user()}
 
 
 # Get all comments for a post based off of post id

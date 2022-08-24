@@ -12,6 +12,7 @@ function User() {
   // get current user and the user whose profile we're on
   const profileUser = useSelector(state => state.users[Number(userId)])
   const sessionUser = useSelector(state => state.users[sessionUserId])
+  const allUsers = useSelector(state => state.users)
 
   console.log(sessionUser, "session User", "profile user", profileUser)
   // get all posts from user at their profile page
@@ -19,25 +20,31 @@ function User() {
   const userPosts = posts.filter(post => post.userId == userId)
 
   const [following, setFollowing] = useState(false)
+  const [followerCount, setFollowerCount] = useState(0)
+  const [followerList, setFollowerList] = useState([])
+  const [followingList, setFollowingList] = useState([])
+  const [numberOfPosts, setNumberOfPosts] = useState(0)
 
   // on load and every time the user or profile user changes, check
-  // if user is following
+  // if user is following and update follower count, followers and following
   useEffect(() => {
-    if (sessionUser && profileUser) setFollowing(sessionUser.following.includes(profileUser.id))
+    setFollowing(sessionUser?.following.includes(profileUser?.id))
+    setNumberOfPosts(userPosts?.length)
   }, [sessionUser, profileUser])
 
+  useEffect(() => {
+    setFollowerCount(profileUser?.followers.length)
+    setFollowerList(profileUser?.followers)
+    setFollowingList(profileUser?.following)
+  }, [profileUser])
 
-  // if current user is following (their id is in the user's followers) this
-  // button unfollows, otherwise it follows
+  console.log(userPosts)
+
+
   function handleFollow() {
-    console.log(sessionUser.id, profileUser.id, "SESSION AND PROFILE USER IDS")
-    if (following) {
-      dispatch(unfollowThunk(profileUser.id))
-      setFollowing(false)
-    } else {
-      dispatch(followThunk(profileUser.id))
-      setFollowing(true)
-    }
+    following ?
+    dispatch(unfollowThunk(profileUser.id)) :
+    dispatch(followThunk(profileUser.id))
   }
 
   let followButton
@@ -54,13 +61,38 @@ function User() {
   return (
     <>
       {
-      profileUser &&
-      sessionUser &&
-      followButton}
-      {
-
-      <div>{profileUser.username} has {profileUser.followers.length} followers!</div>
+        profileUser &&
+        sessionUser &&
+        profileUser.id !== sessionUser.id &&
+        followButton
       }
+
+      {
+        <div>
+          {profileUser.username} has {followerCount} followers!
+        </div>
+      }
+
+        <ul>
+          <h3>Followers:</h3>
+          {
+            followerList && followerList.map(follower => (
+                <li key={follower}>{allUsers[follower].username}</li>
+              ))
+          }
+        </ul>
+        <ul>
+          <h3>Following:</h3>
+          {
+            followingList && followingList.map(following => (
+                <li key={following}>{allUsers[following].username}</li>
+              ))
+          }
+        </ul>
+        <h3>
+          Num Posts: {numberOfPosts && numberOfPosts}
+        </h3>
+
       {userPosts && userPosts.map(post => {
         return (
           <div key={post.id}>
