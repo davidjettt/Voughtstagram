@@ -3,10 +3,12 @@
     flex-direction: row;
     padding-left: 1rem;
     padding-right: 1rem;
+    justify-content: space-between;
 }
 .comment-form-input {
     border: none;
     background-color: white;
+    width: 40%;
 }
 /* 
 .comment-form-button:invalid {
@@ -23,6 +25,7 @@
     font-weight: 700;
     background-color: white;
     border: none;
+    width: 40%;
 }
 
 .comment-form-button:hover {

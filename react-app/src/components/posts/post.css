@@ -1,6 +1,6 @@
 img {
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 470px;
+    max-height: 587.5px;
 }
 
 .post-like-button {
@@ -22,6 +22,8 @@ img {
     background-color: white;
     width: 40%;
     height: 60%;
+    max-width: 470px;
+    max-height: 800px;
     border: 1px solid lightgray;
     border-radius: 10px;
     margin-bottom: 1%;
