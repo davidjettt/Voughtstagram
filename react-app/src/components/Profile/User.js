@@ -29,11 +29,14 @@ function User() {
   // if user is following and update follower count, followers and following
   useEffect(() => {
     setFollowing(sessionUser?.following.includes(profileUser?.id))
+    setNumberOfPosts(userPosts?.length)
+  }, [sessionUser, profileUser])
+
+  useEffect(() => {
     setFollowerCount(profileUser?.followers.length)
     setFollowerList(profileUser?.followers)
     setFollowingList(profileUser?.following)
-    setNumberOfPosts(userPosts?.length)
-  }, [sessionUser, profileUser])
+  }, [profileUser])
 
   console.log(userPosts)
 
