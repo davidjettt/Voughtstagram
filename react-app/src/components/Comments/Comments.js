@@ -5,6 +5,7 @@ import {AiFillEdit} from 'react-icons/ai'
 import { BsThreeDots } from 'react-icons/bs'
 import EditCommentModal from './EditCommentModal'
 import CommentOptionsModal from './CommentOptionsModal'
+import './comment.css'
 
 
 export default function Comments({ postId }) {
@@ -26,7 +27,7 @@ export default function Comments({ postId }) {
         <div>
             {postComments.length > 0 && postComments.map((comment, index )=> (
                 <div key={comment.id} className="">
-                    <p>{comment.user.username}: {comment.comment}</p>
+                    <p className='post-comment'><strong>{comment.user.username}</strong> {comment.comment}</p>
                     {currentUser.id === comment.userId &&
                     <CommentOptionsModal comment={comment} />
                     }

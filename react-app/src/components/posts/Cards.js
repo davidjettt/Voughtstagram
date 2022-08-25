@@ -21,7 +21,7 @@ export default function Cards({post}) {
                 <div >{post.description}</div>
             </div>
             <SinglePostModal postId={post.id}/>
-            <div>
+            <div className="post-card-comments">
                 <Comments postId={post.id}/>
             </div>
             <div className="post-card-submit-comment">

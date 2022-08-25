@@ -20,8 +20,8 @@
 .profile-post-image-container {
     display: flex;
     flex-direction: row;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
     border-top: 1px solid rgb(209, 209, 209);
 }
 .profile-post-card {

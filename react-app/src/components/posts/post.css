@@ -66,6 +66,10 @@
     margin-right: 0.5rem;
 }
 
+.post-card-comments {
+    margin-left: 0.5rem;
+}
+
 .all-comments-button {
     background-color: white;
     color: rgb(150, 150, 150);
@@ -131,6 +135,10 @@
 .single-post-description-user {
     font-weight: bold;
     margin-right: 0.5rem;
+}
+
+.single-post-comments {
+    margin-left: 1rem;
 }
 
 .single-post-footer {
