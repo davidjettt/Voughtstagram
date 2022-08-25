@@ -5,7 +5,9 @@ import Cards from "./Cards"
 
 export default function Feed() {
     const sessionUser = useSelector(state => state.session.user)
-    const allPosts = useSelector(state => state.posts.normalizedPosts)
+    const allPosts = useSelector(state => Object.values(state.posts.normalizedPosts))
+    const followedPosts = allPosts.filter(post => sessionUser.following.includes(post.userId))
+
 
     if (!sessionUser) {
         return (
@@ -16,7 +18,7 @@ export default function Feed() {
     return (
         <div className="feed-container">
             <div className="main-posts-container">
-                {Object.values(allPosts).map(post => (
+                {followedPosts.map(post => (
                     <Cards key={post.id} post={post}/>
                 ))}
             </div>
