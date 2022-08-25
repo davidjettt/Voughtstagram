@@ -21,6 +21,8 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+    } else {
+      setErrors(['Passwords need to match'])
     }
   };
 
@@ -45,7 +47,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/feed' />;
   }
 
   return (
@@ -56,11 +58,11 @@ const SignUpForm = () => {
           <div className='signup-message'>Sign up to see photos and videos from your friends.</div>
         </div>
         <form className='signup-form' onSubmit={onSignUp}>
-          <div>
+          {/* <div>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
-          </div>
+          </div> */}
           <div>
             <label></label>
             <input
@@ -113,6 +115,11 @@ const SignUpForm = () => {
             ></input>
           </div>
           <button className='login-button' type='submit' disabled={username.length < 1 || email.length < 1 || password.length < 1 || repeatPassword < 1}>Sign Up</button>
+          <div className='signup-errors'>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
         </form>
       </div>
       <div className='back-to-login-container'>

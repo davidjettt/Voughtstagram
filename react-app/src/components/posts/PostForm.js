@@ -30,7 +30,6 @@ export default function PostForm({ setShowCreatePostModal }) {
         }
 
         const badData = await dispatch(createNewPost(payload))
-        console.log('BAD', badData)
         if (badData) {
             setErrors(badData)
         } else {
@@ -76,7 +75,7 @@ export default function PostForm({ setShowCreatePostModal }) {
         <>
         {!addCaption &&
 
-        <div className="edit-post-container-main" style={{ width: 500, height: 500 }}>
+        <div className="edit-post-container-main" style={{ width: 600, height: 600 }}>
             <div className="edit-post-header-container">
                 <div className="edit-post-cancel-button-container">
                     <button onClick={handleCancelImageUpload} className="edit-post-cancel-button">Cancel</button>
@@ -106,7 +105,7 @@ export default function PostForm({ setShowCreatePostModal }) {
             </div>
         </div>}
 
-        {addCaption && <form onSubmit={onSubmit} className="edit-post-container-main">
+        {addCaption && <form onSubmit={onSubmit} className="edit-post-container-main" >
             <div className="edit-post-header-container">
                 <div className="edit-post-cancel-button-container">
                     <button onClick={handleCancelPost} className="edit-post-cancel-button">Cancel</button>
