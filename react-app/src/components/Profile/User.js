@@ -71,9 +71,6 @@ function User() {
 
        <div className='profile-info-container'>
 
-
-
-
          <div className='profile-info'>
            <strong>{numberOfPosts}</strong> Posts
          </div>
@@ -85,11 +82,12 @@ function User() {
            }
          </div>
          <div className='profile-info'>
-           <strong>{followingCount}</strong>{
-        sessionUser &&
-        profileUser &&
-        <ShowFollowsModal type='following' profileId={profileUser.id}/>
-      }
+           <strong>{followingCount}</strong>
+           {
+            sessionUser &&
+            profileUser &&
+            <ShowFollowsModal type='following' profileId={profileUser.id}/>
+            }
          </div>
        </div>
 
