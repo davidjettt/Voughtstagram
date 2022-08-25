@@ -34,18 +34,24 @@ export default function PostForm({ setShowCreatePostModal }) {
         history.push('/feed')
     }
 
+    // const imageHandler = (e) => {
+    //     const reader = new FileReader()
+    //     reader.onload = () => {
+    //         if (reader.readyState == 2) {
+    //             // console.log('READER RESULT', reader.result)
+    //             setImageUrl(reader.result)
+    //         }
+    //     }
+    //     // console.log('FILES', e.target.files)
+    //     reader.readAsDataURL(e.target.files[0])
+    //     setAddCaption(true)
+    // }
+
     const imageHandler = (e) => {
-        const reader = new FileReader()
-        reader.onload = () => {
-            if (reader.readyState == 2) {
-                // console.log('READER RESULT', reader.result)
-                setImageUrl(reader.result)
-            }
-        }
-        // console.log('FILES', e.target.files)
-        reader.readAsDataURL(e.target.files[0])
+        setImageUrl(e.target.value)
         setAddCaption(true)
     }
+
 
     const handleCancelPost = () => {
         setShowCreatePostModal(false)
@@ -78,10 +84,11 @@ export default function PostForm({ setShowCreatePostModal }) {
                     <div className="image-upload-message">
                         Upload a photo
                     </div>
-                    <label htmlFor="input" className='custom-file-upload'>
+                    {/* <label htmlFor="input" className='custom-file-upload'>
                         <input className="image-upload-input" type='file' name='image-upload' id='input' accept='image/*' onChange={imageHandler}/>
                         Select from computer
-                    </label>
+                    </label> */}
+                    <input value={imageUrl} onChange={imageHandler} type='url' placeholder="Image Url" />
                 </div>
             </div>
         </div>}
