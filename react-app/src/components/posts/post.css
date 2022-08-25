@@ -97,19 +97,31 @@
 .single-post-container {
     display: flex;
     flex-direction: row;
+    height: 90vh;
+    width: 140vh;
 }
 
 .single-post-left {
     background-color: black;
+    width: 50%;
+}
+
+.single-post-right {
+    width: 50%;
 }
 
 .single-post-image-container {
-    margin: 5% 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .single-post-image {
-    max-width: 470px;
-    max-height: 587.5px;
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
 }
 
 .single-post-text {
