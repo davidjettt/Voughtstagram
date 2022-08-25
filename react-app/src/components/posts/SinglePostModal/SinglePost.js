@@ -1,8 +1,6 @@
-import { useHistory, Redirect, NavLink } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import { Redirect, NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
 import '../post.css'
-import { removePost } from "../../../store/posts"
-import EditPostModal from "../EditPostModal"
 import Comments from "../../Comments/Comments"
 import PostLikes from "../../Likes/PostLikes"
 import CommentForm from "../../Comments/CommentForm"
@@ -11,14 +9,8 @@ import PostOptionsModal from "./PostOptionsModal"
 
 export default function SinglePost({postId}) {
     const sessionUser = useSelector(state => state.session.user)
-    const dispatch = useDispatch()
-    const history = useHistory()
     const post = useSelector(state => state.posts.normalizedPosts[Number(postId)])
 
-    // const handleDelete = () => {
-    //     dispatch(removePost(postId))
-    //     history.push('/feed')
-    // }
     if (!post) {
         return <Redirect to="/feed"/>
     }
@@ -43,28 +35,25 @@ export default function SinglePost({postId}) {
 
 
                 </div>
-                <div className="single-post-description">
-                    <NavLink className="profile-link" to={`/users/${post.userId}`}>
-                        <p className="single-post-description-user">{post.user.username}</p>
-                    </NavLink>
-                    <p>{post.description}</p>
-                </div>
-                <div className="single-post-comments">
-                    <Comments postId={postId}/>
-                </div>
-                <div className="single-post-footer">
-                    <div className="single-post-likes">
-                        <PostLikes postId={post.id}/>
+                <div>
+                    <div className="single-post-description">
+                        <NavLink className="profile-link" to={`/users/${post.userId}`}>
+                            <p className="single-post-description-user">{post.user.username}</p>
+                        </NavLink>
+                        <p>{post.description}</p>
                     </div>
-                    <div className="post-card-submit-comment">
-                        <CommentForm postId={post.id} />
+                    <div className="single-post-comments">
+                        <Comments postId={postId}/>
+                    </div>
+                    <div className="single-post-footer">
+                        <div className="single-post-likes">
+                            <PostLikes postId={post.id}/>
+                        </div>
+                        <div className="post-card-submit-comment">
+                            <CommentForm postId={post.id} />
+                        </div>
                     </div>
                 </div>
-                {/* {sessionUser?.id === post.userId && <>
-                    <EditPostModal postId={postId}/>
-                    <button onClick={handleDelete}>Delete</button>
-                </>
-                } */}
             </div>
         </div>
 
