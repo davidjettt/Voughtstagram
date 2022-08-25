@@ -17,7 +17,8 @@
 
 .edit-post-image {
     height: 100%;
-    width: 85%;
+    width: 95%;
+    object-fit: cover;
 }
 
 .edit-post-container-main {
@@ -37,7 +38,7 @@
 
 .edit-post-image-container {
     width: 600px;
-    height: 500px;
+    height: 600px;
     display: flex;
     justify-content: center;
 }
@@ -97,7 +98,7 @@
 
 .post-options-container-bigger {
     width: 800px;
-    height: 550px;
+    height: 642px;
     border-radius: 10px;
 }
 
