@@ -24,23 +24,28 @@ export default function SinglePost({postId}) {
             </div>
             <div className="single-post-right">
                 <div className="single-post-text">
-                    <div className="single-post-header">
-                        <NavLink className="profile-link" to={`/users/${post.userId}`}>
-                            {post.user.username}
-                        </NavLink>
-                        {sessionUser?.id === post.userId &&
-                            <PostOptionsModal postId={postId} />
-                        }
-                    </div>
-                        <div className="single-post-description">
+                    <div className="single-post-top-right">
+                        <div className="single-post-header">
                             <NavLink className="profile-link" to={`/users/${post.userId}`}>
-                                <p className="single-post-description-user">{post.user.username}</p>
+                                {post.user.username}
                             </NavLink>
-                            <p>{post.description}</p>
+                            {sessionUser?.id === post.userId &&
+                                <PostOptionsModal postId={postId} />
+                            }
                         </div>
-                        <div className="single-post-comments">
-                            <Comments postId={postId}/>
+                        <div className="single-post-scroll">
+                            <div className="single-post-description">
+                                <NavLink className="profile-link" to={`/users/${post.userId}`}>
+                                    <p className="single-post-description-user">{post.user.username}</p>
+                                </NavLink>
+                                <p>{post.description}</p>
+                            </div>
+                            <div className="single-post-comments">
+                                <Comments postId={postId}/>
+                            </div>
                         </div>
+                    </div>
+                    <div className="single-post-bottom-right">
                         <div className="single-post-footer">
                             <div className="single-post-likes">
                                 <PostLikes postId={post.id}/>
@@ -49,6 +54,7 @@ export default function SinglePost({postId}) {
                                 <CommentForm postId={post.id} />
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
