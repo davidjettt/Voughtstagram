@@ -15,7 +15,6 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
-    console.log(data)
     if (data) {
       setErrors(data);
     }
@@ -73,14 +72,14 @@ const LoginForm = () => {
         </div>
         <button className='login-button' type='submit' disabled={email.length < 1 || password.length < 1}>Log In</button>
         <div className='login-or'>
-            <div className='login-line'></div>
-            <div className='login-or-word'>OR</div>
-            <div className='login-line'></div>
+          <div className='login-line'></div>
+          <div className='login-or-word'>OR</div>
+          <div className='login-line'></div>
         </div>
         <div className='demo-user-container'>
-            <button onClick={handleDemoUser} className='login-button'>Demo User</button>
+          <button onClick={handleDemoUser} className='login-button'>Demo User</button>
         </div>
-    </form>
+      </form>
     </div>
   );
 };

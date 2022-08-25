@@ -62,15 +62,15 @@ export const createNewPost = (payload) => async (dispatch) => {
 
 export const editPost = (payload) => async dispatch => {
     const response = await fetch(`/api/posts/${payload.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type' : 'application/json' },
-      body: JSON.stringify(payload)
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
     });
     if (response.ok) {
-      const post = await response.json();
-      return dispatch(updatePost(post));
+        const post = await response.json();
+        return dispatch(updatePost(post));
     }
-  };
+};
 
 export const removePost = (id) => async dispatch => {
     const response = await fetch(`/api/posts/${id}`, {
@@ -84,22 +84,20 @@ export const removePost = (id) => async dispatch => {
 
 export const postLikeToggle = (postId, userId) => async dispatch => {
     const response = await fetch(`/api/posts/${postId}/likes`, {
-        method:'POST',
-        headers: { "Content-Type" : 'application/json' },
+        method: 'POST',
+        headers: { "Content-Type": 'application/json' },
         body: {
             userId
         }
     })
-    console.log(response, "***********")
     if (response.ok) {
         const data = await response.json()
-        console.log(data, "******************************")
         dispatch(togglePostLike(data))
         return data
     }
 }
 
-const initialState = {normalizedPosts: {}}
+const initialState = { normalizedPosts: {} }
 
 export default function postsReducer(state = initialState, action) {
     let newState
@@ -132,4 +130,4 @@ export default function postsReducer(state = initialState, action) {
         default:
             return state
     }
-  }
+}
