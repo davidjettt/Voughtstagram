@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import LogoutDropdown from './auth/LogoutDropdown';
 import navLogo from '../Images/voughtstagramlogo.svg'
 import homeLogo from '../Images/homelogo.svg'
 import newPost from '../Images/createpost.svg'
@@ -49,7 +49,7 @@ const NavBar = () => {
             <img className='new-post-button' src={newPost}/>
           </NavLink> */}
           <CreatePostModal />
-          <LogoutButton />
+          <LogoutDropdown />
         </div>
         </div>
       {/* </ul> */}
