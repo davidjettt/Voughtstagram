@@ -34,14 +34,13 @@ export default function SinglePost({postId}) {
             <div className="single-post-text">
                 <div className="single-post-header">
 
-                    <div>{post.user.username}</div>
+                    <NavLink className="profile-link" to={`/users/${post.userId}`}>
+                        {post.user.username}
+                    </NavLink>
                     {sessionUser?.id === post.userId &&
                         <PostOptionsModal postId={postId} />
                     }
 
-                    <NavLink className="profile-link" to={`/users/${post.userId}`}>
-                        {post.user.username}
-                    </NavLink>
 
                 </div>
                 <div className="single-post-description">
