@@ -9,16 +9,19 @@ import './Profile/NavBar.css'
 
 const NavBar = () => {
   return (
-    <nav className='nav-bar-container'>
-      <div className="nav-logo">
-        <NavLink className='home-link' exact to='/feed'>
-          <img className="home-logo" src={navLogo}/>
-        </NavLink>
-      </div>
+      <div className='nav-bar-container' >
+        <div className='inner-nav-container'>
+        <div className="nav-logo">
+          <NavLink className='home-link' exact to='/feed'>
+            <img className="home-logo" src={navLogo}/>
+          </NavLink>
+        </div>
       {/* <ul> */}
       <div className='nav-buttons-right'>
           <NavLink to='/' exact={true} activeClassName='active'>
-          <img className='house-logo' src={homeLogo}/>
+            <div className='house-logo'>
+           <img  src={homeLogo}/>
+          </div>
           </NavLink>
 
         {/* <li>
@@ -44,13 +47,12 @@ const NavBar = () => {
         <NavLink to='/posts/new' exact={true} activeClassName='active'>
             <img className='new-post-button' src={newPost}/>
           </NavLink>
-
-        <div className='logout-button'>
           <LogoutButton />
         </div>
         </div>
       {/* </ul> */}
-    </nav>
+      </div>
+
   );
 }
 
