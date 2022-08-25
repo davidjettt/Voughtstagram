@@ -14,7 +14,7 @@ export default function PostForm({ setShowCreatePostModal }) {
 
     const [imageUrl, setImageUrl] = useState('')
     const [description, setDescription] = useState('')
-    const [ addCaption, setAddCaption ] = useState(false)
+    const [addCaption, setAddCaption] = useState(false)
     const [errors, setErrors] = useState([])
 
     const imageChange = (e) => setImageUrl(e.target.value)
@@ -45,7 +45,7 @@ export default function PostForm({ setShowCreatePostModal }) {
     const isValidURL = (urlString) => {
         try {
             return Boolean(new URL(urlString))
-        } catch(e) {
+        } catch (e) {
             return false
         }
     }
@@ -73,69 +73,69 @@ export default function PostForm({ setShowCreatePostModal }) {
 
     return (
         <>
-        {!addCaption &&
+            {!addCaption &&
 
-        <div className="edit-post-container-main" style={{ width: 600, height: 600 }}>
-            <div className="edit-post-header-container">
-                <div className="edit-post-cancel-button-container">
-                    <button onClick={handleCancelImageUpload} className="edit-post-cancel-button">Cancel</button>
-                </div>
-                <div style={{ paddingTop: 3 }} className="edit-post-title-container">
-                    Create a new post
-                </div>
-                <div>
-                    <button className="edit-post-submit-button" onClick={nextPage}>Next</button>
-                </div>
-            </div>
-            <div className="image-upload-container">
-                <div className="image-upload-container-secondary">
-                    <div className="image-svg-container">
-                        <img src={newPost} alt='' />
+                <div className="edit-post-container-main" style={{ width: 600, height: 600 }}>
+                    <div className="edit-post-header-container">
+                        <div className="edit-post-cancel-button-container">
+                            <button onClick={handleCancelImageUpload} className="edit-post-cancel-button">Cancel</button>
+                        </div>
+                        <div style={{ paddingTop: 3 }} className="edit-post-title-container">
+                            Create a new post
+                        </div>
+                        <div>
+                            <button className="edit-post-submit-button" onClick={nextPage}>Next</button>
+                        </div>
                     </div>
-                    <div className="image-upload-message">
-                        Upload a photo
+                    <div className="image-upload-container">
+                        <div className="image-upload-container-secondary">
+                            <div className="image-svg-container">
+                                <img src={newPost} alt='' />
+                            </div>
+                            <div className="image-upload-message">
+                                Upload a photo
+                            </div>
+                            <input required value={imageUrl} onChange={imageHandler} type='url' placeholder="Image Url" />
+                            <div className='errors'>
+                                {errors.map((error, ind) => (
+                                    <div key={ind}>{error}</div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                    <input required value={imageUrl} onChange={imageHandler} type='url' placeholder="Image Url" />
-                    <div className='errors'>
-                        {errors.map((error, ind) => (
-                            <div key={ind}>{error}</div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>}
+                </div>}
 
-        {addCaption && <form onSubmit={onSubmit} className="edit-post-container-main" >
-            <div className="edit-post-header-container">
-                <div className="edit-post-cancel-button-container">
-                    <button onClick={handleCancelPost} className="edit-post-cancel-button">Cancel</button>
-                </div>
-                <div className="edit-post-title-container">
-                    Create a new post
-                </div>
-                <div className="edit-post-submit-button-container">
-                    <button className="edit-post-submit-button">Share</button>
-                </div>
-            </div>
-            <div className="edit-post-container-secondary">
-                <div className="edit-post-image-container">
-                    <img className="edit-post-image" src={imageUrl} alt='' />
-                </div>
-                <div className="edit-post-form-container">
-                    <div className="edit-post-username-container">
-                        <div className="edit-post-username">{ sessionUser.username }</div>
+            {addCaption && <form onSubmit={onSubmit} className="edit-post-container-main" >
+                <div className="edit-post-header-container">
+                    <div className="edit-post-cancel-button-container">
+                        <button onClick={handleCancelPost} className="edit-post-cancel-button">Cancel</button>
                     </div>
-                    <div >
-                        <textarea cols='30' rows='15' required className="edit-post-input" type="text" value={description} onChange={descriptionChange} placeholder="Write your caption here..."></textarea>
+                    <div className="edit-post-title-container">
+                        Create a new post
                     </div>
-                    <div className='errors'>
-                        {errors.map((error, ind) => (
-                            <div key={ind}>{error}</div>
-                        ))}
+                    <div className="edit-post-submit-button-container">
+                        <button className="edit-post-submit-button">Share</button>
                     </div>
                 </div>
-            </div>
-        </form>}
+                <div className="edit-post-container-secondary">
+                    <div className="edit-post-image-container">
+                        <img className="edit-post-image" src={imageUrl} alt='' />
+                    </div>
+                    <div className="edit-post-form-container">
+                        <div className="edit-post-username-container">
+                            <div className="edit-post-username">{sessionUser.username}</div>
+                        </div>
+                        <div >
+                            <textarea cols='30' rows='15' required className="edit-post-input" type="text" value={description} onChange={descriptionChange} placeholder="Write your caption here..."></textarea>
+                        </div>
+                        <div className='errors'>
+                            {errors.map((error, ind) => (
+                                <div key={ind}>{error}</div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </form>}
         </>
     )
 }

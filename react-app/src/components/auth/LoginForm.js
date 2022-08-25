@@ -73,19 +73,19 @@ const LoginForm = () => {
         </div>
         <button className='login-button' type='submit' disabled={email.length < 1 || password.length < 1}>Log In</button>
         <div className='login-or'>
-            <div className='login-line'></div>
-            <div className='login-or-word'>OR</div>
-            <div className='login-line'></div>
+          <div className='login-line'></div>
+          <div className='login-or-word'>OR</div>
+          <div className='login-line'></div>
         </div>
         <div className='demo-user-container'>
-            <button onClick={handleDemoUser} className='login-button'>Demo User</button>
+          <button onClick={handleDemoUser} className='login-button'>Demo User</button>
         </div>
         <div style={{ marginTop: 20 }} className='errors'>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
-    </form>
+      </form>
     </div>
   );
 };

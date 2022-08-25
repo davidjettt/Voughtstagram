@@ -5,7 +5,6 @@ import './FollowButton.css'
 
 
 export default function FollowButton({ profileUserId, following }) {
-    console.log(profileUserId, following, "FOLLOW BUTTON COMPONENT")
 
     const dispatch = useDispatch()
 

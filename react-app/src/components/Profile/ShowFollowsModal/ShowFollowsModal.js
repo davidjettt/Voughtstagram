@@ -30,17 +30,17 @@ export default function ShowFollowsModal({ type, profileId }) {
 
       {renderModal &&
         <>
-          <div onClick={() => setShowModal(true)}>{profileUser && buttonText}</div>
+          <div className="open-followers-modal" onClick={() => setShowModal(true)}>{profileUser && buttonText}</div>
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
 
               {type === 'followers' &&
                 profileUser &&
-                <ShowFollows type='followers' profileUserId={profileUser.id} />}
+                <ShowFollows setShowModal={setShowModal} type='followers' profileUserId={profileUser.id} />}
 
               {type === 'following' &&
                 profileUser &&
-                <ShowFollows type='following' profileUserId={profileUser.id} />}
+                <ShowFollows setShowModal={setShowModal} type='following' profileUserId={profileUser.id} />}
 
             </Modal>
           )}
