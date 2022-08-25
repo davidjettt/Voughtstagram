@@ -51,3 +51,9 @@
     justify-content: center;
     align-items: center;
 }
+
+
+.signup-errors {
+    color: red;
+    margin-top: 40px;
+}
