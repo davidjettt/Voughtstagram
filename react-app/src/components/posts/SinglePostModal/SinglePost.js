@@ -6,6 +6,7 @@ import EditPostModal from "../EditPostModal"
 import Comments from "../../Comments/Comments"
 import PostLikes from "../../Likes/PostLikes"
 import CommentForm from "../../Comments/CommentForm"
+import PostOptionsModal from "./PostOptionsModal"
 
 
 export default function SinglePost({postId}) {
@@ -14,10 +15,10 @@ export default function SinglePost({postId}) {
     const history = useHistory()
     const post = useSelector(state => state.posts.normalizedPosts[Number(postId)])
 
-    const handleDelete = () => {
-        dispatch(removePost(postId))
-        history.push('/feed')
-    }
+    // const handleDelete = () => {
+    //     dispatch(removePost(postId))
+    //     history.push('/feed')
+    // }
     if (!post) {
         return <Redirect to="/feed"/>
     }
@@ -32,7 +33,10 @@ export default function SinglePost({postId}) {
             </div>
             <div className="single-post-text">
                 <div className="single-post-header">
-                    {post.user.username}
+                    <div>{post.user.username}</div>
+                    {sessionUser?.id === post.userId &&
+                        <PostOptionsModal postId={postId} />
+                    }
                 </div>
                 <div className="single-post-description">
                     <p className="single-post-description-user">{post.user.username}</p>
@@ -42,21 +46,20 @@ export default function SinglePost({postId}) {
                     <Comments postId={postId}/>
                 </div>
                 <div className="single-post-footer">
-                    <div className="single-post-likes"> 
+                    <div className="single-post-likes">
                         <PostLikes postId={post.id}/>
                     </div>
                     <div className="post-card-submit-comment">
                         <CommentForm postId={post.id} />
                     </div>
                 </div>
-                {sessionUser?.id === post.userId && <>
+                {/* {sessionUser?.id === post.userId && <>
                     <EditPostModal postId={postId}/>
                     <button onClick={handleDelete}>Delete</button>
                 </>
-                }
+                } */}
             </div>
         </div>
 
     )
 }
-
