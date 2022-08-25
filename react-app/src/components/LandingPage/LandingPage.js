@@ -6,10 +6,11 @@ export default function LandingPage() {
 
 
     return (
+        <div className='slashPage'>
         <div className="main-container-login">
             <div className="login-form-and-image-container">
                 <div className="image-container">
-                    <img src='https://thumbs.dreamstime.com/z/instagram-post-template-apple-iphone-kyiv-ukraine-april-instagram-post-template-apple-iphone-instagram-post-mockup-perfect-216413582.jpg' alt='' />
+                    <img className='splash-image' src='https://thumbs.dreamstime.com/z/instagram-post-template-apple-iphone-kyiv-ukraine-april-instagram-post-template-apple-iphone-instagram-post-mockup-perfect-216413582.jpg' alt='' />
                 </div>
                 <div className="title-form-signup-container">
                     <div className="form-container">
@@ -24,5 +25,6 @@ export default function LandingPage() {
                 </div>
             </div>
         </div>
+    </div>
     )
 }
