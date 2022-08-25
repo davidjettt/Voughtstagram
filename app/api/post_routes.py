@@ -114,7 +114,7 @@ def get_comments(id):
     return {'Comments': comments_list_dict}
 
 
-# Create a comment for a post
+# Create  a comment for a post
 @post_routes.post('/<int:id>/comments')
 @login_required
 def create_comment(id):
