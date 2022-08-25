@@ -10,9 +10,11 @@ export default function Feed() {
     const allPosts = useSelector(state => Object.values(state.posts.normalizedPosts))
     const dispatch = useDispatch()
 
+
     useEffect(() => {
         dispatch(loadAllUsers())
     }, [])
+
 
     if (!sessionUser) {
         return (

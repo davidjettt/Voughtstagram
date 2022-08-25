@@ -15,6 +15,7 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
+    console.log(data)
     if (data) {
       setErrors(data);
     }
@@ -43,11 +44,11 @@ const LoginForm = () => {
         <h1>Voughtstagram</h1>
       </div>
       <form className='login-form' onSubmit={onLogin}>
-        <div className='errors'>
+        {/* <div className='errors'>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
-        </div>
+        </div> */}
         <div className='email-container'>
           <label className='custom' htmlFor='email'>
             <input
@@ -78,6 +79,11 @@ const LoginForm = () => {
         </div>
         <div className='demo-user-container'>
           <button onClick={handleDemoUser} className='login-button'>Demo User</button>
+        </div>
+        <div style={{ marginTop: 20 }} className='errors'>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
         </div>
       </form>
     </div>
