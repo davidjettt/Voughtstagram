@@ -1,6 +1,9 @@
-/* input[type="file"] {
-    display: none;
-} */
+.errors {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    padding: 4px;
+}
 
 .custom-file-upload {
     border: none;

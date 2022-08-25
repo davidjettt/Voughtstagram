@@ -2,15 +2,23 @@ import { useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import './followmodal.css'
+import FollowButton from "../FollowButton"
 
 
-export default function ShowFollows({type}) {
+export default function ShowFollows({ type }) {
     const { userId } = useParams()
     const profileUser = useSelector(state => state.users[Number(userId)])
+    const sessionUserId = useSelector(state => state.session.user.id)
+    const sessionUser = useSelector(state => state.users[sessionUserId])
     const users = useSelector(state => state.users)
 
+    const [following, setFollowing] = useState(false)
     const [displayItems, setDisplayItems] = useState([])
     const [header, setHeader] = useState('')
+
+    useEffect(() => {
+        setFollowing(sessionUser.following.includes(profileUser.id))
+    }, [sessionUser, profileUser])
 
     useEffect(() => {
         if (type === 'followers') {
@@ -25,19 +33,25 @@ export default function ShowFollows({type}) {
     return (
         <div className="main-follows-container">
             <div className="follows-container-header">
-                <h3>{header}</h3>
+                <div>
+                    <div>{header}</div>
+                </div>
             </div>
             <div className="follow-cards-container">
                 {
                     displayItems &&
-                    displayItems.map(userId => (
-                        <div className="follow-card" key={userId}>
-                            <div className="follow-card-pic">Profile Pic</div>
+                    displayItems.map(user => (
+                        <div className="follow-card" key={user}>
+                            <div className="follow-card-pic">
+                                {user.avatar || 'Profile Pic'}
+                            </div>
                             <div className="follow-card-name-container">
-                                <div>{users[userId].username}</div>
+                                <div>{users[user].username}</div>
                                 <div>real name</div>
                             </div>
-                            <div className="follow-card-button">Follow Button</div>
+                            {sessionUserId !== user &&
+                                <FollowButton profileUserId={Number(userId)} following={following} />}
+
                         </div>
                     ))
                 }

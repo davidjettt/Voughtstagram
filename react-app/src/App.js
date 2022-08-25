@@ -14,7 +14,7 @@ import Feed from './components/posts/PostFeed';
 import { loadCommentsThunk } from './store/comments';
 import LandingPage from './components/LandingPage/LandingPage';
 import { loadAllUsers } from './store/users';
-
+import './index.css'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -63,9 +63,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route exact path="/feed">
+        <ProtectedRoute exact path="/feed">
           <Feed />
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute path='/posts/new/' exact={true} >
           <PostForm />
         </ProtectedRoute>
