@@ -22,38 +22,49 @@ export default function PostForm({ setShowCreatePostModal }) {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-
+        setErrors([])
         const payload = {
             user_id: sessionUser.id,
             description,
             imageUrl
         }
 
-        dispatch(createNewPost(payload))
-        setShowCreatePostModal(false)
-        history.push('/feed')
+        const badData = await dispatch(createNewPost(payload))
+        console.log('BAD', badData)
+        if (badData) {
+            setErrors(badData)
+        } else {
+            setShowCreatePostModal(false)
+            history.push('/feed')
+        }
     }
-
-    // const imageHandler = (e) => {
-    //     const reader = new FileReader()
-    //     reader.onload = () => {
-    //         if (reader.readyState == 2) {
-    //             // console.log('READER RESULT', reader.result)
-    //             setImageUrl(reader.result)
-    //         }
-    //     }
-    //     // console.log('FILES', e.target.files)
-    //     reader.readAsDataURL(e.target.files[0])
-    //     setAddCaption(true)
-    // }
 
     const imageHandler = (e) => {
         setImageUrl(e.target.value)
-        setAddCaption(true)
     }
 
+    const isValidURL = (urlString) => {
+        try {
+            return Boolean(new URL(urlString))
+        } catch(e) {
+            return false
+        }
+    }
+
+    const nextPage = () => {
+        setErrors([])
+        if (isValidURL(imageUrl)) {
+            setAddCaption(true)
+        } else {
+            setErrors(['Invalid image url'])
+        }
+    }
 
     const handleCancelPost = () => {
+        setErrors([])
+        setAddCaption(false)
+    }
+    const handleCancelImageUpload = () => {
         setShowCreatePostModal(false)
     }
 
@@ -64,16 +75,17 @@ export default function PostForm({ setShowCreatePostModal }) {
     return (
         <>
         {!addCaption &&
+
         <div className="edit-post-container-main" style={{ width: 500, height: 500 }}>
             <div className="edit-post-header-container">
                 <div className="edit-post-cancel-button-container">
-                    <button onClick={handleCancelPost} className="edit-post-cancel-button">Cancel</button>
+                    <button onClick={handleCancelImageUpload} className="edit-post-cancel-button">Cancel</button>
                 </div>
-                <div style={{ marginRight: 50 }} className="edit-post-title-container">
+                <div style={{ paddingTop: 3 }} className="edit-post-title-container">
                     Create a new post
                 </div>
                 <div>
-
+                    <button className="edit-post-submit-button" onClick={nextPage}>Next</button>
                 </div>
             </div>
             <div className="image-upload-container">
@@ -84,11 +96,12 @@ export default function PostForm({ setShowCreatePostModal }) {
                     <div className="image-upload-message">
                         Upload a photo
                     </div>
-                    {/* <label htmlFor="input" className='custom-file-upload'>
-                        <input className="image-upload-input" type='file' name='image-upload' id='input' accept='image/*' onChange={imageHandler}/>
-                        Select from computer
-                    </label> */}
-                    <input value={imageUrl} onChange={imageHandler} type='url' placeholder="Image Url" />
+                    <input required value={imageUrl} onChange={imageHandler} type='url' placeholder="Image Url" />
+                    <div className='errors'>
+                        {errors.map((error, ind) => (
+                            <div key={ind}>{error}</div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>}
@@ -115,6 +128,11 @@ export default function PostForm({ setShowCreatePostModal }) {
                     </div>
                     <div >
                         <textarea cols='30' rows='15' required className="edit-post-input" type="text" value={description} onChange={descriptionChange} placeholder="Write your caption here..."></textarea>
+                    </div>
+                    <div className='errors'>
+                        {errors.map((error, ind) => (
+                            <div key={ind}>{error}</div>
+                        ))}
                     </div>
                 </div>
             </div>

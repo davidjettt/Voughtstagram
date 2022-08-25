@@ -63,9 +63,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route exact path="/feed">
+        <ProtectedRoute exact path="/feed">
           <Feed />
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute path='/posts/new/' exact={true} >
           <PostForm />
         </ProtectedRoute>

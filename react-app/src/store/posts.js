@@ -53,7 +53,10 @@ export const createNewPost = (payload) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json()
-        return dispatch(createPost(data))
+        dispatch(createPost(data))
+    } else {
+        const badData = await response.json()
+        if (badData.errors) return badData.errors
     }
 }
 
