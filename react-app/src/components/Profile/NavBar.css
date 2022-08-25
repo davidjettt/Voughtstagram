@@ -1,33 +1,53 @@
 .nav-bar-container{
     display:flex;
     flex-direction: row;
+    justify-content: center;
     height: 60px;
+    width: 100%;
+    position: sticky;
+    top:0;
+    background-color: white;
+    align-items: center;
 }
 
-.nav-button-right {
+.inner-nav-container {
+    display: flex;
+    width:50%;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+.nav-buttons-right {
     display:flex;
+    width: 300px;
+    justify-content: space-evenly;
+    align-items:center;
+    /* justify-content: space-between; */
 }
 
 .home-logo {
     width:200px;
     height:53px;
-    margin-left: 500px;
+    /* margin-left: 30rem; */
 }
 
 .house-logo {
     height:29px;
     width: 26px;
-    margin-left:587px;
-    margin-top: 12px;
+    /* margin-left:37rem; */
+    /* margin-top: 0.6rem; */
 }
 
 .new-post-button {
     height:27px;
     width: 27px;
-    margin-left:60px;
+    /* margin-left:3.5rem; */
 }
 
-.logout-button {
-    margin-left:758px;
-    margin-top:-29px;
-}
+/* .logout-button {
+    height:200px;
+    /* margin-left:47rem; */
+    /* margin-top: -1.8rem; */
+/* } */
