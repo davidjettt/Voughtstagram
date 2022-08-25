@@ -131,3 +131,5 @@ def create_comment(id):
         db.session.add(new_comment)
         db.session.commit()
         return new_comment.comment_to_dict_user()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400

@@ -68,7 +68,10 @@ export const editPost = (payload) => async dispatch => {
     });
     if (response.ok) {
       const post = await response.json();
-      return dispatch(updatePost(post));
+      dispatch(updatePost(post));
+    } else {
+        const badData = await response.json()
+        if (badData.errors) return badData.errors
     }
   };
 
