@@ -19,31 +19,31 @@ def seed_posts():
     post1 = Post(
         image_url='https://res.cloudinary.com/dpjpitop6/image/upload/v1661106766/maxresdefault_q8fish.jpg',
         description='Congratulations to the Deep for becoming Chief Sustainability Officer for Liquid Death!',
-        user_id=6
+        user_id=4
     )
 
     post2 = Post(
         image_url='https://res.cloudinary.com/dpjpitop6/image/upload/v1661049206/281715475_401522891982495_494959663662951770_n_eeg6ru.jpg',
         description="We've heard your feedback and it's coming back for a limited time! Dawn of the Seven will be in theaters AGAIN next week",
-        user_id=6
+        user_id=4
     )
 
     post3 = Post(
         image_url='https://res.cloudinary.com/dpjpitop6/image/upload/v1661106858/The-Boys-Season-3-Episode-8-Recap-Ending-Explained_cjiixk.jpg',
         description="A behind the scenes look at American Hero, airing tonight. Don't miss it!",
-        user_id=6
+        user_id=3
     )
 
     post4 = Post(
         image_url = 'https://res.cloudinary.com/dpjpitop6/image/upload/v1661106927/Homelander-The-Boys_npsavd.jpg',
         description = 'Such a good pic of us, huh Starlight? 😍 #homelight',
-        user_id = 4
+        user_id = 2
     )
 
     post5 = Post(
         image_url = 'https://res.cloudinary.com/dpjpitop6/image/upload/v1661107286/the-boys3x07_0095_ycovid.jpg',
         description = "Vought is getting desperate, but y'all have seen the truth. Don't let up! #voughtliedpeopledied",
-        user_id = 5
+        user_id = 1
     )
     db.session.add(post1)
     db.session.add(post2)
