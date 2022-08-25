@@ -1,0 +1,123 @@
+.post-options-button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.three-dots {
+    width: 50px;
+    height: 20px;
+}
+
+.edit-post-container-main {
+    /* width: 50vw;
+    height: 800px; */
+    padding: 5px 5px 0 5px;
+}
+
+.edit-post-image {
+    height: 100%;
+    width: 85%;
+}
+
+.edit-post-container-main {
+    /* padding: 1rem; */
+    padding-top: .5rem;
+}
+
+.edit-post-header-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+}
+
+.edit-post-container-secondary {
+    display: flex;
+}
+
+.edit-post-image-container {
+    width: 600px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-post-form-container {
+    border-left: 1px solid #ddd;
+}
+
+.edit-post-input {
+    font-family: 'Roboto';
+    border: none;
+    background-color: white;
+    padding: 6px 16px;
+    font-size: 16px;
+    resize: none;
+    outline: none;
+}
+
+
+.edit-post-cancel-button,
+.edit-post-submit-button {
+    cursor: pointer;
+    background-color: white;
+    padding: .5rem;
+    border: none;
+}
+
+.edit-post-submit-button {
+    color: #0095f6;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+
+.edit-post-username-container {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+
+}
+
+.edit-post-username {
+    font-weight: bolder;
+}
+
+.edit-post-button {
+    border-radius: 16px;
+    color: rgb(0, 140, 255);
+    font-weight: 700;
+}
+
+.post-options-container {
+    width: 350px;
+    height: 120px;
+    border-radius: 10px;
+}
+
+.post-options-container-bigger {
+    width: 800px;
+    height: 550px;
+    border-radius: 10px;
+}
+
+.post-modal-buttons-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.cancel-button,
+.edit-post-button,
+.delete-post-button {
+    /* border-radius: 10px; */
+    max-width: 100%;
+    padding: 14px;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+}
+
+.delete-post-button {
+    color: red;
+    font-weight: 700;
+}

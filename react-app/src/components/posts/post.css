@@ -114,6 +114,8 @@
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     position: sticky;
+    display: flex;
+    justify-content: space-between;
 }
 
 .single-post-description {
