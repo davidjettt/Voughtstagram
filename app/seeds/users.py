@@ -3,16 +3,12 @@ from app.models import db, User, Post, Comment
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(username='Demo', email='demo@aa.io', password='password')
-    marnie = User(username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(username='bobbie', email='bobbie@aa.io', password='password')
-    homelander = User(username='homelander', email='homelander@vought.com', password='ryan')
-    starlight = User(username='therealstarlight', email='anniejanuary@gmail.com', password='password')
-    vought_intl = User(username='voughtintl', email='voughthq@vought.com', password='password')
+    demo = User(username='Demo', email='demo@aa.io', password='password', avatar="https://www.cnet.com/a/img/resize/8fed17372c60fad76bba9c890acac726f42bf382/2022/06/06/1e434c1e-e76f-47d3-9365-444ae1e4bddf/screen-shot-2022-06-06-at-11-32-02-am.jpg?auto=webp")
+    homelander = User(username='homelander', email='homelander@vought.com', password='ryan', avatar="https://www.tvinsider.com/wp-content/uploads/2019/08/the-boys-homelander.jpg")
+    starlight = User(username='therealstarlight', email='anniejanuary@gmail.com', password='password', avatar="https://www.themarysue.com/wp-content/uploads/2019/07/Erin-Moriarty-as-Annie-January-Starlight-in-The-Boys.jpg")
+    vought_intl = User(username='voughtintl', email='voughthq@vought.com', password='password', avatar='https://pbs.twimg.com/profile_images/1190483844627128322/r-dChvWS_400x400.jpg')
 
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
     db.session.add(homelander)
     db.session.add(starlight)
     db.session.add(vought_intl)
