@@ -114,6 +114,8 @@
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     position: sticky;
+    display: flex;
+    justify-content: space-between;
 }
 
 .single-post-description {
@@ -142,8 +144,11 @@
 .single-post-likes {
     padding: 1rem;
 }
+<<<<<<< HEAD
+=======
 
 .profile-link {
     text-decoration: none;
     color:black
 }
+>>>>>>> main

@@ -41,8 +41,8 @@
 }
 
 .delete-comment-button {
-    border-top: 1px solid #aaa;
-    border-bottom: 1px solid #aaa;
+    border-top: .5px solid #aaa;
+    border-bottom: .5px solid #aaa;
     color: red;
     font-weight: 700;
 }
