@@ -18,7 +18,7 @@ export default function EditForm({ postId, setShowPostOptionsModal }) {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-
+        setErrors([])
         const payload = {
             id: post.id,
             user_id: sessionUser.id,
@@ -26,8 +26,12 @@ export default function EditForm({ postId, setShowPostOptionsModal }) {
             imageUrl: post.imageUrl
         }
 
-        dispatch(editPost(payload))
-        setShowPostOptionsModal(false)
+        const badData = await dispatch(editPost(payload))
+        if (badData) {
+            setErrors(badData)
+        } else {
+            setShowPostOptionsModal(false)
+        }
         // history.push('/feed')
     }
 
@@ -63,7 +67,11 @@ export default function EditForm({ postId, setShowPostOptionsModal }) {
                     </div>
                     <div >
                         <textarea cols='30' rows='10' className="edit-post-input" required type="text" value={description} onChange={descriptionChange} placeholder="Caption"></textarea>
-                        {/* <button type="submit">Submit</button> */}
+                    </div>
+                    <div className='errors'>
+                        {errors.map((error, ind) => (
+                            <div key={ind}>{error}</div>
+                        ))}
                     </div>
                 </div>
             </div>

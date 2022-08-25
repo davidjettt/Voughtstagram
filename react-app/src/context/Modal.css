@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   #modal-background {
     position: fixed;
     top: 0;
@@ -17,9 +17,9 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
   }
-  
+
   #modal-content {
     position: absolute;
     background-color:white;
-    border-radius: 20px;
+    border-radius: 11px;
   }
