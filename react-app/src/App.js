@@ -14,7 +14,7 @@ import Feed from './components/posts/PostFeed';
 import { loadCommentsThunk } from './store/comments';
 import LandingPage from './components/LandingPage/LandingPage';
 import { loadAllUsers } from './store/users';
-
+import './index.css'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
