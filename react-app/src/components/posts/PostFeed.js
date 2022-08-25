@@ -8,7 +8,6 @@ export default function Feed() {
     const allPosts = useSelector(state => Object.values(state.posts.normalizedPosts))
 
 
-
     if (!sessionUser) {
         return (
         <Redirect to='/login' />
