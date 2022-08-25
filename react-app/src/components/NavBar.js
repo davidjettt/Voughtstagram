@@ -6,6 +6,7 @@ import navLogo from '../Images/voughtstagramlogo.svg'
 import homeLogo from '../Images/homelogo.svg'
 import newPost from '../Images/createpost.svg'
 import './Profile/NavBar.css'
+import CreatePostModal from './posts/CreatePostModal/CreatePostModal';
 
 const NavBar = () => {
   return (
@@ -44,9 +45,10 @@ const NavBar = () => {
             Users
           </NavLink>
         </li> */}
-        <NavLink to='/posts/new' exact={true} activeClassName='active'>
+        {/* <NavLink to='/posts/new' exact={true} activeClassName='active'>
             <img className='new-post-button' src={newPost}/>
-          </NavLink>
+          </NavLink> */}
+          <CreatePostModal />
           <LogoutButton />
         </div>
         </div>

@@ -31,3 +31,7 @@
 .comment-form-button:hover {
     cursor: pointer;
 }
+
+.post-comment {
+    font-size: 14px;
+}

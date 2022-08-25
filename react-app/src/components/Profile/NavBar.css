@@ -43,6 +43,7 @@
 .new-post-button {
     height:27px;
     width: 27px;
+    cursor: pointer;
     /* margin-left:3.5rem; */
 }
 

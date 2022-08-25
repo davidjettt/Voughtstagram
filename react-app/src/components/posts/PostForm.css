@@ -1,0 +1,40 @@
+/* input[type="file"] {
+    display: none;
+} */
+
+.custom-file-upload {
+    border: none;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: white;
+    background-color: #0095f6;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.image-upload-container {
+    height: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-upload-container-secondary {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-svg-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.image-upload-message {
+    font-size: 18px;
+    text-align: center;
+    margin: 10px 0;
+}
