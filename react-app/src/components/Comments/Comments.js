@@ -26,7 +26,7 @@ export default function Comments({ postId }) {
     return (
         <div>
             {postComments.length > 0 && postComments.map((comment, index )=> (
-                <div key={comment.id} className="">
+                <div key={comment.id} className="post-comment-container">
                     <p className='post-comment'><strong>{comment.user.username}</strong> {comment.comment}</p>
                     {currentUser.id === comment.userId &&
                     <CommentOptionsModal comment={comment} />

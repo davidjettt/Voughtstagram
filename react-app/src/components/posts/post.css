@@ -12,7 +12,7 @@
 }
 
 .number-likes {
-    margin-left:12px;
+    margin-left:1rem;
     font-size: 14px;
     font-weight:bold;
 }
@@ -43,7 +43,12 @@
     margin-top:23px;
 
 }
-
+.post-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 .post-card-user {
     display: block;
     font-weight: bold;
@@ -57,8 +62,8 @@
     font-size: 14px;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .post-card-description-user {
@@ -67,7 +72,8 @@
 }
 
 .post-card-comments {
-    margin-left: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .all-comments-button {
@@ -76,8 +82,7 @@
     border: none;
     padding: 0;
     text-align: left;
-    margin-bottom: 1rem;
-    margin-left: 0.5rem;
+    margin-left: 1rem;
 }
 
 .all-comments-button:hover {
@@ -86,6 +91,7 @@
 
 .post-card-submit-comment {
     border-top: 1px solid rgb(237, 237, 237);
+    margin-top: 1rem;
 }
 
 .single-post-container {
@@ -139,6 +145,7 @@
 
 .single-post-comments {
     margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .single-post-footer {

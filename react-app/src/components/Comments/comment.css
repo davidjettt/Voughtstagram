@@ -26,12 +26,20 @@
     background-color: white;
     border: none;
     width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .comment-form-button:hover {
     cursor: pointer;
 }
-
+.post-comment-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 .post-comment {
     font-size: 14px;
 }
