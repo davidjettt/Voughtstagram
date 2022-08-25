@@ -5,30 +5,34 @@ import ShowFollows from './ShowFollows'
 
 
 export default function ShowFollowsModal({type, profileId}) {
+
   const [showModal, setShowModal] = useState(false);
+  const [buttonText, setButtonText] = useState(0)
+
   const profileUser = useSelector(state => state.users[profileId])
 
-  let buttonText
-  type === 'following' ?
-  buttonText = 'Following' :
-  buttonText = 'Followers'
+  useEffect(() => {
+      type === 'following' ?
+      setButtonText(`${profileUser.following.length} following`) :
+      setButtonText(`${profileUser.followers.length} followers`)
+  }, [profileUser])
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>{buttonText}</button>
+      <div onClick={() => setShowModal(true)}>{profileUser && buttonText}</div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
 
             {
                 type === 'followers' &&
                 profileUser &&
-                <ShowFollows type='followers' profileUser={profileUser} />
+                <ShowFollows type='followers' profileUserId={profileUser.id} />
             }
 
             {
                 type === 'following' &&
                 profileUser &&
-                <ShowFollows type='following' profileUser={profileUser}/>
+                <ShowFollows type='following' profileUserId={profileUser.id}/>
             }
 
         </Modal>
