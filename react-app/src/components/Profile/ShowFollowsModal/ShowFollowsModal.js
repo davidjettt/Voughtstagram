@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Modal } from '../../../context/Modal';
 import ShowFollows from './ShowFollows'
+import './followmodal.css'
 
 
 export default function ShowFollowsModal({type, profileId}) {

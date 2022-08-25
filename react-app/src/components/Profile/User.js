@@ -6,6 +6,7 @@ import { followThunk, unfollowThunk } from '../../store/users';
 import ShowFollowsModal from './ShowFollowsModal/ShowFollowsModal'
 import followingIcon from '../../../src/Images/followingicon.svg'
 import './profile.css'
+import FollowButton from './FollowButton';
 
 function User() {
   const { userId }  = useParams();
@@ -20,8 +21,6 @@ function User() {
   const userPosts = posts.filter(post => post.userId == userId)
 
   const [following, setFollowing] = useState(false)
-  // const [followerCount, setFollowerCount] = useState(0)
-  // const [followingCount, setFollowingCount] = useState(0)
   const [numberOfPosts, setNumberOfPosts] = useState(0)
 
   // on load and every time the user or profile user changes, check
@@ -31,17 +30,19 @@ function User() {
     setNumberOfPosts(userPosts?.length)
   }, [sessionUser, profileUser])
 
-  function handleFollow() {
-    following ?
-    dispatch(unfollowThunk(profileUser.id)) :
-    dispatch(followThunk(profileUser.id))
-  }
+  // function handleFollow() {
+  //   following ?
+  //   dispatch(unfollowThunk(profileUser.id)) :
+  //   dispatch(followThunk(profileUser.id))
+  // }
 
-  let followButton
 
-  following ?
-  followButton = (<button onClick={handleFollow}><img src={followingIcon}></img></button>) :
-  followButton = (<button className="not-following-button" onClick={handleFollow}>Not Following</button>)
+
+  // let followButton
+
+  // following ?
+  // followButton = (<button onClick={handleFollow}><img src={followingIcon}></img></button>) :
+  // followButton = (<button className="not-following-button" onClick={handleFollow}>Not Following</button>)
 
 
   if (!sessionUser || !profileUser) {
@@ -54,15 +55,11 @@ function User() {
         <div>
           {profileUser.username}
         </div>
-      {
-        profileUser &&
-        sessionUser &&
-        profileUser.id !== sessionUser.id &&
-        followButton
-      }
-      <div>
-     </div>
 
+        {
+          profileUser &&
+          <FollowButton following={following} profileUserId={profileUser.id}/>
+        }
 
       </div>
 
