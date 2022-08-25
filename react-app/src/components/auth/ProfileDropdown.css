@@ -65,4 +65,5 @@
 .text-to-logout {
     font-size:13px;
     margin-top:-1.25rem;
+    cursor: pointer;
 }
