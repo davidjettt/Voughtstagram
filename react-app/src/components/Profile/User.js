@@ -3,6 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ProfilePostModal from './ProfilePostModal';
 import { followThunk, unfollowThunk } from '../../store/users';
+import ShowFollows from './ShowFollowsModal/ShowFollows';
+import ShowFollowsModal from './ShowFollowsModal/ShowFollowsModal'
+import followingIcon from '../../../src/Images/followingicon.svg'
+import './profile.css'
 
 function User() {
   const { userId }  = useParams();
@@ -12,17 +16,13 @@ function User() {
   // get current user and the user whose profile we're on
   const profileUser = useSelector(state => state.users[Number(userId)])
   const sessionUser = useSelector(state => state.users[sessionUserId])
-  const allUsers = useSelector(state => state.users)
 
-  console.log(sessionUser, "session User", "profile user", profileUser)
-  // get all posts from user at their profile page
   const posts = useSelector(state => Object.values(state.posts.normalizedPosts))
   const userPosts = posts.filter(post => post.userId == userId)
 
   const [following, setFollowing] = useState(false)
   const [followerCount, setFollowerCount] = useState(0)
-  const [followerList, setFollowerList] = useState([])
-  const [followingList, setFollowingList] = useState([])
+  const [followingCount, setFollowingCount] = useState(0)
   const [numberOfPosts, setNumberOfPosts] = useState(0)
 
   // on load and every time the user or profile user changes, check
@@ -30,16 +30,9 @@ function User() {
   useEffect(() => {
     setFollowing(sessionUser?.following.includes(profileUser?.id))
     setNumberOfPosts(userPosts?.length)
-  }, [sessionUser, profileUser])
-
-  useEffect(() => {
     setFollowerCount(profileUser?.followers.length)
-    setFollowerList(profileUser?.followers)
-    setFollowingList(profileUser?.following)
-  }, [profileUser])
-
-  console.log(userPosts)
-
+    setFollowingCount(profileUser?.following.length)
+  }, [sessionUser, profileUser])
 
   function handleFollow() {
     following ?
@@ -50,8 +43,8 @@ function User() {
   let followButton
 
   following ?
-  followButton = (<button onClick={handleFollow}>Following</button>) :
-  followButton = (<button onClick={handleFollow}>Not Following</button>)
+  followButton = (<button onClick={handleFollow}><img src={followingIcon}></img></button>) :
+  followButton = (<button className="not-following-button" onClick={handleFollow}>Not Following</button>)
 
 
   if (!sessionUser || !profileUser) {
@@ -59,48 +52,57 @@ function User() {
   }
 
   return (
-    <>
+    <div className='profile-container'>
+      <div className='profile-header'>
       {
         profileUser &&
         sessionUser &&
         profileUser.id !== sessionUser.id &&
         followButton
       }
-
-      {
         <div>
-          {profileUser.username} has {followerCount} followers!
+          {profileUser.username}
         </div>
+      <div>
+     </div>
+
+
+      </div>
+
+       <div className='profile-info-container'>
+
+
+
+
+         <div className='profile-info'>
+           <strong>{numberOfPosts}</strong> Posts
+         </div>
+         <div className='profile-info'>
+           <strong>{followerCount}</strong>
+           {
+            profileUser &&
+            <ShowFollowsModal type='followers' profileId= {profileUser.id}/>
+           }
+         </div>
+         <div className='profile-info'>
+           <strong>{followingCount}</strong>{
+        sessionUser &&
+        profileUser &&
+        <ShowFollowsModal type='following' profileId={profileUser.id}/>
       }
+         </div>
+       </div>
 
-        <ul>
-          <h3>Followers:</h3>
-          {
-            followerList && followerList.map(follower => (
-                <li key={follower}>{allUsers[follower].username}</li>
-              ))
-          }
-        </ul>
-        <ul>
-          <h3>Following:</h3>
-          {
-            followingList && followingList.map(following => (
-                <li key={following}>{allUsers[following].username}</li>
-              ))
-          }
-        </ul>
-        <h3>
-          Num Posts: {numberOfPosts && numberOfPosts}
-        </h3>
-
-      {userPosts && userPosts.map(post => {
-        return (
-          <div key={post.id}>
-            <ProfilePostModal post={post}/>
-          </div>
-        )
-      })}
-    </>
+      <div className='profile-post-image-container'>
+        {userPosts && userPosts.map(post => {
+          return (
+            <div className="profile-post-card" key={post.id}>
+              <ProfilePostModal post={post}/>
+            </div>
+          )
+        })}
+      </div>
+    </div>
   );
 }
 export default User;

@@ -1,4 +1,4 @@
-import { useHistory, Redirect } from "react-router-dom"
+import { useHistory, Redirect, NavLink } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import '../post.css'
 import { removePost } from "../../../store/posts"
@@ -33,13 +33,21 @@ export default function SinglePost({postId}) {
             </div>
             <div className="single-post-text">
                 <div className="single-post-header">
+<<<<<<< HEAD
                     <div>{post.user.username}</div>
                     {sessionUser?.id === post.userId &&
                         <PostOptionsModal postId={postId} />
                     }
+=======
+                    <NavLink className="profile-link" to={`/users/${post.userId}`}>
+                        {post.user.username}
+                    </NavLink>
+>>>>>>> main
                 </div>
                 <div className="single-post-description">
-                    <p className="single-post-description-user">{post.user.username}</p>
+                    <NavLink className="profile-link" to={`/users/${post.userId}`}>
+                        <p className="single-post-description-user">{post.user.username}</p>
+                    </NavLink>
                     <p>{post.description}</p>
                 </div>
                 <div className="single-post-comments">
