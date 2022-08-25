@@ -4,14 +4,21 @@ import PostLikes from "../Likes/PostLikes"
 import SinglePostModal from "./SinglePostModal"
 import './post.css'
 import { NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
+import PostOptionsModal from "./SinglePostModal/PostOptionsModal"
 
 export default function Cards({post}) {
-
+    const sessionUser = useSelector(state => state.session.user)
     return (
         <div className="post-card">
-            <NavLink className="profile-link" to={`/users/${post.userId}`}>
-                <div className="post-card-user">{post.user.username}</div>
-            </NavLink>
+            <div className="post-card-header">
+                <NavLink className="profile-link" to={`/users/${post.userId}`}>
+                    <div className="post-card-user">{post.user.username}</div>
+                </NavLink>
+                {sessionUser?.id === post.userId &&
+                    <PostOptionsModal postId={post.id} />
+                }
+            </div>
             <img className="post-card-image" src={post.imageUrl} alt=" "></img>
             <PostLikes postId={post.id}/>
             <div className="post-card-description">

@@ -1,0 +1,28 @@
+.not-following-button {
+    background-color: #0095f6;
+    width: 95.53px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bolder;
+}
+
+.following-button {
+    height: 30px;
+    width: 72px;
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+.following-image {
+    width: 20px;
+    height: 15px;
+}
+
+.following-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
