@@ -13,6 +13,8 @@ export default function SinglePost({postId}) {
     const sessionUser = useSelector(state => state.session.user)
     const post = useSelector(state => state.posts.normalizedPosts[Number(postId)])
 
+    const offCommentIcon = true
+
     if (!post) {
         return <Redirect to="/feed"/>
     }
@@ -50,7 +52,7 @@ export default function SinglePost({postId}) {
                     <div className="single-post-bottom-right">
                         <div className="single-post-footer">
                             <div className="single-post-likes">
-                                <PostLikes postId={post.id}/>
+                                <PostLikes offCommentIcon={offCommentIcon} postId={post.id}/>
                             </div>
                             <div className="post-card-submit-comment">
                                 <CommentForm postId={post.id} />
