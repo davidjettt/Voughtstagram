@@ -18,6 +18,15 @@
     cursor: pointer;
 }
 
+.modal-following-button {
+    width: 116px;
+    height: 30px;
+    background-color: white;
+    border: 1px solid lightgrey;
+    font-weight: bolder;
+    border-radius: 5px;
+}
+
 .following-image {
     width: 20px;
     height: 15px;
