@@ -13,11 +13,13 @@ li {
     display: flex;
     justify-content: center;
     margin-top:-7.5rem;
+    margin-left: 1.4rem;
 }
 
 .footer-li {
     margin-right: 4rem;
-    font-size: 13px;;
+    font-size: 13px;
+    color: #8e8e8e;
 }
 
 .github-logo {
