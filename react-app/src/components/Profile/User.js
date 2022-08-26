@@ -64,15 +64,17 @@ function User() {
           }
         </div>
       </div>
+      <div className='profile-post-body'>
 
-      <div className='profile-post-image-container'>
-        {userPosts && userPosts.map(post => {
-          return (
-            <div className="profile-post-card" key={post.id}>
-              <ProfilePostModal post={post} />
-            </div>
-          )
-        })}
+        <div className='profile-post-image-container'>
+          {userPosts && userPosts.map(post => {
+            return (
+              <div className="profile-post-card" key={post.id}>
+                <ProfilePostModal post={post} />
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   );
