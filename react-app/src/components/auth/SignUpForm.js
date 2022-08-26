@@ -10,22 +10,41 @@ const SignUpForm = () => {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [ avatar, setAvatar ] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+
+  const isValidURL = (urlString) => {
+    try {
+        return Boolean(new URL(urlString))
+    } catch (e) {
+        return false
+    }
+}
+
+
   const onSignUp = async (e) => {
     e.preventDefault();
+    setErrors([])
+
+    if (!isValidURL(avatar)) {
+      setErrors(['Invalid avatar image url'])
+    }
+
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(name, username, email, password));
+      const data = await dispatch(signUp(name, username, email, avatar, password));
       if (data) {
         setErrors(data)
       }
     } else {
-      setErrors(['Passwords need to match'])
+      setErrors([...errors, 'Passwords need to match'])
     }
   };
+
+
 
   const updateName = (e) => {
     setName(e.target.value);
@@ -97,6 +116,16 @@ const SignUpForm = () => {
           <div>
             <label></label>
             <input
+              type='text'
+              name='email'
+              onChange={(e) => setAvatar(e.target.value)}
+              value={avatar}
+              placeholder='Profile Image Url'
+            ></input>
+          </div>
+          <div>
+            <label></label>
+            <input
               type='password'
               name='password'
               onChange={updatePassword}
@@ -115,7 +144,7 @@ const SignUpForm = () => {
               placeholder='Repeat Password'
             ></input>
           </div>
-          <button className='login-button' type='submit' disabled={username.length < 1 || email.length < 1 || password.length < 1 || repeatPassword < 1}>Sign Up</button>
+          <button className='login-button' type='submit' disabled={username.length < 1 || email.length < 1 || password.length < 1 || repeatPassword.length < 1 || avatar.length < 1}>Sign Up</button>
           <div className='signup-errors'>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
