@@ -9,27 +9,73 @@
 
 .profile-header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 2em;
     padding-top: 5%;
 }
 
+.profile-header-avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 292px;
+}
+
+.profile-header-avatar {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.profile-header-container {
+    display: flex;
+    padding-top: 20px;
+    width: 920px;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+
+}
+
+.profile-header-avatar-image {
+    border-radius: 50%;
+    min-height: 150px;
+    display: block;
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+}
+
+.profile-header-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 50%;
+}
+
 .profile-info-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-}
-
-.profile-info {
-    padding: 4rem 2rem;
+    justify-content: flex-start;
+    /* justify-content: space-around; */
+    width: 100%;
 }
 
 .profile-post-body {
     display: flex;
     justify-content: center;
     width: 100%;
+}
+
+.profile-header-username {
+    font-size: 28px;
+    align-items: center;
 }
 
 .profile-post-image-container {
