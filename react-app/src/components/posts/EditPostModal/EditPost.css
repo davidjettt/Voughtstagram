@@ -118,7 +118,16 @@
     border: none;
 }
 
+.cancel-button:focus,
+.edit-post-button:focus,
+.delete-post-button:focus {
+    background-color: #ddd;
+    opacity: .6;
+}
+
 .delete-post-button {
     color: red;
     font-weight: 700;
+    border-top: .5px solid #dbdbdb;
+    border-bottom: .5px solid #dbdbdb;
 }

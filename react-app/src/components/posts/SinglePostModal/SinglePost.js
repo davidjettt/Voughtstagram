@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Redirect, NavLink } from "react-router-dom"
 import { useSelector } from "react-redux"
 import '../post.css'
@@ -8,6 +9,7 @@ import PostOptionsModal from "./PostOptionsModal"
 
 
 export default function SinglePost({postId}) {
+    const [ allComments, setAllComments] = useState(true)
     const sessionUser = useSelector(state => state.session.user)
     const post = useSelector(state => state.posts.normalizedPosts[Number(postId)])
 
@@ -41,7 +43,7 @@ export default function SinglePost({postId}) {
                                 <p>{post.description}</p>
                             </div>
                             <div className="single-post-comments">
-                                <Comments postId={postId}/>
+                                <Comments allCommentsRender={allComments} postId={postId}/>
                             </div>
                         </div>
                     </div>

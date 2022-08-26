@@ -1,18 +1,21 @@
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import DeleteComment from './DeleteComment'
-import {AiFillEdit} from 'react-icons/ai'
-import { BsThreeDots } from 'react-icons/bs'
-import EditCommentModal from './EditCommentModal'
 import CommentOptionsModal from './CommentOptionsModal'
 import './comment.css'
+import { Link } from 'react-router-dom'
 
 
-export default function Comments({ postId }) {
+export default function Comments({ postId, allCommentsRender }) {
     const allComments = useSelector(state => state.comments)
     const currentUser = useSelector(state => state.session.user)
     const postComments = Object.values(allComments).filter(el => el.postId == postId)
 
+    let commentsOnFeed;
+
+    if (postComments.length === 1) {
+        commentsOnFeed = [postComments[0]]
+    } else {
+        commentsOnFeed = [postComments[postComments.length - 2], postComments[postComments.length - 1]]
+    }
     // const [isHovering, setIsHovering] = useState(false)
     // const handleMouseOver = () => {
     //     setIsHovering(true)
@@ -22,18 +25,32 @@ export default function Comments({ postId }) {
     //     setIsHovering(false)
     // }
 
-
     return (
         <div>
-            {postComments.length > 0 && postComments.map((comment, index )=> (
+            {!allCommentsRender && postComments.length > 0 && commentsOnFeed.map((comment, index )=> (
                 <div key={comment.id} className="post-comment-container">
-                    <p className='post-comment'><strong>{comment.user.username}</strong> {comment.comment}</p>
+                    <p className='post-comment'>
+                        <Link className='username-comment-link' to={`/users/${comment.userId}`}>
+                            {comment.user.username}
+                        </Link>
+                        {comment.comment}
+                    </p>
                     {currentUser.id === comment.userId &&
                     <CommentOptionsModal comment={comment} />
                     }
-                    {/* {currentUser.id === comment.userId &&
-                    < DeleteComment comment={comment} index={index} />
-                    } */}
+                </div>
+            ))}
+            {allCommentsRender && postComments.length > 0 && postComments.map((comment, index )=> (
+                <div key={comment.id} className="post-comment-container">
+                    <p className='post-comment'>
+                        <Link className='username-comment-link' to={`/users/${comment.userId}`}>
+                            {comment.user.username}
+                        </Link>
+                        {comment.comment}
+                    </p>
+                    {currentUser.id === comment.userId &&
+                    <CommentOptionsModal comment={comment} />
+                    }
                 </div>
             ))}
         </div>
