@@ -226,7 +226,18 @@
 
 .profile-link {
     text-decoration: none;
-    color:black
+    color:black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.single-post-profile-image {
+    height:29px;
+    width:29px;
+    border-radius: 14px;
+    object-fit: cover;
+    margin-right: 1rem;
 }
 
 .team-members-feed{
