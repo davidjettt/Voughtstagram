@@ -4,7 +4,7 @@ import followingIcon from '../../Images/followingicon.svg'
 import './FollowButton.css'
 
 
-export default function FollowButton({ profileUserId, following }) {
+export default function FollowButton({ modal, profileUserId, following }) {
 
     const dispatch = useDispatch()
 
@@ -16,6 +16,10 @@ export default function FollowButton({ profileUserId, following }) {
             dispatch(unfollowThunk(profileUserId)) :
             dispatch(followThunk(profileUserId))
     }
+    let className
+    if (modal && following) className = 'modal-following-button'
+    else if (!modal && following) className = 'following-button'
+    else if (!modal && !following) className = 'not-following-button'
 
     following ?
         followButton = (
@@ -30,7 +34,6 @@ export default function FollowButton({ profileUserId, following }) {
                 Follow
             </button>
         )
-
 
 
 
