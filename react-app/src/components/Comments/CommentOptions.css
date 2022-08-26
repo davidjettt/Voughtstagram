@@ -10,6 +10,7 @@
     width: 400px;
     height: 130px;
     border-radius: 10px;
+    margin: 5px;
 }
 
 
@@ -86,10 +87,12 @@
     cursor: pointer;
     border: none;
     background-color: white;
-    padding: 10px 0;
-    border-bottom-right-radius: 16px;
-    border-bottom-left-radius: 16px;
-    margin-bottom: 5px;
+    padding: 10px 0px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    /* margin-bottom: 5px; */
+    margin-left: -5px;
+    margin-right: -5px;
     border-top: .5px solid #dbdbdb;
 }
 

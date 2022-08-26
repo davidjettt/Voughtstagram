@@ -255,7 +255,7 @@
     /* margin-right:42.5rem; */
     min-width:320px;
     padding-left: 30px;
-    margin-top:9px;
+    margin-top:25px;
 }
 
 .joon-feed {
@@ -358,4 +358,31 @@
     font-size: 13px;
     font-weight: bold;
     margin-left: 0.5rem;
+}
+
+
+
+.profile-icon-feed {
+    height:65px;
+    width:65px;
+    border-radius: 32px;
+    margin-bottom:-0.3rem;
+    margin-top:0.9rem;
+}
+
+.user-avatar-feed {
+    display: flex;
+}
+
+.username-feed {
+    font-size: 14.6px;
+    margin-left:1.2rem;
+    margin-top:2.6rem;
+}
+
+.cursor {
+    cursor: default;
+    padding-top: 8px;
+    padding-right: 2px;
+
 }
