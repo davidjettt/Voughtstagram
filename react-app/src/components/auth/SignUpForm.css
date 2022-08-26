@@ -1,5 +1,5 @@
 .signup-page-main {
-    height: 100vh;
+    height: 98vh;
     background-color: #fafafa;
     display: flex;
     flex-direction: column;
@@ -12,6 +12,7 @@
     background-color: white;
     height: 500px;
     padding: 16px;
+    margin-top:2rem;
     /* display: flex;
     flex-direction: column; */
 }
@@ -56,4 +57,8 @@
 .signup-errors {
     color: red;
     margin-top: 40px;
+}
+
+.signup-footer {
+    margin-top:14.5rem;
 }
