@@ -221,3 +221,12 @@
     text-decoration: none;
     color:black
 }
+
+.single-post-profile-image {
+    height:29px;
+    width:29px;
+    border-radius: 14px;
+    margin-left:-0.5rem;
+    margin-top:-0.1rem;
+    position:relative;
+}
