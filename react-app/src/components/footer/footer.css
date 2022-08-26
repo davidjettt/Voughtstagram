@@ -1,0 +1,64 @@
+.footer-container {
+    background-color: #fafafa;
+    font-family: 'Roboto', sans-serif;
+    height:110px;
+}
+
+li {
+    list-style: none;
+}
+
+
+.technologies-used-list {
+    display: flex;
+    justify-content: center;
+    margin-top:-7.5rem;
+}
+
+.footer-li {
+    margin-right: 4rem;
+    font-size: 13px;;
+}
+
+.github-logo {
+    height:20px;
+    width:20px;
+    margin-left:0.5rem;
+    margin-top:0.6rem
+}
+
+.linkedin-logo {
+    height:20px;
+    width:20px;
+    margin-left:0.5rem;
+    margin-top:0.6rem
+}
+
+.team-members-footer {
+    display: flex;
+    justify-content: center;
+    margin-top:-0.6rem;
+}
+
+.joon-footer {
+    display: flex;
+    font-size: 13px;;
+    margin-right: 5rem;
+}
+
+.david-footer {
+    display: flex;
+    font-size: 13px;;
+    margin-right: 5rem;
+}
+
+.allan-footer {
+    display: flex;
+    font-size: 13px;;
+    margin-right: 5rem;
+}
+
+.zach-footer {
+    display: flex;
+    font-size: 13px;;
+}
