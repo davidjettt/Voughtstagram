@@ -11,9 +11,10 @@
     width:29px;
     border-radius: 14px;
     margin-left:-0.5rem;
-    margin-top:-0.1rem;
+    margin-top:-0.2rem;
     position:relative;
 }
+
 
 .user-avatar:hover {
     cursor: pointer;
