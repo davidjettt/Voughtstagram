@@ -233,7 +233,7 @@
     /* margin-right:42.5rem; */
     min-width:320px;
     padding-left: 30px;
-    margin-top:9px;
+    margin-top:25px;
 }
 
 .joon-feed {
@@ -343,7 +343,7 @@
     height:65px;
     width:65px;
     border-radius: 32px;
-    margin-bottom:0.4rem;
+    margin-bottom:-0.3rem;
     margin-top:0.9rem;
 }
 
