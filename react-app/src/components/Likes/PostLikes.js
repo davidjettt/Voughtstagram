@@ -7,7 +7,7 @@ import '../posts/post.css'
 import { postLikeToggle } from "../../store/posts"
 import SinglePostModal from "../posts/SinglePostModal"
 
-export default function PostLikes( { postId }) {
+export default function PostLikes( { postId, offCommentIcon }) {
     const dispatch = useDispatch()
     const post = useSelector((state) => state.posts.normalizedPosts[postId])
     const userId = useSelector((state) => state.session.user.id)
@@ -31,7 +31,7 @@ export default function PostLikes( { postId }) {
                 <div className="post-likes-container">
                     <img className="post-like-button" onClick={handleClick} src={liked ? filledInHeart : heartImage } alt=''/>
                 </div>
-                <SinglePostModal postIdCommentIcon={postId} commentIcon={commentIcon} />
+                <SinglePostModal postIdCommentIcon={postId} commentIcon={commentIcon} offCommentIcon={offCommentIcon} />
             </div>
             <p className="number-likes">{post.userLikes.length} likes</p>
         </>
