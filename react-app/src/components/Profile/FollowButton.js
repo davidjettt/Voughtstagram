@@ -19,18 +19,24 @@ export default function FollowButton({ modal, profileUserId, following }) {
     let className
     if (modal && following) className = 'modal-following-button'
     else if (!modal && following) className = 'following-button'
-    else if (!modal && !following) className = 'not-following-button'
+    else className = 'not-following-button'
 
     following ?
         followButton = (
-            <button className="following-button" onClick={handleFollow}>
-                <div className="following-image-container">
-                    <img className="following-image" src={followingIcon}></img>
-                </div>
-            </button>
+            <>
+                {modal &&
+                    <button className={className} onClick={handleFollow}>Following</button>}
+
+                {!modal &&
+                    <button className={className} onClick={handleFollow}>
+                        <div className="following-image-container">
+                            <img className="following-image" src={followingIcon}></img>
+                        </div>
+                    </button>}
+            </>
         ) :
         followButton = (
-            <button className="not-following-button" onClick={handleFollow}>
+            <button className={className} onClick={handleFollow}>
                 Follow
             </button>
         )

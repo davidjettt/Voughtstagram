@@ -8,6 +8,10 @@ export default function Comments({ postId, allCommentsRender }) {
     const allComments = useSelector(state => state.comments)
     const currentUser = useSelector(state => state.session.user)
     const postComments = Object.values(allComments).filter(el => el.postId == postId)
+    const users = useSelector(state => Object.values(state.users))
+    // const commenterPicture = users[Object.values(allComments).userId - 1].avatar
+
+
 
     let commentsOnFeed;
 
@@ -44,6 +48,7 @@ export default function Comments({ postId, allCommentsRender }) {
                 <div key={comment.id} className="post-comment-container">
                     <p className='post-comment'>
                         <Link className='username-comment-link' to={`/users/${comment.userId}`}>
+                            <img className="single-post-profile-image" src={users[(comment).userId - 1].avatar}></img>
                             {comment.user.username}
                         </Link>
                         {comment.comment}
