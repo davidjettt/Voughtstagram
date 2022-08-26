@@ -10,7 +10,7 @@ function ProfilePostModal({post}) {
   return (
     <>
 
-      <img className="profile-post-image" onClick={() => setShowModal(true)} src={post.imageUrl} alt=" "></img>
+      <img style={{ cursor: 'pointer' }} className="profile-post-image" onClick={() => setShowModal(true)} src={post.imageUrl} alt=" "></img>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
             <SinglePost postId={post.id}/>

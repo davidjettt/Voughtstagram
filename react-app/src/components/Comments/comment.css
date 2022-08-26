@@ -8,9 +8,9 @@
 .comment-form-input {
     border: none;
     background-color: white;
-    width: 40%;
+    width: 100%;
 }
-/* 
+/*
 .comment-form-button:invalid {
     color: rgb(122, 190, 245);
     font-size: 14px;
@@ -25,7 +25,7 @@
     font-weight: 700;
     background-color: white;
     border: none;
-    width: 40%;
+    /* width: 40%; */
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -41,5 +41,14 @@
     align-items: center;
 }
 .post-comment {
+    padding: 5px 0px;
+    margin: 0;
     font-size: 14px;
+}
+
+.username-comment-link {
+    text-decoration: none;
+    color: black;
+    margin-right: 5px;
+    font-weight: 900;
 }

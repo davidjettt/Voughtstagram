@@ -4,17 +4,39 @@
 }
 
 .post-like-button {
-    width: 24px;
-    height: 24px;
-    margin-top: 1rem;
+    /* width: 24px;
+    height: 24px; */
+    /* margin-top: 1rem;
     margin-left: 1rem;
-    margin-bottom: -8px;
+    margin-bottom: -8px; */
+}
+
+.post-likes-container-main {
+    display: flex;
+    flex-direction: row;
+}
+
+.post-likes-container {
+    width: 50px;
+    padding-left: 14px ;
+    padding-top: 8px ;
+}
+
+.comment-image-container {
+
+}
+
+.comment-image-button {
+    padding-top: 8px;
+    padding-right: 2px;
+    cursor: pointer;
 }
 
 .number-likes {
     margin-left:1rem;
     font-size: 14px;
     font-weight:bold;
+    margin-bottom: 0;
 }
 
 .post-like-button:hover {
@@ -61,7 +83,7 @@
     flex-direction: row;
     font-size: 14px;
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: .6rem;
     margin-left: 1rem;
     margin-right: 1rem;
 }
@@ -83,6 +105,7 @@
     padding: 0;
     text-align: left;
     margin-left: 1rem;
+    margin-bottom: 5px;
 }
 
 .all-comments-button:hover {

@@ -7,8 +7,8 @@
 
 
 .comment-options-container {
-    width: 350px;
-    height: 120px;
+    width: 400px;
+    height: 130px;
     border-radius: 10px;
 }
 
@@ -29,6 +29,13 @@
     border: none;
 }
 
+.cancel-button:focus,
+.edit-comment-button:focus,
+.delete-comment-button:focus {
+    background-color: #dbdbdb;
+    opacity: .5;
+}
+
 .cancel-button {
     border-bottom-left-radius: 14px;
     border-bottom-right-radius: 14px;
@@ -41,8 +48,8 @@
 }
 
 .delete-comment-button {
-    border-top: .5px solid #aaa;
-    border-bottom: .5px solid #aaa;
+    border-top: .5px solid #dbdbdb;
+    border-bottom: .5px solid #dbdbdb;
     color: red;
     font-weight: 700;
 }
@@ -53,7 +60,7 @@
 }
 
 .comment-modal-form-input {
-    width: 96%;
+    width: 99%;
     border-radius: 9px;
     margin-top: 5px;
 }
@@ -78,10 +85,16 @@
 .cancel-edit-comment-button {
     cursor: pointer;
     border: none;
-    /* border-top: 1px solid #aaa; */
     background-color: white;
-    padding: 8px;
+    padding: 10px 0;
     border-bottom-right-radius: 16px;
     border-bottom-left-radius: 16px;
     margin-bottom: 5px;
+    border-top: .5px solid #dbdbdb;
+}
+
+.comment-modal-form-button:focus,
+.cancel-edit-comment-button:focus {
+    background-color: #dbdbdb;
+    opacity: .5;
 }
