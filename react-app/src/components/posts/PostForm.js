@@ -84,7 +84,7 @@ export default function PostForm({ setShowCreatePostModal }) {
                             Create a new post
                         </div>
                         <div>
-                            <button className="edit-post-submit-button" onClick={nextPage}>Next</button>
+                            <button style={{ fontSize: 14 }} className="edit-post-submit-button" onClick={nextPage}>Next</button>
                         </div>
                     </div>
                     <div className="image-upload-container">

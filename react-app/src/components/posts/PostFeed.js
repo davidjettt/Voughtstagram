@@ -7,7 +7,7 @@ import { loadAllUsers } from "../../store/users"
 
 export default function Feed() {
     const sessionUser = useSelector(state => state.session.user)
-    const allPosts = useSelector(state => Object.values(state.posts.normalizedPosts))
+    const allPosts = useSelector(state => Object.values(state.posts.normalizedPosts).reverse())
     const dispatch = useDispatch()
 
 
