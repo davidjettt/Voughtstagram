@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css'
+import Footer from '../footer/footer.js'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -127,6 +128,9 @@ const SignUpForm = () => {
           Have an account?
           <NavLink className='signup-link' to='/'> Log In</NavLink>
         </div>
+      </div>
+      <div className='signup-footer'>
+        <Footer/>
       </div>
     </div>
   );
