@@ -10,7 +10,7 @@ import FollowButton from './FollowButton';
 
 function User() {
   const { userId } = useParams();
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const sessionUserId = useSelector(state => state.session.user.id)
 
   const profileUser = useSelector(state => state.users[Number(userId)])
@@ -53,14 +53,14 @@ function User() {
         <div className='profile-info '>
           {
             profileUser &&
-            <ShowFollowsModal type='followers' profileId={profileUser.id} />
+            <ShowFollowsModal type='followers' list={profileUser.followers} />
           }
         </div>
         <div className='profile-info'>
           {
             sessionUser &&
             profileUser &&
-            <ShowFollowsModal type='following' profileId={profileUser.id} />
+            <ShowFollowsModal type='following' list={profileUser.following} />
           }
         </div>
       </div>
