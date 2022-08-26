@@ -10,11 +10,16 @@ import davidProfile from '../../Images/team-members/davidprofile.png'
 import allanProfile from '../../Images/team-members/allanprofile.jpg'
 import linkedinLogo from '../../Images/linkedin-logo.svg'
 import githubLogo from '../../Images/github-logo.svg'
+import profileButton from '../../Images/profilebutton.svg'
+
 
 export default function Feed() {
     const sessionUser = useSelector(state => state.session.user)
     const allPosts = useSelector(state => Object.values(state.posts.normalizedPosts).reverse())
     const dispatch = useDispatch()
+
+    const userId = useSelector((state) => state.session.user.id);
+    const userAvatar = useSelector((state) => state.session.user.avatar);
 
 
     useEffect(() => {
@@ -37,6 +42,16 @@ export default function Feed() {
                 ))}
                 </div>
                 <div className="team-members-feed">
+                    <div className='user-avatar-feed'>
+                        <div>
+                        <img className='profile-icon-feed' src={userAvatar}/>
+                    </div>
+                    <div>
+                    <NavLink className="link-to-profile" to={`/users/${userId}`}>
+                    <p className='username-feed'>{sessionUser.username}</p>
+                    </NavLink>
+                    </div>
+              </div>
                     <div>
                         <p className='suggested-text'>Suggested members to hire :)</p>
                     </div>
