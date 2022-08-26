@@ -44,7 +44,7 @@ function User() {
         </div>
         <div className='profile-header-info'>
           <div className='profile-header-username'>
-            <span>{profileUser.username}</span>
+            <span className='profile-name'>{profileUser.username}</span>
             {
               profileUser &&
               <FollowButton following={following} profileUserId={profileUser.id} />
