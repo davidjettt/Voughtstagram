@@ -46,7 +46,6 @@
     font-size: 14px;
     display: flex;
     flex-direction: row;
-    align-items: center;
 }
 
 .username-comment-link {
@@ -56,5 +55,4 @@
     font-weight: 900;
     display: flex;
     flex-direction: row;
-    align-items: center;
 }

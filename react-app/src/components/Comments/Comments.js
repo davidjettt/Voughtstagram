@@ -35,9 +35,9 @@ export default function Comments({ postId, allCommentsRender }) {
                 <div key={comment.id} className="post-comment-container">
                     <p className='post-comment'>
                         <Link className='username-comment-link' to={`/users/${comment.userId}`}>
-                            {comment.user.username}
+                            <p>{comment.user.username}</p>
                         </Link>
-                        {comment.comment}
+                        <p>{comment.comment}</p>
                     </p>
                     {currentUser.id === comment.userId &&
                     <CommentOptionsModal comment={comment} />
@@ -48,10 +48,10 @@ export default function Comments({ postId, allCommentsRender }) {
                 <div key={comment.id} className="post-comment-container">
                     <p className='post-comment'>
                         <Link className='username-comment-link' to={`/users/${comment.userId}`}>
-                            <img className="single-post-profile-image" src={users[(comment).userId - 1].avatar}></img>
-                            {comment.user.username}
+                            <img className="single-post-comment-profile-image" src={users[(comment).userId - 1].avatar}></img>
+                            <p>{comment.user.username}</p>
                         </Link>
-                        {comment.comment}
+                        <p>{comment.comment}</p>
                     </p>
                     {currentUser.id === comment.userId &&
                     <CommentOptionsModal comment={comment} />
