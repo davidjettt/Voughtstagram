@@ -7,6 +7,10 @@
     position: relative;
 }
 
+.followers-display {
+    padding-right: 15px;
+}
+
 .follows-container-header {
     display: flex;
     justify-content: center;
