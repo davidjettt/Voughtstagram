@@ -348,3 +348,10 @@
     font-weight: bold;
     margin-left: 0.5rem;
 }
+
+
+.cursor {
+    cursor: default;
+    padding-top: 8px;
+    padding-right: 2px;
+}

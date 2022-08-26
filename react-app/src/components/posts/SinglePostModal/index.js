@@ -8,7 +8,7 @@ function SinglePostModal({ postId, commentIcon, postIdCommentIcon, offCommentIco
 
   const handleCommentIcon = () => {
     if (offCommentIcon) {
-      return
+      document.querySelector(".comment-form-input").focus()
     } else {
       setShowModal(true)
     }
@@ -16,7 +16,7 @@ function SinglePostModal({ postId, commentIcon, postIdCommentIcon, offCommentIco
 
   return (
     <>
-      {commentIcon && <div className='comment-image-contaner'><img className="comment-image-button" onClick={handleCommentIcon} src={commentImage} alt='' /></div>}
+      {/* {commentIcon && <div className='comment-image-container'><img className="comment-image-button" onClick={handleCommentIcon}  src={commentImage} alt='' for='my-comment' /></div>} */}
       {!commentIcon && <button className='all-comments-button' onClick={() => setShowModal(true)}>View All Comments</button>}
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

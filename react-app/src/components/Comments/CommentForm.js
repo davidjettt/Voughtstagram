@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { editCommentThunk, loadCommentsThunk, postCommentThunk } from "../../store/comments"
@@ -10,6 +10,7 @@ export default function CommentForm({ postId, commentToEdit, formType, setShowCo
     const [ commentModal, setCommentModal ] = useState(false)
     const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch()
+    // const ref = useRef()
 
     useEffect(() => {
         if (formType === 'edit comment') setCommentModal(true)
@@ -47,7 +48,7 @@ export default function CommentForm({ postId, commentToEdit, formType, setShowCo
     return (
         <form className={commentModal ? 'comment-modal-form' :"comment-form"} onSubmit={onSubmit}>
             {commentModal && <div className="edit-comment-title">Edit Comment</div>}
-            <input className={commentModal ? 'comment-modal-form-input' :"comment-form-input"} required type='text' placeholder="Add a comment..." value={comment} onChange={(e) => setComment(e.target.value)} />
+            <input className={commentModal ? 'comment-modal-form-input' :"comment-form-input"} required type='text' placeholder="Add a comment..." value={comment} onChange={(e) => setComment(e.target.value)} name='my-comment' />
             <button className={commentModal ? 'comment-modal-form-button' :"comment-form-button"}>Post</button>
             {commentModal && <button className="cancel-edit-comment-button" onClick={handleCancel}>Cancel</button>}
         </form>
