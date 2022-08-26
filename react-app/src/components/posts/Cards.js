@@ -16,7 +16,7 @@ export default function Cards({post}) {
         <div className="post-card">
             <div className="post-card-header">
                 <div className='post-card-avatar'>
-                <img className="single-post-profile-image" src={posterPicture}/>
+                <img className="single-post-profile-image" src={posterPicture || 'https://nitreo.com/img/igDefaultProfilePic.png'}/>
                 <NavLink className="profile-link" to={`/users/${post.userId}`}>
                     <div className="post-card-user">{post.user.username}</div>
                 </NavLink>
