@@ -226,7 +226,18 @@
 
 .profile-link {
     text-decoration: none;
-    color:black
+    color:black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.single-post-profile-image {
+    height:29px;
+    width:29px;
+    border-radius: 14px;
+    object-fit: cover;
+    margin-right: 1rem;
 }
 
 .team-members-feed{
@@ -339,6 +350,7 @@
 }
 
 
+
 .profile-icon-feed {
     height:65px;
     width:65px;
@@ -355,4 +367,10 @@
     font-size: 14.6px;
     margin-left:1.2rem;
     margin-top:2.6rem;
+
+.cursor {
+    cursor: default;
+    padding-top: 8px;
+    padding-right: 2px;
+
 }

@@ -9,6 +9,7 @@ import PostOptionsModal from "./SinglePostModal/PostOptionsModal"
 
 export default function Cards({post}) {
     const sessionUser = useSelector(state => state.session.user)
+    const fromCards = true
     return (
         <div className="post-card">
             <div className="post-card-header">
@@ -20,7 +21,7 @@ export default function Cards({post}) {
                 }
             </div>
             <img className="post-card-image" src={post.imageUrl} alt=" "></img>
-            <PostLikes postId={post.id}/>
+            <PostLikes postId={post.id} fromCards={fromCards}/>
             <div className="post-card-description">
                 <NavLink className="profile-link" to={`/users/${post.userId}`}>
                     <div className="post-card-description-user">{post.user.username}</div>
