@@ -10,12 +10,17 @@ import PostOptionsModal from "./SinglePostModal/PostOptionsModal"
 export default function Cards({post}) {
     const sessionUser = useSelector(state => state.session.user)
     const fromCards = true
+    const users = useSelector(state => Object.values(state.users))
+    const posterPicture = users[post.userId - 1].avatar
     return (
         <div className="post-card">
             <div className="post-card-header">
+                <div className='post-card-avatar'>
+                <img className="single-post-profile-image" src={posterPicture}/>
                 <NavLink className="profile-link" to={`/users/${post.userId}`}>
                     <div className="post-card-user">{post.user.username}</div>
                 </NavLink>
+                </div>
                 {sessionUser?.id === post.userId &&
                     <PostOptionsModal postId={post.id} />
                 }
