@@ -2,7 +2,7 @@
     height:29px;
     width: 29px;
     border-radius:14px;
-    margin-top:-0.3rem;
+    margin-top:-0.1rem;
     position:relative
 }
 
@@ -14,6 +14,7 @@
     margin-top:-0.2rem;
     position:relative;
 }
+
 
 .user-avatar:hover {
     cursor: pointer;

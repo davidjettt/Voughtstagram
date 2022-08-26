@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import LoginForm from "../auth/LoginForm";
 import './LandingPage.css'
+import Footer from "../footer/footer";
 
 export default function LandingPage() {
 
@@ -24,6 +25,7 @@ export default function LandingPage() {
                     </div>
                 </div>
             </div>
+        <Footer/>
         </div>
     </div>
     )

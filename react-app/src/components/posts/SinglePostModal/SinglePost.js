@@ -12,6 +12,8 @@ export default function SinglePost({postId}) {
     const [ allComments, setAllComments] = useState(true)
     const sessionUser = useSelector(state => state.session.user)
     const post = useSelector(state => state.posts.normalizedPosts[Number(postId)])
+    const users = useSelector(state => Object.values(state.users))
+    const posterPicture = users[post.userId - 1].avatar
 
     const offCommentIcon = true
 
@@ -31,6 +33,7 @@ export default function SinglePost({postId}) {
                     <div className="single-post-top-right">
                         <div className="single-post-header">
                             <NavLink className="profile-link" to={`/users/${post.userId}`}>
+                                <img className="single-post-profile-image" src={posterPicture}></img>
                                 {post.user.username}
                             </NavLink>
                             {sessionUser?.id === post.userId &&
@@ -40,6 +43,7 @@ export default function SinglePost({postId}) {
                         <div className="single-post-scroll">
                             <div className="single-post-description">
                                 <NavLink className="profile-link" to={`/users/${post.userId}`}>
+                                    <img className="single-post-profile-image" src={posterPicture}></img>
                                     <p className="single-post-description-user">{post.user.username}</p>
                                 </NavLink>
                                 <p>{post.description}</p>

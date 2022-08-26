@@ -7,6 +7,7 @@ body {
 background-color: #fafafa;
 }
 
+
 .splash-image{
     height: 500px;
     width: 580px;
@@ -21,7 +22,7 @@ background-color: #fafafa;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 99vh;
     /* background-color: white; */
 }
 
