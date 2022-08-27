@@ -88,6 +88,7 @@
 .post-card-description {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
     font-size: 14px;
     margin-top: 1rem;
     margin-bottom: .6rem;
@@ -182,6 +183,7 @@
 .single-post-description {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
     font-size: 14px;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -239,6 +241,15 @@
     border-radius: 14px;
     object-fit: cover;
     margin-right: 1rem;
+}
+
+.single-post-comment-profile-image {
+    height:29px;
+    width:29px;
+    border-radius: 14px;
+    object-fit: cover;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
 }
 
 .team-members-feed{

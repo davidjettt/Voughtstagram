@@ -11,6 +11,10 @@
 
 /* change */
 
+.profile-name {
+    margin-right: 20px;
+}
+
 .modal-following-button,
 .following-button {
     background-color: white;
@@ -22,7 +26,6 @@
 
 .following-button {
     width: 72px;
-
 }
 
 .modal-following-button {
