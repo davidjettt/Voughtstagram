@@ -31,20 +31,20 @@ export default function Comments({ postId, allCommentsRender }) {
 
     return (
         <div>
-            {!allCommentsRender && postComments.length > 0 && commentsOnFeed.map((comment, index )=> (
+            {!allCommentsRender && postComments.length > 0 && commentsOnFeed.map((comment, index) => (
                 <div key={comment.id} className="post-comment-container">
-                    <p className='post-comment'>
+                    <div className='post-comment'>
                         <Link className='username-comment-link' to={`/users/${comment.userId}`}>
                             <p>{comment.user.username}</p>
                         </Link>
                         <p>{comment.comment}</p>
-                    </p>
+                    </div>
                     {currentUser.id === comment.userId &&
-                    <CommentOptionsModal comment={comment} />
+                        <CommentOptionsModal comment={comment} />
                     }
                 </div>
             ))}
-            {allCommentsRender && postComments.length > 0 && postComments.map((comment, index )=> (
+            {allCommentsRender && postComments.length > 0 && postComments.map((comment, index) => (
                 <div key={comment.id} className="post-comment-container">
                     <p className='post-comment'>
                         <Link className='username-comment-link' to={`/users/${comment.userId}`}>
@@ -54,7 +54,7 @@ export default function Comments({ postId, allCommentsRender }) {
                         <p>{comment.comment}</p>
                     </p>
                     {currentUser.id === comment.userId &&
-                    <CommentOptionsModal comment={comment} />
+                        <CommentOptionsModal comment={comment} />
                     }
                 </div>
             ))}
