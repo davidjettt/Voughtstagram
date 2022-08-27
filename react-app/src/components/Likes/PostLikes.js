@@ -6,6 +6,7 @@ import filledInHeart from '../../Images/svgexport-2.svg'
 import '../posts/post.css'
 import { postLikeToggle } from "../../store/posts"
 import SinglePostModal from "../posts/SinglePostModal"
+import PostLikesModal from "./PostLikesModal"
 
 export default function PostLikes( { postId, offCommentIcon }) {
     const dispatch = useDispatch()
@@ -31,9 +32,10 @@ export default function PostLikes( { postId, offCommentIcon }) {
                 <div className="post-likes-container">
                     <img className="post-like-button" onClick={handleClick} src={liked ? filledInHeart : heartImage } alt=''/>
                 </div>
-                <SinglePostModal postIdCommentIcon={postId} commentIcon={commentIcon} offCommentIcon={offCommentIcon} />
+                {/* <SinglePostModal postIdCommentIcon={postId} commentIcon={commentIcon} offCommentIcon={offCommentIcon} /> */}
             </div>
-            <p className="number-likes">{post.userLikes.length} likes</p>
+            {/* <p className="number-likes">{post.userLikes.length} likes</p> */}
+            <PostLikesModal post={post} />
         </>
     )
 }

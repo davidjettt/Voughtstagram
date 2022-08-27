@@ -11,7 +11,7 @@ export default function Cards({post}) {
     const sessionUser = useSelector(state => state.session.user)
     const fromCards = true
     const users = useSelector(state => Object.values(state.users))
-    const posterPicture = users[post.userId - 1].avatar
+    const posterPicture = users[post.userId - 1]?.avatar
     return (
         <div className="post-card">
             <div className="post-card-header">
