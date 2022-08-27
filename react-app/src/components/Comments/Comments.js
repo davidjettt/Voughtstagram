@@ -48,7 +48,7 @@ export default function Comments({ postId, allCommentsRender }) {
                 <div key={comment.id} className="post-comment-container">
                     <p className='post-comment'>
                         <Link className='username-comment-link' to={`/users/${comment.userId}`}>
-                            <img className="single-post-comment-profile-image" src={users[(comment).userId - 1].avatar}></img>
+                            <img className="single-post-comment-profile-image" src={users[(comment).userId - 1].avatar || 'https://nitreo.com/img/igDefaultProfilePic.png'}></img>
                             <p>{comment.user.username}</p>
                         </Link>
                         <p>{comment.comment}</p>
