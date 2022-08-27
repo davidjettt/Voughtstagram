@@ -3,10 +3,18 @@
     max-height: 587.5px;
 }
 
+.no-follows-container {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* .post-like-button {
     /* width: 24px;
     height: 24px; */
-    /* margin-top: 1rem;
+/* margin-top: 1rem;
     margin-left: 1rem;
     margin-bottom: -8px;
 } */
@@ -18,8 +26,8 @@
 
 .post-likes-container {
     width: 50px;
-    padding-left: 14px ;
-    padding-top: 8px ;
+    padding-left: 14px;
+    padding-top: 8px;
 }
 
 /* .comment-image-container {
@@ -33,18 +41,19 @@
 }
 
 .number-likes {
-    margin-left:1rem;
+    margin-left: 1rem;
     font-size: 14px;
-    font-weight:bold;
+    font-weight: bold;
     margin-bottom: 0;
 }
 
 .post-like-button:hover {
     cursor: pointer;
 }
+
 .feed-container {
     background-color: rgb(249, 249, 249);
-    display:flex;
+    display: flex;
     /* flex-flow: row nowrap; */
     justify-content: center;
     width: 100%;
@@ -54,8 +63,7 @@
     display: flex;
     flex-direction: column;
     /* margin-left: 30%; */
-    width:100%
-
+    width: 100%
 }
 
 .post-card {
@@ -69,15 +77,17 @@
     border: 1px solid lightgray;
     border-radius: 10px;
     margin-bottom: 1%;
-    margin-top:23px;
+    margin-top: 23px;
     /* margin-left:-1.5rem; */
 }
+
 .post-card-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
+
 .post-card-user {
     display: block;
     font-weight: bold;
@@ -220,7 +230,7 @@
 
 .single-post-scroll {
     max-height: 95%;
-    overflow-y:auto
+    overflow-y: auto
 }
 
 .single-post-likes {
@@ -229,55 +239,55 @@
 
 .profile-link {
     text-decoration: none;
-    color:black;
+    color: black;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
 .single-post-profile-image {
-    height:29px;
-    width:29px;
+    height: 29px;
+    width: 29px;
     border-radius: 14px;
     object-fit: cover;
     margin-right: 1rem;
 }
 
 .single-post-comment-profile-image {
-    height:29px;
-    width:29px;
+    height: 29px;
+    width: 29px;
     border-radius: 14px;
     object-fit: cover;
     margin-right: 1rem;
     margin-top: 0.5rem;
 }
 
-.team-members-feed{
+.team-members-feed {
     /* margin-right:42.5rem; */
-    min-width:320px;
+    min-width: 320px;
     padding-left: 30px;
-    margin-top:25px;
+    margin-top: 25px;
 }
 
 .joon-feed {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
 
 .joon-pic {
-    height:40px;
-    width:40px;
+    height: 40px;
+    width: 40px;
     border-radius: 20px;
 }
 
 .main-post-parent {
-    display:flex;
+    display: flex;
 }
 
 .links-to-sites-feed {
     display: flex;
-    margin-right:3.2rem;
+    margin-right: 3.2rem;
 }
 
 .joon-profile-feed {
@@ -290,21 +300,21 @@
     margin-bottom: 1.4rem;
 }
 
-.name-text1{
+.name-text1 {
     font-size: 13px;
     font-weight: bold;
     margin-left: 0.5rem;
 }
 
 .zach-feed {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
 
 .zach-pic {
-    height:40px;
-    width:40px;
+    height: 40px;
+    width: 40px;
     border-radius: 20px;
 }
 
@@ -312,21 +322,21 @@
     display: flex;
 }
 
-.name-text2{
+.name-text2 {
     font-size: 13px;
     font-weight: bold;
     margin-left: 0.5rem;
 }
 
 .david-feed {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
 
 .david-pic {
-    height:40px;
-    width:40px;
+    height: 40px;
+    width: 40px;
     border-radius: 20px;
 }
 
@@ -334,20 +344,20 @@
     display: flex;
 }
 
-.name-text3{
+.name-text3 {
     font-size: 13px;
     font-weight: bold;
     margin-left: 0.5rem;
 }
 
 .allan-feed {
-    display:flex;
+    display: flex;
     justify-content: space-between;
 }
 
 .allan-pic {
-    height:40px;
-    width:40px;
+    height: 40px;
+    width: 40px;
     border-radius: 20px;
 }
 
@@ -355,7 +365,7 @@
     display: flex;
 }
 
-.name-text4{
+.name-text4 {
     font-size: 13px;
     font-weight: bold;
     margin-left: 0.5rem;
@@ -364,11 +374,11 @@
 
 
 .profile-icon-feed {
-    height:65px;
-    width:65px;
+    height: 65px;
+    width: 65px;
     border-radius: 32px;
-    margin-bottom:-0.3rem;
-    margin-top:0.9rem;
+    margin-bottom: -0.3rem;
+    margin-top: 0.9rem;
 }
 
 .user-avatar-feed {
@@ -377,8 +387,8 @@
 
 .username-feed {
     font-size: 14.6px;
-    margin-left:1.2rem;
-    margin-top:2.6rem;
+    margin-left: 1.2rem;
+    margin-top: 2.6rem;
 }
 
 .cursor {

@@ -15,6 +15,7 @@ import { loadCommentsThunk } from './store/comments';
 import LandingPage from './components/LandingPage/LandingPage';
 import { loadAllUsers } from './store/users';
 import './index.css'
+import MyFeed from './components/posts/MyFeed';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -22,23 +23,23 @@ function App() {
   const user = useSelector(state => state.session.user);
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
+      await dispatch(loadAllUsers());
+      await dispatch(getAllPosts());
+      await dispatch(loadCommentsThunk());
       setLoaded(true);
     })();
   }, [dispatch]);
 
-  useEffect(() =>{
-    dispatch(loadAllUsers())
-   }, [dispatch])
+  // useEffect(() => {
+  // }, [dispatch])
 
-  useEffect(() => {
-    dispatch(getAllPosts())
-  }, [dispatch])
+  // useEffect(() => {
+  // }, [dispatch])
 
-  useEffect(() => {
-    dispatch(loadCommentsThunk())
-  }, [dispatch])
+  // useEffect(() => {
+  // }, [dispatch])
 
   if (!loaded) {
     return null;
@@ -58,13 +59,16 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
         <ProtectedRoute exact path="/feed">
           <Feed />
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/myfeed">
+          <MyFeed />
         </ProtectedRoute>
         <ProtectedRoute path='/posts/new/' exact={true} >
           <PostForm />
