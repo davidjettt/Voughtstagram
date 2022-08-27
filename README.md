@@ -1,3 +1,28 @@
+<h1 align= "center" dir="auto">
+  :muscle: Voughtstagram welcomes you! 
+</h1>
+<h5 align= "center" dir="auto">
+  Creators:
+      <a href="https://github.com/Joon-Bae">Joon Bae</a>
+      ,
+      <a href="https://github.com/hoscharzach">Zach Hoschar</a>
+      ,
+      <a href="https://github.com/davidjettt">David Jetsupphasuk</a>
+      ,
+      <a href="https://github.com/ayang740">Allan Yang</a>
+      </br>
+      </h5>
+<h3 align='center'>
+<a href="https://voughtstagram.herokuapp.com/feed">» Check out the live site here «</a>
+</h3>
+
+<h4 align= "center" dir="auto">
+  <a href="https://github.com/Joon-Bae/Voughtstagram/wiki">» Explore the Wiki «</a>
+</h4>
+
+
+
+
 # Flask React Project Starter File 
 
 This is the starter for the Flask React project.
