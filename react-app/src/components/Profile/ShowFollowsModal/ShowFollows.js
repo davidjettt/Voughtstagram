@@ -30,7 +30,7 @@ export default function ShowFollows({ type, setShowModal }) {
             setDisplayItems(profileUser?.following)
             setHeader('Following')
         }
-    }, [profileUser])
+    }, [profileUser, type])
 
     return (
         <div className="main-follows-container">

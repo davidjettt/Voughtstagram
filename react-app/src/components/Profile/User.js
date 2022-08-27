@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ProfilePostModal from './ProfilePostModal';
-import { followThunk, unfollowThunk } from '../../store/users';
 import ShowFollowsModal from './ShowFollowsModal/ShowFollowsModal'
-import followingIcon from '../../../src/Images/followingicon.svg'
 import './profile.css'
 import FollowButton from './FollowButton';
 import defaultProfile from '../../../src/Images/defaultprofilepic.svg'
 
 function User() {
   const { userId } = useParams();
-  // const dispatch = useDispatch()
   const sessionUserId = useSelector(state => state.session.user.id)
 
   const profileUser = useSelector(state => state.users[Number(userId)])
@@ -22,6 +19,10 @@ function User() {
 
   const [following, setFollowing] = useState(false)
   const [numberOfPosts, setNumberOfPosts] = useState(0)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   useEffect(() => {
     setFollowing(sessionUser?.following.includes(profileUser?.id))
