@@ -9,8 +9,9 @@ background-color: #fafafa;
 
 
 .splash-image{
-    height: 500px;
-    width: 580px;
+    height: 660px;
+    width: 460px;
+    margin-top:-7rem;
 }
 
 .form-container {
@@ -40,4 +41,17 @@ background-color: #fafafa;
     text-decoration: none;
     color: #0095f6;
     /* font-family: ; */
+}
+
+.title-form-signup-container {
+    margin-top:-17.6rem;
+}
+
+
+.phone-image {
+    position:absolute;
+    margin-left:-19.3rem;
+    width:254px;
+    height:560px;
+    margin-top:-5.2rem;
 }
