@@ -33,12 +33,12 @@ export default function Comments({ postId, allCommentsRender }) {
         <div>
             {!allCommentsRender && postComments.length > 0 && commentsOnFeed.map((comment, index )=> (
                 <div key={comment.id} className="post-comment-container">
-                    <p className='post-comment'>
+                    <div className='post-comment'>
                         <Link className='username-comment-link' to={`/users/${comment.userId}`}>
-                            <p>{comment.user.username}</p>
+                            <div>{comment.user.username}</div>
                         </Link>
-                        <p>{comment.comment}</p>
-                    </p>
+                        <div>{comment.comment}</div>
+                    </div>
                     {currentUser.id === comment.userId &&
                     <CommentOptionsModal comment={comment} />
                     }
@@ -46,13 +46,13 @@ export default function Comments({ postId, allCommentsRender }) {
             ))}
             {allCommentsRender && postComments.length > 0 && postComments.map((comment, index )=> (
                 <div key={comment.id} className="post-comment-container">
-                    <p className='post-comment'>
+                    <div className='post-comment'>
                         <Link className='username-comment-link' to={`/users/${comment.userId}`}>
                             <img className="single-post-comment-profile-image" src={users[(comment).userId - 1].avatar || 'https://nitreo.com/img/igDefaultProfilePic.png'}></img>
                             <p>{comment.user.username}</p>
                         </Link>
                         <p>{comment.comment}</p>
-                    </p>
+                    </div>
                     {currentUser.id === comment.userId &&
                     <CommentOptionsModal comment={comment} />
                     }
