@@ -4,8 +4,7 @@ import followingIcon from '../../Images/followingicon.svg'
 import './FollowButton.css'
 
 
-export default function FollowButton({ modal, profileUserId, following }) {
-
+export default function FollowButton({  modal, profileUserId, following }) {
     const dispatch = useDispatch()
 
     const sessionUserId = useSelector(state => state.session.user.id)

@@ -47,6 +47,14 @@
     margin-bottom: 0;
 }
 
+.number-likes-cursor {
+    margin-left:1rem;
+    font-size: 14px;
+    font-weight:bold;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
 .post-like-button:hover {
     cursor: pointer;
 }
@@ -124,7 +132,7 @@
     padding: 0;
     text-align: left;
     margin-left: 1rem;
-    margin-bottom: 5px;
+    margin-bottom: 11px;
 }
 
 .all-comments-button:hover {
