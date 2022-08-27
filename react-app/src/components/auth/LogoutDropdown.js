@@ -39,7 +39,7 @@ const LogoutDropdown = () => {
     <>
       <div className='menu-wrapper'>
         <button className="user-avatar-button" onClick={openMenu}>
-          <img className="user-avatar" src={userAvatar}></img>
+          <img className="user-avatar" src={userAvatar || 'https://nitreo.com/img/igDefaultProfilePic.png'}></img>
         </button>
 
         {showMenu && (

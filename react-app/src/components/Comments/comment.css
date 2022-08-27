@@ -39,6 +39,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
 }
 .post-comment {
     padding: 5px 0px;
@@ -46,6 +47,11 @@
     font-size: 14px;
     display: flex;
     flex-direction: row;
+    align-items: center;/* align-items: center; */
+    overflow: hidden;
+    /* white-space: nowrap; */
+    /* text-overflow: ellipsis; */
+
 }
 
 .username-comment-link {

@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
 import LoginForm from "../auth/LoginForm";
 import './LandingPage.css'
+import twoPhones from '../../Images/twophones.png'
 import Footer from "../footer/footer";
+import screenShot1 from '../../Images/screenshot1.png'
+
 
 export default function LandingPage() {
 
@@ -11,7 +14,8 @@ export default function LandingPage() {
         <div className="main-container-login">
             <div className="login-form-and-image-container">
                 <div className="image-container">
-                    <img className='splash-image' src='https://thumbs.dreamstime.com/z/instagram-post-template-apple-iphone-kyiv-ukraine-april-instagram-post-template-apple-iphone-instagram-post-mockup-perfect-216413582.jpg' alt='' />
+                    <img className='splash-image' src={twoPhones} alt='' />
+                    <img className='phone-image' src={screenShot1}/>
                 </div>
                 <div className="title-form-signup-container">
                     <div className="form-container">

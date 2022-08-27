@@ -114,6 +114,7 @@
 .post-card-comments {
     margin-left: 1rem;
     margin-right: 1rem;
+    margin-top:-0.7rem;
 }
 
 .all-comments-button {
@@ -395,4 +396,18 @@
     padding-top: 8px;
     padding-right: 2px;
 
+}
+
+.post-card-avatar {
+    display:flex
+}
+
+.post-card-avatar {
+    margin-top:0.7rem;
+    margin-left:1rem;
+}
+
+.post-card-user {
+    margin-top:-0.6rem;
+    margin-left:-1.4rem;
 }
