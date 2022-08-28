@@ -130,6 +130,12 @@ export default function Feed({ posts }) {
                             </div>
                         </div>
                     </div>
+                    <div className='feed-project-repo'>
+                           Check out the project repo here!
+                           <a href='https://github.com/Joon-Bae/Voughtstagram'>
+                            <img className='project-repo-image' src={githubLogo}/>
+                           </a>
+                    </div>
                 </div>
             </div>
         </div>

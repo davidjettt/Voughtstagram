@@ -4,6 +4,7 @@ import './LandingPage.css'
 import twoPhones from '../../Images/twophones.png'
 import Footer from "../footer/footer";
 import screenShot1 from '../../Images/screenshot1.png'
+import githubLogo from '../../Images/github-logo.svg'
 
 
 export default function LandingPage() {
@@ -27,6 +28,12 @@ export default function LandingPage() {
                             <NavLink className='signup-link' to='/sign-up'> Sign Up</NavLink>
                         </div>
                     </div>
+                    <div className='landing-project-repo'>
+                           Check out the project repo here
+                           <a href='https://github.com/Joon-Bae/Voughtstagram'>
+                            <img className='project-repo-image' src={githubLogo}/>
+                           </a>
+                        </div>
                 </div>
             </div>
         <Footer/>
