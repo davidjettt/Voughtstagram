@@ -425,3 +425,15 @@
     margin-top:-0.6rem;
     margin-left:-1.4rem;
 }
+
+.feed-project-repo {
+    background-color: white;
+    font-size: 14px;
+    border: 1px solid #dbdbdb;
+    margin-top: 1rem;
+    width:245px;
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

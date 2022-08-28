@@ -45,7 +45,7 @@ background-color: #fafafa;
 }
 
 .title-form-signup-container {
-    margin-top:-17.6rem;
+    margin-top:-12.0rem;
 }
 
 
@@ -55,4 +55,21 @@ background-color: #fafafa;
     width:254px;
     height:560px;
     margin-top:-5.2rem;
+}
+
+.landing-project-repo {
+    background-color: white;
+    font-size: 14px;
+    border: 1px solid #dbdbdb;
+    margin-top: 1rem;
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-repo-image {
+    height:35px;
+    width:35px;
+    margin-left:1rem;
 }
