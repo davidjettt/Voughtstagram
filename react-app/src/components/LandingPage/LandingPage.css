@@ -32,7 +32,7 @@ background-color: #fafafa;
     font-size: 14px;
     border: 1px solid #dbdbdb;
     margin-top: 1rem;
-    padding: 14px;
+    padding: 18px;
     display: flex;
     justify-content: center;
 }
@@ -40,6 +40,7 @@ background-color: #fafafa;
 .signup-link {
     text-decoration: none;
     color: #0095f6;
+    font-weight: 700;
     /* font-family: ; */
 }
 

@@ -9,6 +9,7 @@ import newPost from '../../Images/newPost.svg'
 
 export default function PostForm({ setShowCreatePostModal }) {
     const sessionUser = useSelector(state => state.session.user)
+    const sessionAvatar = sessionUser.avatar
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -123,6 +124,9 @@ export default function PostForm({ setShowCreatePostModal }) {
                     </div>
                     <div className="edit-post-form-container">
                         <div className="edit-post-username-container">
+                            <div className="post-form-avatar-container">
+                                <img className="single-post-profile-image" src={sessionAvatar || 'https://nitreo.com/img/igDefaultProfilePic.png'} alt='' />
+                            </div>
                             <div className="edit-post-username">{sessionUser.username}</div>
                         </div>
                         <div >
