@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Feed from "./PostFeed";
+import './post.css'
 
 
 export default function MyFeed() {
