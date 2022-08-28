@@ -6,6 +6,7 @@ import './EditPost.css'
 
 export default function EditForm({ postId, setShowPostOptionsModal }) {
     const sessionUser = useSelector(state => state.session.user)
+    const sessionAvatar = sessionUser.avatar
     const post = useSelector(state => state.posts.normalizedPosts[Number(postId)])
     const dispatch = useDispatch()
     const history = useHistory()
@@ -63,6 +64,9 @@ export default function EditForm({ postId, setShowPostOptionsModal }) {
                 </div>
                 <div className="edit-post-form-container">
                     <div className="edit-post-username-container">
+                        <div className="post-form-avatar-container">
+                            <img className="single-post-profile-image" src={sessionAvatar || 'https://nitreo.com/img/igDefaultProfilePic.png'} alt='' />
+                        </div>
                         <div className="edit-post-username">{post.user.username}</div>
                     </div>
                     <div >
