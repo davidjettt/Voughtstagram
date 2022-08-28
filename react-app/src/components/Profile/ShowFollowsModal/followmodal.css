@@ -46,6 +46,7 @@
 .x {
     background-color: white;
     border: none;
+    cursor: pointer;
 }
 
 .follow-cards-container {

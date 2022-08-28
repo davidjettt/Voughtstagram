@@ -42,7 +42,7 @@ export default function Feed({ posts }) {
                 <div className="team-members-feed">
                     <div className='user-avatar-feed'>
                         <div>
-                            <img className='profile-icon-feed' src={userAvatar} />
+                            <img className='profile-icon-feed' src={userAvatar || 'https://nitreo.com/img/igDefaultProfilePic.png'} />
                         </div>
                         <div>
                             <NavLink className="link-to-profile" to={`/users/${userId}`}>

@@ -14,7 +14,7 @@ export default function SinglePost({postId}) {
     const post = useSelector(state => state.posts.normalizedPosts[Number(postId)])
     const users = useSelector(state => Object.values(state.users))
     const posterPicture = users[post.userId - 1].avatar
-    console.log('PROFILE PIC', posterPicture)
+
     const offCommentIcon = true
 
     if (!post) {
