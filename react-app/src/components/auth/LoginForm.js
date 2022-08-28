@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css'
-
+import logo from '../../Images/voughtstagramlogo.svg'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -41,7 +41,7 @@ const LoginForm = () => {
   return (
     <div className='login-form-container-main'>
       <div className='login-title-container'>
-        <h1>Voughtstagram</h1>
+        <img className='voughtstagram-logo' src={logo} />
       </div>
       <form className='login-form' onSubmit={onLogin}>
         <div className='email-container'>

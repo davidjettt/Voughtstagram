@@ -4,6 +4,7 @@ import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css'
 import Footer from '../footer/footer.js'
+import logo from '../../Images/voughtstagramlogo.svg'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -66,7 +67,9 @@ const SignUpForm = () => {
     <div className='signup-page-main'>
       <div className='signup-form-container'>
         <div className='signup-title-container'>
-          <h1>Voughtstagram</h1>
+          <div className='signup-logo-container'>
+            <img className='voughtstagram-logo' src={logo} />
+          </div>
           <div className='signup-message'>Sign up to see photos and videos from your friends.</div>
         </div>
         <form className='signup-form' onSubmit={onSignUp}>

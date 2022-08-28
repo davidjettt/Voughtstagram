@@ -46,6 +46,7 @@ input:focus {
 .login-title-container {
     display: flex;
     justify-content: center;
+    padding: 20px 0;
 }
 
 .login-or {
@@ -97,4 +98,8 @@ input:focus {
     top: -5px;
     font-size: 11px;
     color: #222
+}
+
+.voughtstagram-logo {
+    height: 50px;
 }
