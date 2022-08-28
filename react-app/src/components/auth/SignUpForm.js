@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -14,6 +14,17 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const nameInput = document.querySelector('.signup-name-input-field')
+    nameInput.addEventListener('blur', (e) => {
+      if (e.target.value) {
+        e.target.classList.add('no-focus')
+      } else {
+        e.target.classList.remove('no-focus')
+      }
+    })
+  }, [])
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -59,61 +70,66 @@ const SignUpForm = () => {
           <div className='signup-message'>Sign up to see photos and videos from your friends.</div>
         </div>
         <form className='signup-form' onSubmit={onSignUp}>
-          {/* <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div> */}
           <div>
-            <label></label>
-            <input
-              type='text'
-              name='name'
-              onChange={updateName}
-              value={name}
-              placeholder='Name'
-            ></input>
+            <label className='custom'>
+              <input
+                className='signup-name-input-field'
+                required
+                type='text'
+                name='name'
+                onChange={updateName}
+                value={name}
+              />
+              <span className='placeholder'>Name</span>
+            </label>
           </div>
           <div>
-            <label></label>
+            <label className='custom'>
             <input
+              required
               type='text'
               name='username'
               onChange={updateUsername}
               value={username}
-              placeholder='Username'
-            ></input>
+            />
+            <span className='placeholder'>Username</span>
+            </label>
           </div>
           <div>
-            <label></label>
+            <label className='custom'>
             <input
+              required
               type='text'
               name='email'
               onChange={updateEmail}
               value={email}
-              placeholder='Email'
-            ></input>
+            />
+            <span className='placeholder'>Email</span>
+            </label>
           </div>
           <div>
-            <label></label>
+            <label className='custom'>
             <input
+              required
               type='password'
               name='password'
               onChange={updatePassword}
               value={password}
-              placeholder='Password'
-            ></input>
+            />
+            <span className='placeholder'>Password</span>
+            </label>
           </div>
           <div>
-            <label></label>
+            <label className='custom'>
             <input
+              required
               type='password'
               name='repeat_password'
               onChange={updateRepeatPassword}
               value={repeatPassword}
-              required={true}
-              placeholder='Repeat Password'
-            ></input>
+            />
+            <span className='placeholder'>Repeat Password</span>
+            </label>
           </div>
           <button className='login-button' type='submit' disabled={username.length < 1 || email.length < 1 || password.length < 1 || repeatPassword < 1}>Sign Up</button>
           <div className='signup-errors'>

@@ -17,13 +17,13 @@
 
 input {
     width: 250px;
-    height: 30px;
+    height: 35px;
     margin: 3px;
     border: 1px solid #dbdbdb;
     border-radius: 2px;
     outline: none;
     background-color: #fafafa;
-    padding: 3px;
+    padding: 14px 0px 5px 8px;
 }
 
 input:focus {
@@ -64,18 +64,22 @@ input:focus {
 
 .custom {
     position: relative;
-    font-size: 14px;
+    font-size: 13px;
+}
+
+.custom input {
+    font-size: 12px;
 }
 
 
 .custom .placeholder {
-    /* font-family: ; */
     position: absolute;
     left: 12px;
     top: 50%;
-    bottom: 100px;
+    /* bottom: 100px; */
     transform: translateY(-50%);
-    /* color: #aaa; */
+    /* color: #a9a9a9; */
+    color: rgb(168, 165, 165);
     transition:
         top 0.3s ease,
         font-size 0.3s ease,
@@ -84,6 +88,13 @@ input:focus {
 
 .custom input:valid + .placeholder,
 .custom input:focus + .placeholder {
-    top: -7px;
-    font-size: 12px;
+    top: -5px;
+    font-size: 10px;
+    color: #222
+}
+.custom input.no-focus + .placeholder,
+.custom input:focus + .placeholder {
+    top: -5px;
+    font-size: 11px;
+    color: #222
 }
