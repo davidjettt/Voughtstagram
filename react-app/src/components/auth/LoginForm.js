@@ -44,32 +44,29 @@ const LoginForm = () => {
         <h1>Voughtstagram</h1>
       </div>
       <form className='login-form' onSubmit={onLogin}>
-        {/* <div className='errors'>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div> */}
         <div className='email-container'>
           <label className='custom' htmlFor='email'>
             <input
               name='email'
               type='text'
-              placeholder='Email'
+              required
               value={email}
               onChange={updateEmail}
             />
-            {/* <span className='placeholder'>Email</span> */}
+            <span className='placeholder'>Email</span>
           </label>
         </div>
         <div className='password-container'>
-          <label htmlFor='password'></label>
+          <label className='custom' htmlFor='password'>
           <input
+            required
             name='password'
             type='password'
-            placeholder='Password'
             value={password}
             onChange={updatePassword}
           />
+          <span className='placeholder'>Password</span>
+          </label>
         </div>
         <button className='login-button' type='submit' disabled={email.length < 1 || password.length < 1}>Log In</button>
         <div className='login-or'>
