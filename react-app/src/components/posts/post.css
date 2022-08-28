@@ -89,7 +89,7 @@
     max-height: 900px;
     border: 1px solid lightgray;
     border-radius: 10px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 15px;
     margin-top: 23px;
     /* margin-left:-1.5rem; */
 }
@@ -189,7 +189,7 @@
 }
 
 .single-post-top-right {
-    max-height: 70%;
+    height:82%;
 }
 
 .single-post-header {
@@ -227,7 +227,7 @@
 .single-post-bottom-right {
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: 18%;
     width: 100%;
     align-items: flex-end;
 }
@@ -237,12 +237,13 @@
     position: sticky;
     display: flex;
     width: 100%;
+
     flex-direction: column;
 
 }
 
 .single-post-scroll {
-    max-height: 95%;
+    max-height: 90%;
     overflow-y: auto
 }
 
