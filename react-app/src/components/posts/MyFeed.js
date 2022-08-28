@@ -15,7 +15,7 @@ export default function MyFeed() {
 
     useEffect(() => {
         setNoFollows(users[userId].following.length === 0)
-        setMyPosts(Object.values(posts).filter(el => users[userId].following.includes(el.userId)))
+        setMyPosts(Object.values(posts).filter(el => users[userId].following.includes(el.userId)).reverse())
     }, [userId, posts, users])
 
     return (

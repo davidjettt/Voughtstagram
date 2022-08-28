@@ -27,6 +27,7 @@ export default function Feed({ posts }) {
     }, [dispatch, sessionUser])
 
     return (
+        <div className="feed-page">
         <div className="feed-container">
             <div className='main-post-parent'>
                 <div className="main-posts-container">
@@ -131,6 +132,7 @@ export default function Feed({ posts }) {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }
