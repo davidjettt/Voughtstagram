@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Feed from "./PostFeed";
-import './post.css'
 
 
 export default function MyFeed() {
@@ -16,7 +15,7 @@ export default function MyFeed() {
 
     useEffect(() => {
         setNoFollows(users[userId].following.length === 0)
-        setMyPosts(Object.values(posts).filter(el => users[userId].following.includes(el.userId)))
+        setMyPosts(Object.values(posts).filter(el => users[userId].following.includes(el.userId)).reverse())
     }, [userId, posts, users])
 
     return (
