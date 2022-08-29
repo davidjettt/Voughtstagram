@@ -38,16 +38,16 @@
 
 
 # Log In
-![loginpage](https://user-images.githubusercontent.com/94085979/187012318-e69e5ecf-db62-4fd5-b429-e0c64d4d428b.png)
+![loginpage](https://user-images.githubusercontent.com/94085979/187103148-92231815-dde3-4623-88e8-6d733ae4ba32.png)
 
 # Sign up
-![signuppage](https://user-images.githubusercontent.com/94085979/187012376-1a7d8f0e-683a-4e8d-bf2e-196ff18f0cee.png)
+![signuppage](https://user-images.githubusercontent.com/94085979/187103275-9b71b9b4-4445-47c0-a430-9ed564d55a3c.png)
 
 # User Profile
 ![userprofile](https://user-images.githubusercontent.com/94085979/187012478-5f8d9171-9492-40a0-a1e4-b411588202da.png)
 
 # Main Feed
-![mainfeed](https://user-images.githubusercontent.com/94085979/187012561-0d12d460-fe10-45b7-be10-9689b8550184.png)
+![mainfeed](https://user-images.githubusercontent.com/94085979/187103218-61362f1d-8a5a-4a89-9c41-71312cc3f74c.png)
 
 # Single Post Modal
 ![singlepost](https://user-images.githubusercontent.com/94085979/187012635-f52b2ea5-b94b-490b-9b29-e91f8f1faed4.png)
