@@ -37,14 +37,18 @@
     cursor:default;
 }
 
+.comment-form-button:enabled {
+    cursor:pointer;
+}
+
 .comment-modal-form-button:disabled {
     opacity: .4;
     cursor:default;
 }
-
+/*
 .comment-form-button:hover {
     cursor: pointer;
-}
+} */
 .post-comment-container {
     display: flex;
     flex-direction: row;
