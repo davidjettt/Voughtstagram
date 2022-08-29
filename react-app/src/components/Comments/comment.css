@@ -32,6 +32,16 @@
     align-items: center;
 }
 
+.comment-form-button:disabled {
+    opacity: .4;
+    cursor:default;
+}
+
+.comment-modal-form-button:disabled {
+    opacity: .4;
+    cursor:default;
+}
+
 .comment-form-button:hover {
     cursor: pointer;
 }

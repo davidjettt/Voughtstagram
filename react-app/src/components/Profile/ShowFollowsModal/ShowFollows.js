@@ -55,7 +55,7 @@ export default function ShowFollows({ type, setShowModal }) {
                                 <Link to={`/users/${user}`}>
                                     <div onClick={() => setShowModal(false)} className="follow-card-username">{users[user].username}</div>
                                 </Link>
-                                <div className="follow-card-real-name">real name</div>
+                                <div className="follow-card-real-name">{users[user].name || users[user].username}</div>
                             </div>
                             {sessionUserId !== user &&
                                 <FollowButton modal={true} profileUserId={user} following={sessionUser.following.includes(user)} />}

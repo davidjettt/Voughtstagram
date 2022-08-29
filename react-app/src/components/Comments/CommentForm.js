@@ -8,13 +8,19 @@ import './comment.css'
 export default function CommentForm({ postId, commentToEdit, formType, setShowCommentModal, setShowCommentOptionsModal }) {
     const [ comment, setComment ] = useState(commentToEdit?.comment || '')
     const [ commentModal, setCommentModal ] = useState(false)
+    const [ disabled, setDisabled ] = useState(true)
     const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     // const ref = useRef()
 
+
     useEffect(() => {
         if (formType === 'edit comment') setCommentModal(true)
     }, [])
+
+    useEffect(() => {
+        setDisabled(comment.trim().length === 0)
+    }, [comment])
 
 
     const onSubmit = async (e) => {
@@ -49,7 +55,7 @@ export default function CommentForm({ postId, commentToEdit, formType, setShowCo
         <form className={commentModal ? 'comment-modal-form' :"comment-form"} onSubmit={onSubmit}>
             {commentModal && <div className="edit-comment-title">Edit Comment</div>}
             <input className={commentModal ? 'comment-modal-form-input' :"comment-form-input"} required type='text' placeholder="Add a comment..." value={comment} onChange={(e) => setComment(e.target.value)} name='my-comment' />
-            <button className={commentModal ? 'comment-modal-form-button' :"comment-form-button"}>Post</button>
+            <button disabled={disabled} className={commentModal ? 'comment-modal-form-button' :"comment-form-button"}>Post</button>
             {commentModal && <button className="cancel-edit-comment-button" onClick={handleCancel}>Cancel</button>}
         </form>
     )
