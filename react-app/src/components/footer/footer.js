@@ -25,12 +25,12 @@ const Footer = () => {
             <div className='team-members-footer'>
                 <div className='joon-footer'>
                     <p>Joon Bae</p>
-                    <a href='https://www.github.com/Joon-Bae'>
+                    <a target='_blank' href='https://www.github.com/Joon-Bae'>
                         <div>
                         <img className='github-logo' src={githubLogo}/>
                         </div>
                     </a>
-                    <a href='https://www.linkedin.com/in/joon-bae-b06a84199/'>
+                    <a target='_blank' href='https://www.linkedin.com/in/joon-bae-b06a84199/'>
                         <div>
                         <img className='linkedin-logo' src={linkedinLogo}/>
                         </div>
@@ -38,12 +38,12 @@ const Footer = () => {
                 </div>
                 <div className='david-footer'>
                     <p>David Jetsupphasuk</p>
-                    <a href='https://github.com/davidjettt'>
+                    <a target='_blank' href='https://github.com/davidjettt'>
                         <div>
                         <img className='github-logo' src={githubLogo}/>
                         </div>
                     </a>
-                    <a href='https://www.linkedin.com/in/david-jetsupphasuk-1494a6125/'>
+                    <a target='_blank' href='https://www.linkedin.com/in/david-jetsupphasuk-1494a6125/'>
                         <div>
                         <img className='linkedin-logo' src={linkedinLogo}/>
                         </div>
@@ -51,12 +51,12 @@ const Footer = () => {
                 </div>
                 <div className='allan-footer'>
                     <p>Allan Yang</p>
-                    <a href='https://github.com/ayang740'>
+                    <a target='_blank' href='https://github.com/ayang740'>
                         <div>
                         <img className='github-logo' src={githubLogo}/>
                         </div>
                     </a>
-                    <a href='https://www.linkedin.com/in/allan-yang-46a31624a/'>
+                    <a target='_blank' href='https://www.linkedin.com/in/allan-yang-46a31624a/'>
                         <div>
                         <img className='linkedin-logo' src={linkedinLogo}/>
                         </div>
@@ -64,12 +64,12 @@ const Footer = () => {
                 </div>
                 <div className='zach-footer'>
                     <p>Zach Hoschar</p>
-                    <a href='https://github.com/hoscharzach'>
+                    <a target='_blank' href='https://github.com/hoscharzach'>
                         <div>
                         <img className='github-logo' src={githubLogo}/>
                         </div>
                     </a>
-                    <a href='https://www.linkedin.com/in/zach-hoschar-3ab403b8/'>
+                    <a target='_blank' href='https://www.linkedin.com/in/zach-hoschar-3ab403b8/'>
                         <div>
                         <img className='linkedin-logo' src={linkedinLogo}/>
                         </div>

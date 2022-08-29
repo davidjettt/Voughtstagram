@@ -62,12 +62,12 @@ export default function Feed({ posts }) {
 
                         <div className='links-to-sites-feed'>
                             <div>
-                                <a href='https://www.github.com/Joon-Bae'>
+                                <a target='_blank' href='https://www.github.com/Joon-Bae'>
                                     <img className='github-logo' src={githubLogo} />
                                 </a>
                             </div>
                             <div>
-                                <a href='https://www.linkedin.com/in/joon-bae-b06a84199/'>
+                                <a target='_blank' href='https://www.linkedin.com/in/joon-bae-b06a84199/'>
                                     <img className='linkedin-logo' src={linkedinLogo} />
                                 </a>
                             </div>
@@ -81,12 +81,12 @@ export default function Feed({ posts }) {
 
                         <div className='links-to-sites-feed'>
                             <div>
-                                <a href='https://github.com/hoscharzach'>
+                                <a target='_blank' href='https://github.com/hoscharzach'>
                                     <img className='github-logo' src={githubLogo} />
                                 </a>
                             </div>
                             <div>
-                                <a href='https://www.linkedin.com/in/zach-hoschar-3ab403b8/'>
+                                <a target='_blank' href='https://www.linkedin.com/in/zach-hoschar-3ab403b8/'>
                                     <img className='linkedin-logo' src={linkedinLogo} />
                                 </a>
                             </div>
@@ -100,12 +100,12 @@ export default function Feed({ posts }) {
 
                         <div className='links-to-sites-feed'>
                             <div>
-                                <a href='https://github.com/davidjettt'>
+                                <a target='_blank' href='https://github.com/davidjettt'>
                                     <img className='github-logo' src={githubLogo} />
                                 </a>
                             </div>
                             <div>
-                                <a href='https://www.linkedin.com/in/david-jetsupphasuk-1494a6125/'>
+                                <a target='_blank' href='https://www.linkedin.com/in/david-jetsupphasuk-1494a6125/'>
                                     <img className='linkedin-logo' src={linkedinLogo} />
                                 </a>
                             </div>
@@ -119,12 +119,12 @@ export default function Feed({ posts }) {
 
                         <div className='links-to-sites-feed'>
                             <div>
-                                <a href='https://github.com/ayang740'>
+                                <a target='_blank' href='https://github.com/ayang740'>
                                     <img className='github-logo' src={githubLogo} />
                                 </a>
                             </div>
                             <div>
-                                <a href='https://www.linkedin.com/in/allan-yang-46a31624a/'>
+                                <a target='_blank' href='https://www.linkedin.com/in/allan-yang-46a31624a/'>
                                     <img className='linkedin-logo' src={linkedinLogo} />
                                 </a>
                             </div>
@@ -132,7 +132,7 @@ export default function Feed({ posts }) {
                     </div>
                     <div className='feed-project-repo'>
                            Check out the project repo here!
-                           <a href='https://github.com/Joon-Bae/Voughtstagram'>
+                           <a target='_blank' href='https://github.com/Joon-Bae/Voughtstagram'>
                             <img className='project-repo-image' src={githubLogo}/>
                            </a>
                     </div>

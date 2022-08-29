@@ -56,7 +56,7 @@ export default function PostForm({ setShowCreatePostModal }) {
         if (isValidURL(imageUrl)) {
             setAddCaption(true)
         } else {
-            setErrors(['Invalid image url'])
+            setErrors(['Invalid url'])
         }
     }
 
@@ -96,7 +96,10 @@ export default function PostForm({ setShowCreatePostModal }) {
                             <div className="image-upload-message">
                                 Upload a photo
                             </div>
-                            <input required value={imageUrl} onChange={imageHandler} type='url' placeholder="Image Url" />
+                            <label className="custom-2">
+                                <input required value={imageUrl} onChange={imageHandler} type='url' />
+                                <span className="placeholder-2">Image Url</span>
+                            </label>
                             <div className='errors'>
                                 {errors.map((error, ind) => (
                                     <div key={ind}>{error}</div>

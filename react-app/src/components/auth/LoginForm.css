@@ -77,7 +77,6 @@ input:focus {
     position: absolute;
     left: 12px;
     top: 50%;
-    /* bottom: 100px; */
     transform: translateY(-50%);
     /* color: #a9a9a9; */
     color: rgb(168, 165, 165);
@@ -87,12 +86,13 @@ input:focus {
         color 0.3s ease;
 }
 
-.custom input:valid + .placeholder,
-.custom input:focus + .placeholder {
+.custom-login .input-login:valid + .placeholder-login,
+.custom-login .input-login:focus + .placeholder-login {
     top: -5px;
     font-size: 10px;
     color: #222
 }
+
 .custom input.no-focus + .placeholder,
 .custom input:focus + .placeholder {
     top: -5px;

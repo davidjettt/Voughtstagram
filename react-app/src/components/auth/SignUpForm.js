@@ -5,6 +5,7 @@ import { signUp } from '../../store/session';
 import './SignUpForm.css'
 import Footer from '../footer/footer.js'
 import logo from '../../Images/voughtstagramlogo.svg'
+import './LoginForm.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -17,13 +18,15 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const nameInput = document.querySelector('.signup-name-input-field')
-    nameInput.addEventListener('blur', (e) => {
-      if (e.target.value) {
-        e.target.classList.add('no-focus')
-      } else {
-        e.target.classList.remove('no-focus')
-      }
+    const inputs = document.querySelectorAll('input')
+    inputs.forEach((input) => {
+      input.addEventListener('blur', (e) => {
+        if (e.target.value) {
+          e.target.classList.add('no-focus')
+        } else {
+          e.target.classList.remove('no-focus')
+        }
+      })
     })
   }, [])
 
@@ -77,7 +80,6 @@ const SignUpForm = () => {
             <label className='custom'>
               <input
                 className='signup-name-input-field'
-                required
                 type='text'
                 name='name'
                 onChange={updateName}
