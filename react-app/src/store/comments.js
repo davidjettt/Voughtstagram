@@ -51,6 +51,9 @@ export const postCommentThunk = (comment) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json()
         dispatch(postComment(data))
+    } else {
+        const badData = await response.json()
+        if (badData.errors) return badData.errors
     }
 }
 
@@ -64,6 +67,9 @@ export const editCommentThunk = (comment) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json()
         dispatch(editComment(data))
+    } else {
+        const badData = await response.json()
+        if (badData.errors) return badData.errors
     }
 }
 

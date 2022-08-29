@@ -96,8 +96,8 @@
     border-top: .5px solid #dbdbdb;
 }
 
-.comment-modal-form-button:focus,
+/* .comment-modal-form-button:focus,
 .cancel-edit-comment-button:focus {
     background-color: #dbdbdb;
     opacity: .5;
-}
+} */
