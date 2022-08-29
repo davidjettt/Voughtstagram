@@ -10,7 +10,7 @@ export default function CommentForm({ postId, commentToEdit, formType, setShowCo
     const [ commentModal, setCommentModal ] = useState(false)
     const sessionUser = useSelector(state => state.session.user)
     const dispatch = useDispatch()
-    // const ref = useRef()
+    const [ errors, setErrors ] = useState([])
 
     useEffect(() => {
         if (formType === 'edit comment') setCommentModal(true)
@@ -19,6 +19,7 @@ export default function CommentForm({ postId, commentToEdit, formType, setShowCo
 
     const onSubmit = async (e) => {
         e.preventDefault()
+        setErrors([])
 
         commentToEdit = {
             ...commentToEdit,
@@ -26,17 +27,25 @@ export default function CommentForm({ postId, commentToEdit, formType, setShowCo
         }
 
         if (formType === 'edit comment') {
-            await dispatch(editCommentThunk(commentToEdit))
-            setShowCommentModal(false)
-            setShowCommentOptionsModal(false)
-            await dispatch(loadCommentsThunk())
+            const badData = await dispatch(editCommentThunk(commentToEdit))
+            if (badData) {
+                setErrors(badData)
+            }
+            else {
+                setShowCommentModal(false)
+                setShowCommentOptionsModal(false)
+                await dispatch(loadCommentsThunk())
+            }
         } else {
             const payload = {
                 user_id: sessionUser.id,
                 post_id: postId,
                 comment: comment
             }
-            await dispatch(postCommentThunk(payload))
+            const badData =  await dispatch(postCommentThunk(payload))
+            if (badData) {
+                window.alert(badData)
+            }
             setComment('')
         }
     }
@@ -47,7 +56,8 @@ export default function CommentForm({ postId, commentToEdit, formType, setShowCo
 
     return (
         <form className={commentModal ? 'comment-modal-form' :"comment-form"} onSubmit={onSubmit}>
-            {commentModal && <div className="edit-comment-title">Edit Comment</div>}
+            {errors.length === 0 && commentModal && <div className="edit-comment-title">Edit Comment</div>}
+            {errors.length > 0 && commentModal && <div style={{ color: 'red' }} className="edit-comment-title">{errors[0]}</div>}
             <input className={commentModal ? 'comment-modal-form-input' :"comment-form-input"} required type='text' placeholder="Add a comment..." value={comment} onChange={(e) => setComment(e.target.value)} name='my-comment' />
             <button className={commentModal ? 'comment-modal-form-button' :"comment-form-button"}>Post</button>
             {commentModal && <button className="cancel-edit-comment-button" onClick={handleCancel}>Cancel</button>}
