@@ -45,3 +45,34 @@
 .post-form-avatar-container {
     margin-top: 6px;
 }
+
+
+.custom-2 {
+    position: relative;
+    font-size: 13px;
+}
+
+.custom-2 input {
+    font-size: 12px;
+}
+
+
+.custom-2 .placeholder-2 {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    /* color: #a9a9a9; */
+    color: rgb(168, 165, 165);
+    transition:
+        top 0.3s ease,
+        font-size 0.3s ease,
+        color 0.3s ease;
+}
+
+.custom-2 input:valid + .placeholder-2,
+.custom-2 input:focus + .placeholder-2 {
+    top: 10px;
+    font-size: 10px;
+    color: #222
+}

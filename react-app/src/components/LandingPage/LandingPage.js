@@ -49,7 +49,7 @@ export default function LandingPage() {
                         </div>
                         <div className='landing-project-repo'>
                             Check out the project repo here
-                            <a href='https://github.com/Joon-Bae/Voughtstagram'>
+                            <a target='_blank' href='https://github.com/Joon-Bae/Voughtstagram'>
                                 <img className='project-repo-image' src={githubLogo} />
                             </a>
                         </div>

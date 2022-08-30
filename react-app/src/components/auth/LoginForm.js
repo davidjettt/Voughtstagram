@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
@@ -45,27 +45,29 @@ const LoginForm = () => {
       </div>
       <form className='login-form' onSubmit={onLogin}>
         <div className='email-container'>
-          <label className='custom' htmlFor='email'>
+          <label className='custom custom-login' htmlFor='email'>
             <input
+              className='input-login'
               name='email'
               type='text'
               required
               value={email}
               onChange={updateEmail}
             />
-            <span className='placeholder'>Email</span>
+            <span className='placeholder placeholder-login'>Email</span>
           </label>
         </div>
         <div className='password-container'>
-          <label className='custom' htmlFor='password'>
+          <label className='custom custom-login' htmlFor='password'>
           <input
             required
+            className='input-login'
             name='password'
             type='password'
             value={password}
             onChange={updatePassword}
           />
-          <span className='placeholder'>Password</span>
+          <span className='placeholder placeholder-login'>Password</span>
           </label>
         </div>
         <button className='login-button' type='submit' disabled={email.length < 1 || password.length < 1}>Log In</button>
