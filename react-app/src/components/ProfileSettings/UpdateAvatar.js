@@ -28,7 +28,14 @@ export default function UpdateAvatar({ user, setOpenModal }) {
                 <div className='avatar-modal-title'>
                     Change Profile Photo
                 </div>
-                <button className='upload-avatar-btn'>Upload Photo</button>
+                <label className='upload-avatar-btn'>
+                    Upload Photo
+                    <input
+                        type='file'
+                        className='settings-file-input'
+                        onChange={handleAvatarUpload}
+                    />
+                </label>
                 <button className='remove-avatar-btn' onClick={handleOpenConf}>Remove Current Photo</button>
                 <button className='cancel-btn' onClick={handleCancel}>Cancel</button>
             </div>}
