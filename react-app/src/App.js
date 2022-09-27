@@ -16,6 +16,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import { loadAllUsers } from './store/users';
 import './index.css'
 import MyFeed from './components/posts/MyFeed';
+import ProfileSettings from './components/ProfileSettings/ProfileSettings';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -63,6 +64,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/account/settings' exact={true}>
+          <ProfileSettings />
         </ProtectedRoute>
         <ProtectedRoute exact path="/feed">
           <Feed />
