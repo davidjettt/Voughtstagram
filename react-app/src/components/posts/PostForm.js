@@ -19,7 +19,10 @@ export default function PostForm({ setShowCreatePostModal }) {
     const [errors, setErrors] = useState([])
     const [file, setFile] = useState(null)
 
-    // const imageChange = (e) => setImageUrl(e.target.value)
+    // store url from first attempt so I don't spam aws with new uploadevery time there's a
+    // description validation
+    const [tempUrl, setTempUrl] = useState('')
+
     const descriptionChange = (e) => setDescription(e.target.value)
 
     const onSubmit = async (e) => {
@@ -27,22 +30,27 @@ export default function PostForm({ setShowCreatePostModal }) {
         setErrors([])
 
         let url
-        const formData = new FormData()
-        formData.append('image', file)
-        const res = await fetch('/api/images', {
-            method: 'POST',
-            body: formData
+        if (!tempUrl) {
+            const formData = new FormData()
+            formData.append('image', file)
+            const res = await fetch('/api/images', {
+                method: 'POST',
+                body: formData
 
-        })
+            })
 
-        if (res.ok) {
-            const data = await res.json()
-            url = data.url
-        } else {
-            const error = await res.json()
-            setErrors([error.error])
-            return
+            if (res.ok) {
+                const data = await res.json()
+                setTempUrl(data.url)
+                url = data.url
+            } else {
+                const error = await res.json()
+                setErrors([error.error])
+                return
+            }
         }
+
+        else if (tempUrl) url = tempUrl
 
         const payload = {
             user_id: sessionUser.id,
@@ -60,31 +68,15 @@ export default function PostForm({ setShowCreatePostModal }) {
         }
     }
 
-    // const imageHandler = (e) => {
-    //     setImageUrl(e.target.value)
-    // }
-
-    // const isValidURL = (urlString) => {
-    //     try {
-    //         return Boolean(new URL(urlString))
-    //     } catch (e) {
-    //         return false
-    //     }
-    // }
-
     const nextPage = () => {
         setErrors([])
         setAddCaption(true)
-        // if (isValidURL(imageUrl)) {
-        //     setAddCaption(true)
-        // } else {
-        //     setErrors(['Invalid url'])
-        // }
     }
 
     const handleCancelPost = () => {
         setErrors([])
         setImageUrl('')
+        setTempUrl('')
         setAddCaption(false)
     }
     const handleCancelImageUpload = () => {
