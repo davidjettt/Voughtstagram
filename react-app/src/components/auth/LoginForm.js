@@ -15,7 +15,6 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
-    console.log(data)
     if (data) {
       setErrors(data);
     }
@@ -59,15 +58,15 @@ const LoginForm = () => {
         </div>
         <div className='password-container'>
           <label className='custom custom-login' htmlFor='password'>
-          <input
-            required
-            className='input-login'
-            name='password'
-            type='password'
-            value={password}
-            onChange={updatePassword}
-          />
-          <span className='placeholder placeholder-login'>Password</span>
+            <input
+              required
+              className='input-login'
+              name='password'
+              type='password'
+              value={password}
+              onChange={updatePassword}
+            />
+            <span className='placeholder placeholder-login'>Password</span>
           </label>
         </div>
         <button className='login-button' type='submit' disabled={email.length < 1 || password.length < 1}>Log In</button>

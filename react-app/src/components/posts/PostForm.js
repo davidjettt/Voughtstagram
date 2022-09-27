@@ -50,8 +50,6 @@ export default function PostForm({ setShowCreatePostModal }) {
             imageUrl: url
         }
 
-        console.log(payload)
-
         const badData = await dispatch(createNewPost(payload))
         if (badData) {
             setErrors(badData)
