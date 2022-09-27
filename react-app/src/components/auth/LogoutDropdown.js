@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
 import profileButton from '../../../src/Images/profilebutton.svg'
 import logoutButton from '../../../src/Images/logout-icon.svg'
+import settingsIcon from '../../../src/Images/settings-icon.svg'
 import "./ProfileDropdown.css";
 
 const LogoutDropdown = () => {
@@ -51,6 +52,10 @@ const LogoutDropdown = () => {
               <NavLink className="link-to-profile" to={`/users/${userId}`}>
                 <li className='text-to-profile'>Profile</li>
               </NavLink>
+              <Link className="link-to-settings" to={`/account/settings`}>
+                <img src={settingsIcon}  alt='settings' />
+                Settings
+              </Link>
               </div>
               <div>
                 <img className='log-out-icon' src={logoutButton}/>
