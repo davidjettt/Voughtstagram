@@ -63,6 +63,7 @@ export default function PostForm({ setShowCreatePostModal }) {
 
     const handleCancelPost = () => {
         setErrors([])
+        setImageUrl('')
         setAddCaption(false)
     }
     const handleCancelImageUpload = () => {
@@ -153,7 +154,7 @@ export default function PostForm({ setShowCreatePostModal }) {
                             Create a new post
                         </div>
                         <div>
-                            <button style={{ fontSize: 14 }} className="edit-post-submit-button" onClick={nextPage}>Next</button>
+                            <button style={{ fontSize: 14 }} className="edit-post-submit-button" disabled={imageUrl === ''} onClick={nextPage}>Next</button>
                         </div>
                     </div>
                     <div id="drop-zone" onDragLeave={dragLeaveHandler} onDragOver={dragOverHandler} onDrop={dropHandler} className="image-upload-container">
@@ -162,12 +163,12 @@ export default function PostForm({ setShowCreatePostModal }) {
                                 <img src={newPost} alt='' />
                             </div>
                             <div className="image-upload-message">
-                                Upload a photo
+                                Drag Image Here
                             </div>
-                            <label className="custom-2">
+                            {/* <label className="custom-2">
                                 <input required value={imageUrl} onChange={imageHandler} type='url' />
                                 <span className="placeholder-2">Image Url</span>
-                            </label>
+                            </label> */}
                             <div className='errors'>
                                 {errors.map((error, ind) => (
                                     <div key={ind}>{error}</div>
