@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Image
+# from app.models import db, Image
 from flask_login import current_user, login_required
 from app.api.s3_image_upload import (
     upload_file_to_s3, allowed_file, get_unique_filename)

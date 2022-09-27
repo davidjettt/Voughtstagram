@@ -28,6 +28,8 @@
 
 .edit-post-header-container {
     display: flex;
+    padding-bottom: 5px;
+    align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #ddd;
 }

@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
+from app.api.s3_image_upload import get_unique_filename, upload_file_to_s3
 from app.models import User, Post, db, Comment
 from app.forms import PostForm, CommentForm
 
@@ -32,6 +33,7 @@ def create_post():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
+        print(data)
         new_post = Post(
             image_url = data['imageUrl'],
             description = data['description'],
