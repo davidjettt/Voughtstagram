@@ -107,6 +107,7 @@ export const uploadUserAvatarThunk = (formData, userId) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json()
     dispatch(updateUserSettings(data))
+    return data
   } else {
     const badData = await response.json()
     if (badData.errors) return badData.errors
@@ -121,6 +122,7 @@ export const removeUserAvatarThunk = (user) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json()
     dispatch(updateUserSettings(data))
+    return data
   }
 }
 
