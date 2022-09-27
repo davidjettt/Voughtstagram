@@ -55,6 +55,17 @@ background-color: #fafafa;
     width:254px;
     height:560px;
     margin-top:-5.2rem;
+    animation: 5s ease-out 5s FadeIn;
+    animation-iteration-count: infinite;
+}
+
+@keyframes FadeIn {
+    0% {
+      opacity:0;
+    }
+    60% {
+      opacity:1;
+    }
 }
 
 .landing-project-repo {

@@ -24,7 +24,7 @@ export default function LandingPage() {
     useEffect(() => {
         const interval = setInterval(() => {
             setCounter((counter) => counter === 2 ? 0 : counter + 1)
-        }, 3000)
+        }, 5000)
 
         return () => clearInterval(interval)
     }, [])

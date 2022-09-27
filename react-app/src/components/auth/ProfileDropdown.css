@@ -25,14 +25,14 @@
 }
 
 .dropdown-menu {
-    width:120px;
-    height:80px;
+    width:220px;
+    height: 130px;
     border: 1px solid white;
     box-shadow: 2px 2px 2px 2px lightgray;
     border-radius: 5px;
     background-color: white;
     margin-top: 0.5rem;
-    margin-left:-5rem;
+    margin-left:-10rem;
 }
 
 .profile-icon {
@@ -42,7 +42,7 @@
 }
 
 .text-to-profile{
-    font-size:13px;
+    font-size:14px;
     color: black;
     margin-top:-1.2rem;
     margin-bottom:1rem;
@@ -57,14 +57,32 @@
     position: absolute;
 }
 
+.settings-icon {
+    width:15px;
+    height:15px;
+    margin-left: -1.4rem;
+}
+
+.text-to-user-settings {
+    font-size:14px;
+    color: black;
+    margin-top:-1.2rem;
+    margin-bottom:1rem;
+}
+
 .log-out-icon {
     width:15px;
     height:15px;
     margin-left: -1.5rem;
+    margin-top: 1rem;
 }
 
 .text-to-logout {
-    font-size:13px;
+    font-size:14px;
     margin-top:-1.25rem;
     cursor: pointer;
+}
+
+.logout-container {
+    border-top: 1px solid #dbdbdb
 }
