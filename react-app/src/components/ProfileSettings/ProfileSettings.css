@@ -1,3 +1,7 @@
+body {
+    background-color: #fafafa;
+}
+
 .profile-settings-main {
     display: flex;
     justify-content: center;
@@ -8,6 +12,7 @@
     display: flex;
     border: 1px solid #dbdbdb;
     width: 900px;
+    background-color: white;
 }
 
 .profile-settings-left {
