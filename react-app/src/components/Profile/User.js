@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ProfilePostModal from './ProfilePostModal';
 import ShowFollowsModal from './ShowFollowsModal/ShowFollowsModal'
 import './profile.css'
@@ -46,6 +46,9 @@ function User() {
         <div className='profile-header-info'>
           <div className='profile-header-username'>
             <span className='profile-name'>{profileUser.username}</span>
+            {+userId === +sessionUserId &&
+              <Link className='edit-profile-link' to={`/account/settings`}>Edit profile</Link>
+            }
             {
               profileUser &&
               <FollowButton following={following} profileUserId={profileUser.id} />
@@ -69,6 +72,12 @@ function User() {
                 profileUser &&
                 <ShowFollowsModal type='following' list={profileUser.following} />
               }
+            </div>
+            <div className='profile-name'>
+              {profileUser.name}
+            </div>
+            <div className='profile-bio'>
+              {profileUser.bio}
             </div>
           </div>
 

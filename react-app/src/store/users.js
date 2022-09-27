@@ -2,6 +2,8 @@
 const LOAD_USERS = '/users/ALL'
 const FOLLOW_USER = '/users/FOLLOW'
 const UNFOLLOW_USER = '/users/UNFOLLOW'
+const UPDATE_USER_SETTINGS = '/users/updateUserSettings'
+const REMOVE_USER_AVATAR = '/users/removeAvatar'
 
 const follow = (data) => {
   return {
@@ -21,6 +23,20 @@ const loadUsers = (users) => {
   return {
     type: LOAD_USERS,
     users
+  }
+}
+
+const updateUserSettings = (user) => {
+  return {
+    type: UPDATE_USER_SETTINGS,
+    user
+  }
+}
+
+const removeUserAvatar = (user) => {
+  return {
+    type: REMOVE_USER_AVATAR,
+    user
   }
 }
 
@@ -64,6 +80,50 @@ export const loadAllUsers = () => async (dispatch) => {
   }
 }
 
+export const updateUserSettingsThunk = (user) => async (dispatch) => {
+  const response = await fetch(`/api/users/${user.id}/settings`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user)
+  })
+
+  if (response.ok) {
+    const data = await response.json()
+    dispatch(updateUserSettings(data))
+    return data
+  }
+  else {
+    const badData = await response.json()
+    if (badData.errors) return badData
+  }
+}
+
+export const uploadUserAvatarThunk = (formData, userId) => async (dispatch) => {
+  const response = await fetch(`/api/users/${userId}/avatar/upload`, {
+    method: 'PUT',
+    body: formData
+  })
+
+  if (response.ok) {
+    const data = await response.json()
+    dispatch(updateUserSettings(data))
+  } else {
+    const badData = await response.json()
+    if (badData.errors) return badData.errors
+  }
+}
+
+export const removeUserAvatarThunk = (user) => async (dispatch) => {
+  const response = await fetch(`/api/users/${user.id}/avatar/remove`, {
+    method: 'PUT'
+  })
+
+  if (response.ok) {
+    const data = await response.json()
+    dispatch(updateUserSettings(data))
+  }
+}
+
 
 const initialState = {}
 
@@ -84,6 +144,13 @@ export default function reducer(state = initialState, action) {
       newState[action.data.currentUser.id] = action.data.currentUser
       newState[action.data.user.id] = action.data.user
       return newState
+    case UPDATE_USER_SETTINGS:
+      newState = JSON.parse(JSON.stringify(state))
+      newState[action.user.id] = action.user
+      return newState
+    // case REMOVE_USER_AVATAR:
+    //   newState = JSON.parse(JSON.stringify(state))
+    //   newState[action.user]
     default:
       return state;
   }

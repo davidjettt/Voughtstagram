@@ -116,3 +116,11 @@
     object-fit: cover;
 
 }
+
+.edit-profile-link {
+    border: 1px solid #dbdbdb;
+    font-size: 14px;
+    font-weight: 550;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
