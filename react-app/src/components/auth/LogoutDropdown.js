@@ -52,12 +52,16 @@ const LogoutDropdown = () => {
               <NavLink className="link-to-profile" to={`/users/${userId}`}>
                 <li className='text-to-profile'>Profile</li>
               </NavLink>
-              <Link className="link-to-settings" to={`/account/settings`}>
-                <img src={settingsIcon}  alt='settings' />
-                Settings
-              </Link>
               </div>
               <div>
+                <img className='settings-icon' src={settingsIcon}  alt='settings' />
+              <NavLink className="link-to-settings" to={`/account/settings`}>
+              <li className='text-to-user-settings'>User Settings</li>
+              </NavLink>
+
+              </div>
+
+              <div className='logout-container'>
                 <img className='log-out-icon' src={logoutButton}/>
                 <li className='text-to-logout'onClick={onLogout}>Logout</li>
               </div>
