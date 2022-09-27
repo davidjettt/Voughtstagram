@@ -22,6 +22,12 @@ export default function ProfileSettings() {
     const [ bio, setBio ] = useState(user.bio || '')
     const [ email, setEmail ] = useState(user.email)
     const [ errors, setErrors ] = useState([])
+    const [ count, setCount ] = useState(0)
+
+    const handleTextareaChange = (e) => {
+        setCount(e.target.value.length)
+        setBio(e.target.value)
+    }
 
 
     const handleSubmit = async (e) => {
@@ -40,7 +46,7 @@ export default function ProfileSettings() {
         // }
         // else {
             // }
-        if (+user.id === 1 && email !== 'demo@aa.io' || username !== 'Demo' ) {
+        if (sessionUser.id === 1 && (email !== 'demo@aa.io' || username !== 'Demo') ) {
             setErrors(['You cannot change the email or username of the demo user'])
         }
         else {
@@ -114,11 +120,17 @@ export default function ProfileSettings() {
                                 <label className='settings-bio-label'>
                                     Bio
                                 </label>
-                                <textarea
-                                    className='bio-input'
-                                    value={bio}
-                                    onChange={(e) => setBio(e.target.value)}
-                                />
+                                <div>
+                                    <textarea
+                                        className='bio-input'
+                                        rows={3}
+                                        value={bio}
+                                        // onChange={(e) => setBio(e.target.value)}
+                                        onChange={handleTextareaChange}
+                                        maxLength={150}
+                                    />
+                                    <div className='bio-count' >{count} / 150</div>
+                                </div>
                             </div>
                             <div className='settings-email-container'>
                                 <label className='settings-email-label'>
