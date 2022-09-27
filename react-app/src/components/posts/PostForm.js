@@ -17,17 +17,37 @@ export default function PostForm({ setShowCreatePostModal }) {
     const [description, setDescription] = useState('')
     const [addCaption, setAddCaption] = useState(false)
     const [errors, setErrors] = useState([])
+    const [file, setFile] = useState(null)
 
-    const imageChange = (e) => setImageUrl(e.target.value)
+    // const imageChange = (e) => setImageUrl(e.target.value)
     const descriptionChange = (e) => setDescription(e.target.value)
 
     const onSubmit = async (e) => {
         e.preventDefault()
         setErrors([])
+
+        let url
+        const formData = new FormData()
+        formData.append('image', file)
+        const res = await fetch('/api/images', {
+            method: 'POST',
+            body: formData
+
+        })
+
+        if (res.ok) {
+            const data = await res.json()
+            url = data.url
+        } else {
+            const error = await res.json()
+            setErrors([error.error])
+            return
+        }
+
         const payload = {
             user_id: sessionUser.id,
             description,
-            imageUrl
+            imageUrl: url
         }
 
         const badData = await dispatch(createNewPost(payload))
@@ -39,34 +59,100 @@ export default function PostForm({ setShowCreatePostModal }) {
         }
     }
 
-    const imageHandler = (e) => {
-        setImageUrl(e.target.value)
-    }
+    // const imageHandler = (e) => {
+    //     setImageUrl(e.target.value)
+    // }
 
-    const isValidURL = (urlString) => {
-        try {
-            return Boolean(new URL(urlString))
-        } catch (e) {
-            return false
-        }
-    }
+    // const isValidURL = (urlString) => {
+    //     try {
+    //         return Boolean(new URL(urlString))
+    //     } catch (e) {
+    //         return false
+    //     }
+    // }
 
     const nextPage = () => {
         setErrors([])
-        if (isValidURL(imageUrl)) {
-            setAddCaption(true)
-        } else {
-            setErrors(['Invalid url'])
-        }
+        setAddCaption(true)
+        // if (isValidURL(imageUrl)) {
+        //     setAddCaption(true)
+        // } else {
+        //     setErrors(['Invalid url'])
+        // }
     }
 
     const handleCancelPost = () => {
         setErrors([])
+        setImageUrl('')
         setAddCaption(false)
     }
     const handleCancelImageUpload = () => {
         setShowCreatePostModal(false)
     }
+
+    function dropHandler(e) {
+        // stops browser from opening image in new tab
+        e.preventDefault()
+        if (e.dataTransfer.items) {
+            const file = e.dataTransfer.items[0].getAsFile()
+            setFile(file)
+        }
+    }
+
+    function dragOverHandler(e) {
+        // stops browser from opening image in new tab
+        e.preventDefault()
+        const dragOverArea = document.getElementById("drop-zone")
+        if (dragOverArea) {
+            dragOverArea.classList.add("is-active")
+        }
+    }
+
+    function dragLeaveHandler(e) {
+        // e.preventDefault()
+        const dragOverArea = document.getElementById("drop-zone")
+        if (dragOverArea) {
+            dragOverArea.classList.remove("is-active")
+        }
+    }
+
+
+    useEffect(() => {
+        setErrors([])
+        const allowedTypes = ["image/jpg", "image/jpeg", "image/png"]
+        const dragOverArea = document.getElementById("drop-zone")
+
+        // whenever file  changes, check its type and throw error if it's not correct
+        if (file && !allowedTypes.includes(file.type)) {
+            setErrors(["Filetype must be jpg, jpeg, or png"])
+        } else if (file && allowedTypes.includes(file.type)) {
+
+            // create new img element
+            let img = document.createElement('img')
+
+            // if image doesn't render with the file, don't do anything and set
+            // error to invalid image
+            img.onerror = (err) => {
+                setErrors(['Invalid image, please try again'])
+            }
+
+            // if image does load, set the preview to the file and go to caption modal
+            img.onload = () => {
+                setImageUrl(URL.createObjectURL(file))
+                setAddCaption(true)
+            }
+
+            // add the file as image source
+            img.src = URL.createObjectURL(file)
+
+        }
+
+        // after checking image, remove active class
+        if (dragOverArea) {
+            dragOverArea.classList.remove("is-active")
+        }
+    }, [file])
+
 
     if (!sessionUser) {
         return <Redirect to="/" />
@@ -85,21 +171,21 @@ export default function PostForm({ setShowCreatePostModal }) {
                             Create a new post
                         </div>
                         <div>
-                            <button style={{ fontSize: 14 }} className="edit-post-submit-button" onClick={nextPage}>Next</button>
+                            <button style={{ fontSize: 14 }} className="edit-post-submit-button" disabled={imageUrl === ''} onClick={nextPage}>Next</button>
                         </div>
                     </div>
-                    <div className="image-upload-container">
+                    <div id="drop-zone" onDragLeave={dragLeaveHandler} onDragOver={dragOverHandler} onDrop={dropHandler} className="image-upload-container">
                         <div className="image-upload-container-secondary">
                             <div className="image-svg-container">
                                 <img src={newPost} alt='' />
                             </div>
                             <div className="image-upload-message">
-                                Upload a photo
+                                Drag Image Here
                             </div>
-                            <label className="custom-2">
+                            {/* <label className="custom-2">
                                 <input required value={imageUrl} onChange={imageHandler} type='url' />
                                 <span className="placeholder-2">Image Url</span>
-                            </label>
+                            </label> */}
                             <div className='errors'>
                                 {errors.map((error, ind) => (
                                     <div key={ind}>{error}</div>

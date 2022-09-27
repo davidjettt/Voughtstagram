@@ -1,3 +1,20 @@
+#drop-zone.is-active {
+    background-color: rgba(24, 24, 24, 0.1);
+}
+
+#drop-zone {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px dashed black;
+    padding: 5px;
+    height: 550px;
+}
+
+.image-hidden {
+    display: none;
+}
+
 .errors {
     color: red;
     font-weight: bold;
@@ -70,8 +87,8 @@
         color 0.3s ease;
 }
 
-.custom-2 input:valid + .placeholder-2,
-.custom-2 input:focus + .placeholder-2 {
+.custom-2 input:valid+.placeholder-2,
+.custom-2 input:focus+.placeholder-2 {
     top: 10px;
     font-size: 10px;
     color: #222

@@ -10,8 +10,8 @@
 }
 
 .edit-post-container-main {
-    /* width: 50vw;
-    height: 800px; */
+    width: 50vw;
+    height: 650px;
     padding: 5px 5px 0 5px;
 }
 
@@ -28,6 +28,8 @@
 
 .edit-post-header-container {
     display: flex;
+    padding-bottom: 5px;
+    align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #ddd;
 }
@@ -37,6 +39,7 @@
 }
 
 .edit-post-image-container {
+    padding-top: 10px;
     width: 600px;
     height: 600px;
     display: flex;
@@ -64,6 +67,11 @@
     background-color: white;
     padding: .5rem;
     border: none;
+}
+
+.edit-post-submit-button:disabled {
+    color: rgba(0, 149, 246, .5);
+    cursor: default;
 }
 
 .edit-post-submit-button {
