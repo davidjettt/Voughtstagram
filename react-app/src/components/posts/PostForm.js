@@ -52,7 +52,8 @@ export default function PostForm({ setShowCreatePostModal }) {
 
         const badData = await dispatch(createNewPost(payload))
         if (badData) {
-            setErrors(badData)
+            console.log(badData)
+            setErrors(badData.map(err => [err.split(':')[1]]))
         } else {
             setShowCreatePostModal(false)
             history.push('/feed')
@@ -243,7 +244,7 @@ export default function PostForm({ setShowCreatePostModal }) {
                                 <div className="edit-post-username">{sessionUser.username}</div>
                             </div>
                             <div >
-                                <textarea cols='30' rows='15' required className="edit-post-input" type="text" value={description} onChange={descriptionChange} placeholder="Write your caption here..."></textarea>
+                                <textarea cols='30' rows='15' className="edit-post-input" type="text" value={description} onChange={descriptionChange} placeholder="Write your caption here..."></textarea>
                             </div>
                             <div className='errors'>
                                 {errors.map((error, ind) => (
