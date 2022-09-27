@@ -22,6 +22,7 @@
 
 .profile-dropdown {
     list-style: none;
+    padding: 0;
 }
 
 .dropdown-menu {
@@ -73,16 +74,25 @@
 .log-out-icon {
     width:15px;
     height:15px;
-    margin-left: -1.5rem;
+    margin-left: 1rem;
     margin-top: 1rem;
 }
 
 .text-to-logout {
     font-size:14px;
     margin-top:-1.25rem;
+    margin-left: 2.4rem;
     cursor: pointer;
 }
 
 .logout-container {
-    border-top: 1px solid #dbdbdb
+    border-top: 1px solid #dbdbdb;
+}
+
+.dropdown-1 {
+    margin-left: 2.4rem;
+}
+
+.dropdown-2 {
+    margin-left: 2.4rem;
 }

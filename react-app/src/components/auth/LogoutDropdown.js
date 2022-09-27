@@ -47,13 +47,13 @@ const LogoutDropdown = () => {
       <div className="dropdown-div">
           <div className="dropdown-menu">
             <ul className="profile-dropdown">
-              <div className='dropdown-first-part'>
+              <div className='dropdown-1'>
               <img className='profile-icon' src={profileButton}/>
               <NavLink className="link-to-profile" to={`/users/${userId}`}>
                 <li className='text-to-profile'>Profile</li>
               </NavLink>
               </div>
-              <div>
+              <div className='dropdown-2'>
                 <img className='settings-icon' src={settingsIcon}  alt='settings' />
               <NavLink className="link-to-settings" to={`/account/settings`}>
               <li className='text-to-user-settings'>User Settings</li>
