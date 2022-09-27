@@ -17,6 +17,7 @@ export default function PostForm({ setShowCreatePostModal }) {
     const [description, setDescription] = useState('')
     const [addCaption, setAddCaption] = useState(false)
     const [errors, setErrors] = useState([])
+    const [file, setFile] = useState(null)
 
     const imageChange = (e) => setImageUrl(e.target.value)
     const descriptionChange = (e) => setDescription(e.target.value)
@@ -68,6 +69,73 @@ export default function PostForm({ setShowCreatePostModal }) {
         setShowCreatePostModal(false)
     }
 
+    function dropHandler(e) {
+        // stops browser from opening image in new tab
+        e.preventDefault()
+        if (e.dataTransfer.items) {
+            const file = e.dataTransfer.items[0].getAsFile()
+            setFile(file)
+        }
+    }
+
+    function dragOverHandler(e) {
+        // stops browser from opening image in new tab
+        e.preventDefault()
+        const dragOverArea = document.getElementById("drop-zone")
+        if (dragOverArea) {
+            dragOverArea.classList.add("is-active")
+        }
+    }
+
+    function dragLeaveHandler(e) {
+        // e.preventDefault()
+        const dragOverArea = document.getElementById("drop-zone")
+        if (dragOverArea) {
+            dragOverArea.classList.remove("is-active")
+        }
+    }
+
+    useEffect(() => {
+
+    }, [file])
+
+    useEffect(() => {
+        setErrors([])
+        const allowedTypes = ["image/jpg", "image/jpeg", "image/png"]
+        const dragOverArea = document.getElementById("drop-zone")
+
+        // whenever file  changes, check its type and throw error if it's not correct
+        if (file && !allowedTypes.includes(file.type)) {
+            console.log(file)
+            setErrors(["Filetype must be jpg, jpeg, or png"])
+        } else if (file && allowedTypes.includes(file.type)) {
+            console.log(file)
+            let img = document.createElement('img')
+
+            // if image doesn't render with the file, don't do anything and set
+            // error to invalid image
+            img.onerror = (err) => {
+                setErrors(['Invalid image, please try again'])
+            }
+
+            // if image does load, set the preview to the file and go to caption modal
+            img.onload = () => {
+                setImageUrl(URL.createObjectURL(file))
+                setAddCaption(true)
+            }
+
+            // add the file as image source
+            img.src = URL.createObjectURL(file)
+
+        }
+
+        // after checking image, remove active class
+        if (dragOverArea) {
+            dragOverArea.classList.remove("is-active")
+        }
+    }, [file])
+
+
     if (!sessionUser) {
         return <Redirect to="/" />
     }
@@ -88,7 +156,7 @@ export default function PostForm({ setShowCreatePostModal }) {
                             <button style={{ fontSize: 14 }} className="edit-post-submit-button" onClick={nextPage}>Next</button>
                         </div>
                     </div>
-                    <div className="image-upload-container">
+                    <div id="drop-zone" onDragLeave={dragLeaveHandler} onDragOver={dragOverHandler} onDrop={dropHandler} className="image-upload-container">
                         <div className="image-upload-container-secondary">
                             <div className="image-svg-container">
                                 <img src={newPost} alt='' />
