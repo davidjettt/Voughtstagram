@@ -6,9 +6,24 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    border: 1px dashed black;
+    /* border: 1px dashed black; */
     padding: 5px;
     height: 550px;
+}
+
+.upload-image-button {
+    border: none;
+    background-color: #0095f6;
+    width: 158px;
+    color: white;
+    padding: 5px 9px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.upload-image-button:active {
+    background-color: rgb(121, 187, 245);
 }
 
 .image-hidden {

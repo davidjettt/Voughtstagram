@@ -52,7 +52,8 @@ export default function PostForm({ setShowCreatePostModal }) {
 
         const badData = await dispatch(createNewPost(payload))
         if (badData) {
-            setErrors(badData)
+            console.log(badData)
+            setErrors(badData.map(err => [err.split(':')[1]]))
         } else {
             setShowCreatePostModal(false)
             history.push('/feed')
@@ -90,6 +91,12 @@ export default function PostForm({ setShowCreatePostModal }) {
         setShowCreatePostModal(false)
     }
 
+    function updateImage(e) {
+        const file = e.target.files[0];
+        setFile(file);
+        e.target.value = null
+    }
+
     function dropHandler(e) {
         // stops browser from opening image in new tab
         e.preventDefault()
@@ -114,6 +121,11 @@ export default function PostForm({ setShowCreatePostModal }) {
         if (dragOverArea) {
             dragOverArea.classList.remove("is-active")
         }
+    }
+
+    const handleFileClick = (e) => {
+        const fileInput = document.getElementById("file-upload")
+        fileInput.click()
     }
 
 
@@ -180,12 +192,24 @@ export default function PostForm({ setShowCreatePostModal }) {
                                 <img src={newPost} alt='' />
                             </div>
                             <div className="image-upload-message">
-                                Drag Image Here
+                                Drag photo from computer here
                             </div>
-                            {/* <label className="custom-2">
-                                <input required value={imageUrl} onChange={imageHandler} type='url' />
-                                <span className="placeholder-2">Image Url</span>
-                            </label> */}
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+
+                                <button id="file-select" onClick={handleFileClick} className="upload-image-button">
+                                    Select from computer
+                                </button>
+                            </div>
+                            <input
+                                id="file-upload"
+                                type="file"
+                                accept=".png,
+                                        .jpeg,
+                                        .jpg,
+                                        .gif,"
+                                onChange={updateImage}
+                                style={{ display: 'none' }}
+                            />
                             <div className='errors'>
                                 {errors.map((error, ind) => (
                                     <div key={ind}>{error}</div>
@@ -195,40 +219,42 @@ export default function PostForm({ setShowCreatePostModal }) {
                     </div>
                 </div>}
 
-            {addCaption && <form onSubmit={onSubmit} className="edit-post-container-main" >
-                <div className="edit-post-header-container">
-                    <div className="edit-post-cancel-button-container">
-                        <button onClick={handleCancelPost} className="edit-post-cancel-button">Cancel</button>
+            {
+                addCaption && <form onSubmit={onSubmit} className="edit-post-container-main" >
+                    <div className="edit-post-header-container">
+                        <div className="edit-post-cancel-button-container">
+                            <button onClick={handleCancelPost} className="edit-post-cancel-button">Cancel</button>
+                        </div>
+                        <div className="edit-post-title-container">
+                            Create a new post
+                        </div>
+                        <div className="edit-post-submit-button-container">
+                            <button className="edit-post-submit-button">Share</button>
+                        </div>
                     </div>
-                    <div className="edit-post-title-container">
-                        Create a new post
-                    </div>
-                    <div className="edit-post-submit-button-container">
-                        <button className="edit-post-submit-button">Share</button>
-                    </div>
-                </div>
-                <div className="edit-post-container-secondary">
-                    <div className="edit-post-image-container">
-                        <img className="edit-post-image" src={imageUrl} alt='' />
-                    </div>
-                    <div className="edit-post-form-container">
-                        <div className="edit-post-username-container">
-                            <div className="post-form-avatar-container">
-                                <img className="single-post-profile-image" src={sessionAvatar || 'https://nitreo.com/img/igDefaultProfilePic.png'} alt='' />
+                    <div className="edit-post-container-secondary">
+                        <div className="edit-post-image-container">
+                            <img className="edit-post-image" src={imageUrl} alt='' />
+                        </div>
+                        <div className="edit-post-form-container">
+                            <div className="edit-post-username-container">
+                                <div className="post-form-avatar-container">
+                                    <img className="single-post-profile-image" src={sessionAvatar || 'https://nitreo.com/img/igDefaultProfilePic.png'} alt='' />
+                                </div>
+                                <div className="edit-post-username">{sessionUser.username}</div>
                             </div>
-                            <div className="edit-post-username">{sessionUser.username}</div>
-                        </div>
-                        <div >
-                            <textarea cols='30' rows='15' required className="edit-post-input" type="text" value={description} onChange={descriptionChange} placeholder="Write your caption here..."></textarea>
-                        </div>
-                        <div className='errors'>
-                            {errors.map((error, ind) => (
-                                <div key={ind}>{error}</div>
-                            ))}
+                            <div >
+                                <textarea cols='30' rows='15' className="edit-post-input" type="text" value={description} onChange={descriptionChange} placeholder="Write your caption here..."></textarea>
+                            </div>
+                            <div className='errors'>
+                                {errors.map((error, ind) => (
+                                    <div key={ind}>{error}</div>
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>}
+                </form>
+            }
         </>
     )
 }
