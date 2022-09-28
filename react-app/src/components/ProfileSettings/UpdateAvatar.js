@@ -9,10 +9,11 @@ import './UpdateAvatar.css'
 
 export default function UpdateAvatar({ user, setOpenModal }) {
     const dispatch = useDispatch()
-    const [ openConf, setOpenConf ] = useState(false)
+    const [openConf, setOpenConf] = useState(false)
 
     function isImgUrl(url) {
         const img = new Image();
+
         img.src = url;
         return new Promise((resolve) => {
             img.onerror = () => resolve(false);
@@ -21,9 +22,13 @@ export default function UpdateAvatar({ user, setOpenModal }) {
     }
 
     const handleAvatarUpload = async (e) => {
+        const allowedFiles = ['image/png', 'image/jpeg', 'image/jpeg']
         const file = e.target.files[0]
         if (file) {
-            if (await isImgUrl(URL.createObjectURL(file))) {
+            if (!allowedFiles.includes(file.type)) {
+                window.alert('Accepted file types are .png, .jpg, and .webp')
+            }
+            else if (await isImgUrl(URL.createObjectURL(file))) {
                 const formData = new FormData()
                 formData.append('avatar', file)
                 const data = await dispatch(uploadUserAvatarThunk(formData, user.id))
