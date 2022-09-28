@@ -437,3 +437,19 @@
     justify-content: center;
     align-items: center;
 }
+.suggested-users {
+    padding-top: 1rem;
+}
+.suggested-user-link {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 1rem;
+}
+.suggested-user-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
