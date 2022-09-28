@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { removePost } from "../../../store/posts"
-import EditPostModal from "../EditPostModal"
 import EditForm from "../EditPostModal/EditPost"
 import '../EditPostModal/EditPost.css'
 
@@ -27,15 +26,18 @@ export default function PostOptions({ postId, setShowPostOptionsModal }) {
     }
 
     return (
-        <div className={postModal ? 'post-options-container-bigger' : 'post-options-container'}>
-            <div className='post-modal-buttons-container'>
+        // <div className={postModal ? 'post-options-container-bigger' : 'post-options-container'}>
+        <>
+
+            {!showPostModal && <div className='post-modal-buttons-container'>
                 {!showPostModal && <button className='edit-post-button' onClick={handleClick}>Edit Post</button>}
-                {showPostModal &&
-                    <EditForm setShowPostOptionsModal={setShowPostOptionsModal} setShowPostModal={setShowPostModal} formType='edit post' postId={postId} />
-                }
                 {!showPostModal && <button className="delete-post-button" onClick={handlePostDelete}>Delete Post</button>}
                 {!showPostModal && <button className='cancel-button' onClick={handlePostOptionsModal}>Cancel</button>}
-            </div>
-    </div>
+            </div>}
+            {showPostModal &&
+                <EditForm setShowPostOptionsModal={setShowPostOptionsModal} setShowPostModal={setShowPostModal} formType='edit post' postId={postId} />
+            }
+        </>
+    // </div>
     )
 }

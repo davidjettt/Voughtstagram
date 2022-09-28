@@ -39,9 +39,9 @@
 }
 
 .edit-post-image-container {
-    padding-top: 10px;
+    padding-top: 13px;
     width: 600px;
-    height: 600px;
+    height: 590px;
     display: flex;
     justify-content: center;
 }
@@ -113,6 +113,7 @@
 .post-modal-buttons-container {
     display: flex;
     flex-direction: column;
+    width: 400px;
 }
 
 .cancel-button,
@@ -125,6 +126,8 @@
     background-color: white;
     border: none;
 }
+
+
 
 .cancel-button:focus,
 .edit-post-button:focus,
@@ -139,3 +142,6 @@
     border-top: .5px solid #dbdbdb;
     border-bottom: .5px solid #dbdbdb;
 }
+
+
+/* NEW CSS STYLING */
