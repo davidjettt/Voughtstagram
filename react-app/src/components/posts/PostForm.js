@@ -5,6 +5,7 @@ import { createNewPost } from "../../store/posts"
 import '../posts/EditPostModal/EditPost.css'
 import './PostForm.css'
 import newPost from '../../Images/newPost.svg'
+import ImageCrop from './ImageCrop'
 
 
 export default function PostForm({ setShowCreatePostModal }) {
@@ -14,10 +15,11 @@ export default function PostForm({ setShowCreatePostModal }) {
     const history = useHistory()
 
     const [imageUrl, setImageUrl] = useState('')
+    const [image, setImage] = useState(null)
     const [description, setDescription] = useState('')
     const [addCaption, setAddCaption] = useState(false)
     const [errors, setErrors] = useState([])
-    const [file, setFile] = useState(null)
+    // const [file, setFile] = useState(null)
 
     // store url from first attempt so I don't spam aws with new uploadevery time there's a
     // description validation
@@ -32,7 +34,7 @@ export default function PostForm({ setShowCreatePostModal }) {
         let url
         if (!tempUrl) {
             const formData = new FormData()
-            formData.append('image', file)
+            formData.append('image', image)
             const res = await fetch('/api/images', {
                 method: 'POST',
                 body: formData
@@ -85,8 +87,14 @@ export default function PostForm({ setShowCreatePostModal }) {
 
     function updateImage(e) {
         const file = e.target.files[0];
-        setFile(file);
-        e.target.value = null
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+
+        reader.addEventListener("load", () => {
+            setImage(reader.result)
+        })
+        // setFile(file);
+        // e.target.value = null
     }
 
     function dropHandler(e) {
@@ -94,7 +102,8 @@ export default function PostForm({ setShowCreatePostModal }) {
         e.preventDefault()
         if (e.dataTransfer.items) {
             const file = e.dataTransfer.items[0].getAsFile()
-            setFile(file)
+
+            setImage(file)
         }
     }
 
@@ -126,10 +135,16 @@ export default function PostForm({ setShowCreatePostModal }) {
         const allowedTypes = ["image/jpg", "image/jpeg", "image/png"]
         const dragOverArea = document.getElementById("drop-zone")
 
+        let fileType
+        if (image) {
+            const firstPart = image.split(';')[0]
+            fileType = firstPart.split(':')[1]
+            console.log(fileType)
+        }
         // whenever file  changes, check its type and throw error if it's not correct
-        if (file && !allowedTypes.includes(file.type)) {
+        if (image && !allowedTypes.includes(fileType)) {
             setErrors(["Filetype must be jpg, jpeg, or png"])
-        } else if (file && allowedTypes.includes(file.type)) {
+        } else if (image && allowedTypes.includes(fileType)) {
 
             // create new img element
             let img = document.createElement('img')
@@ -142,12 +157,12 @@ export default function PostForm({ setShowCreatePostModal }) {
 
             // if image does load, set the preview to the file and go to caption modal
             img.onload = () => {
-                setImageUrl(URL.createObjectURL(file))
+                setImageUrl(image)
                 setAddCaption(true)
             }
 
             // add the file as image source
-            img.src = URL.createObjectURL(file)
+            img.src = image
 
         }
 
@@ -155,9 +170,9 @@ export default function PostForm({ setShowCreatePostModal }) {
         if (dragOverArea) {
             dragOverArea.classList.remove("is-active")
         }
-    }, [file])
+    }, [image])
 
-
+    console.log(image)
     if (!sessionUser) {
         return <Redirect to="/" />
     }
@@ -211,42 +226,13 @@ export default function PostForm({ setShowCreatePostModal }) {
                     </div>
                 </div>}
 
-            {
-                addCaption && <form onSubmit={onSubmit} className="edit-post-container-main" >
-                    <div className="edit-post-header-container">
-                        <div className="edit-post-cancel-button-container">
-                            <button onClick={handleCancelPost} className="edit-post-cancel-button">Cancel</button>
-                        </div>
-                        <div className="edit-post-title-container">
-                            Create a new post
-                        </div>
-                        <div className="edit-post-submit-button-container">
-                            <button className="edit-post-submit-button">Share</button>
-                        </div>
-                    </div>
-                    <div className="edit-post-container-secondary">
-                        <div className="edit-post-image-container">
-                            <img className="edit-post-image" src={imageUrl} alt='' />
-                        </div>
-                        <div className="edit-post-form-container">
-                            <div className="edit-post-username-container">
-                                <div className="post-form-avatar-container">
-                                    <img className="single-post-profile-image" src={sessionAvatar || 'https://nitreo.com/img/igDefaultProfilePic.png'} alt='' />
-                                </div>
-                                <div className="edit-post-username">{sessionUser.username}</div>
-                            </div>
-                            <div >
-                                <textarea cols='30' rows='15' className="edit-post-input" type="text" value={description} onChange={descriptionChange} placeholder="Write your caption here..."></textarea>
-                            </div>
-                            <div className='errors'>
-                                {errors.map((error, ind) => (
-                                    <div key={ind}>{error}</div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            }
+
+            {addCaption &&
+
+                <ImageCrop dataurl={imageUrl} />}
+
+
+
         </>
     )
 }
