@@ -44,7 +44,7 @@ const LoginForm = () => {
       </div>
       <form className='login-form' onSubmit={onLogin}>
         <div className='email-container'>
-          <label className='custom custom-login' htmlFor='email'>
+          <label className='custom custom-login' >
             <input
               className='input-login'
               name='email'
@@ -57,7 +57,7 @@ const LoginForm = () => {
           </label>
         </div>
         <div className='password-container'>
-          <label className='custom custom-login' htmlFor='password'>
+          <label className='custom custom-login' >
             <input
               required
               className='input-login'
