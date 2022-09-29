@@ -12,17 +12,16 @@ export default function ProfileSettings() {
     const history = useHistory()
     const defaultProfilePic = 'https://nitreo.com/img/igDefaultProfilePic.png'
     const sessionUser = useSelector(state => state.session.user)
-    const users = useSelector(state => state.users)
-    const user = users[+sessionUser.id]
+    const user = useSelector(state => state.users[sessionUser.id])
+    // const user = users[+sessionUser.id]
     // const allEmails = Object.values(users).filter(user => +user.id !== +sessionUser.id).map(user => user.email)
     // const allUsernames = Object.values(users).filter(user => +user.id !== +sessionUser.id).map(user => user.username)
-    const userAvatar = user.avatar
-    const [ name, setName ] = useState(user.name || '')
-    const [ username, setUsername ] = useState(user.username)
-    const [ bio, setBio ] = useState(user.bio || '')
-    const [ email, setEmail ] = useState(user.email)
-    const [ errors, setErrors ] = useState([])
-    const [ count, setCount ] = useState(0)
+    const [name, setName] = useState(user?.name || '')
+    const [username, setUsername] = useState(user?.username || '')
+    const [bio, setBio] = useState(user?.bio || '')
+    const [email, setEmail] = useState(user?.email || '')
+    const [errors, setErrors] = useState([])
+    const [count, setCount] = useState(0)
 
     const handleTextareaChange = (e) => {
         setCount(e.target.value.length)
@@ -45,8 +44,8 @@ export default function ProfileSettings() {
         //     setErrors(['Email address is already in use'])
         // }
         // else {
-            // }
-        if (sessionUser.id === 1 && (email !== 'demo@aa.io' || username !== 'Demo') ) {
+        // }
+        if (sessionUser.id === 1 && (email !== 'demo@aa.io' || username !== 'Demo')) {
             setErrors(['You cannot change the email or username of the demo user'])
         }
         else {
@@ -75,13 +74,18 @@ export default function ProfileSettings() {
                         <button className='edit-profile-left'>Edit profile</button>
                     </div>
                     <div className='profile-settings-right'>
-                        <div className='avatar-username-container'>
-                            <img style={{width: 40, height: 40}} className='settings-avatar' src={userAvatar || defaultProfilePic} alt='avatar' />
-                            <div className='avatar-username-left'>
-                                <div>{user.username}</div>
-                                <UpdateAvatarModal user={user} />
+                        {user &&
+                            <div className='avatar-username-container'>
+                                <img style={{ width: 40, height: 40 }} className='settings-avatar' src={user.avatar || defaultProfilePic} alt='avatar' />
+
+
+                                <div className='avatar-username-left'>
+                                    <div>{user.username}</div>
+
+                                    <UpdateAvatarModal user={user} />
+                                </div>
                             </div>
-                        </div>
+                        }
                         <div className='errors'>
                             {errors.map((error, ind) => (
                                 <div key={ind}>{error}</div>
@@ -90,7 +94,7 @@ export default function ProfileSettings() {
                         <form onSubmit={handleSubmit} className='profile-settings-form'>
                             <div className='settings-name-container'>
                                 <label className='settings-name-label'>
-                                Name
+                                    Name
                                 </label>
                                 <input
                                     className='settings-input'
@@ -100,7 +104,7 @@ export default function ProfileSettings() {
                                 />
                             </div>
                             <div className='settings-name-description'>
-                                <div style={{width: 100, display: 'flex', justifyContent: 'center'}}></div>
+                                <div style={{ width: 100, display: 'flex', justifyContent: 'center' }}></div>
                                 <div className='settings-description'>
                                     Help people discover your account by using the name you're known by: either your full name, nickname, or business name.
                                 </div>
