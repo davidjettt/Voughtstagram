@@ -17,7 +17,6 @@ import { loadAllUsers } from './store/users';
 import './index.css'
 import MyFeed from './components/posts/MyFeed';
 import ProfileSettings from './components/ProfileSettings/ProfileSettings';
-import ImageCrop from './components/posts/ImageCrop';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -77,9 +76,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/posts/new/' exact={true} >
           <PostForm />
-        </ProtectedRoute>
-        <ProtectedRoute path='/testing' exact={true} >
-          <ImageCrop />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

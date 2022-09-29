@@ -2,6 +2,22 @@
     background-color: rgba(24, 24, 24, 0.1);
 }
 
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+.container-cropper {
+    height: 90%;
+    padding: 10px;
+}
+
+.cropper {
+    height: 90%;
+    position: relative;
+}
+
+
 #drop-zone {
     display: flex;
     flex-direction: column;
