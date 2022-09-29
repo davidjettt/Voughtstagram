@@ -5,6 +5,13 @@ import { createNewPost } from "../../store/posts"
 import '../posts/EditPostModal/EditPost.css'
 import './PostForm.css'
 import newPost from '../../Images/newPost.svg'
+import React from "react";
+// import "./imagecrop.css";
+import { nanoid } from "nanoid";
+import backArrow from '../../Images/instagrambackarrow.svg'
+import Cropper from "react-easy-crop";
+import getCroppedImg from "../utils/cropImage";
+import { dataURLtoFile } from "../utils/dataUrlToFile";
 
 
 export default function PostForm({ setShowCreatePostModal }) {
@@ -13,11 +20,49 @@ export default function PostForm({ setShowCreatePostModal }) {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const [imageUrl, setImageUrl] = useState('')
-    const [description, setDescription] = useState('')
-    const [addCaption, setAddCaption] = useState(false)
-    const [errors, setErrors] = useState([])
-    const [file, setFile] = useState(null)
+    const [zoom, setZoom] = useState(1) // for cropping
+    const [imageUrl, setImageUrl] = useState('') // for the post
+    const [image, setImage] = useState(null) // for the file from computer, and for cropper
+    const [fileForUpload, setFileForUpload] = useState(null) // for after cropping and clicking confirm
+    const [description, setDescription] = useState('') // for the post
+    const [stage, setStage] = useState('image') // which stage of the post are we on
+    const [errors, setErrors] = useState([]) // for image validation and post validation
+    const [uploading, setUploading] = useState(false) // for aws upload
+
+
+    // cropping stuff
+    const [croppedArea, setCroppedArea] = React.useState(null);
+    const [crop, setCrop] = React.useState({ x: 0, y: 0 });
+
+    const onCropComplete = (croppedAreaPercentage, croppedAreaPixels) => {
+        setCroppedArea(croppedAreaPixels);
+    };
+
+    const submitCrop = async () => {
+        const canvas = await getCroppedImg(image, croppedArea)
+        const canvasDataUrl = canvas.toDataURL('image/jpeg')
+        const converted = dataURLtoFile(canvasDataUrl, `${nanoid()}.jpeg`)
+
+        const formData = new FormData()
+        formData.append('image', converted)
+        setUploading(true)
+        const res = await fetch('/api/images', {
+            method: 'POST',
+            body: formData
+
+        })
+
+        if (res.ok) {
+            setUploading(false)
+            const data = await res.json()
+            setImageUrl(data.url)
+            setStage("addCaption")
+        } else {
+            setUploading(false)
+            window.alert("Something went wrong. Please try again.")
+            return
+        }
+    }
 
     // store url from first attempt so I don't spam aws with new uploadevery time there's a
     // description validation
@@ -29,33 +74,10 @@ export default function PostForm({ setShowCreatePostModal }) {
         e.preventDefault()
         setErrors([])
 
-        let url
-        if (!tempUrl) {
-            const formData = new FormData()
-            formData.append('image', file)
-            const res = await fetch('/api/images', {
-                method: 'POST',
-                body: formData
-
-            })
-
-            if (res.ok) {
-                const data = await res.json()
-                setTempUrl(data.url)
-                url = data.url
-            } else {
-                const error = await res.json()
-                setErrors([error.error])
-                return
-            }
-        }
-
-        else if (tempUrl) url = tempUrl
-
         const payload = {
             user_id: sessionUser.id,
             description,
-            imageUrl: url
+            imageUrl
         }
 
         const badData = await dispatch(createNewPost(payload))
@@ -68,33 +90,44 @@ export default function PostForm({ setShowCreatePostModal }) {
         }
     }
 
-    const nextPage = () => {
-        setErrors([])
-        setAddCaption(true)
-    }
-
-    const handleCancelPost = () => {
-        setErrors([])
-        setImageUrl('')
-        setTempUrl('')
-        setAddCaption(false)
-    }
     const handleCancelImageUpload = () => {
-        setShowCreatePostModal(false)
+        if (stage === "crop") {
+            setStage("image")
+            setErrors([])
+            setImage(null)
+        }
+
+        else if (stage === "image") {
+            setShowCreatePostModal(false)
+        }
+
+        else if (stage === "addCaption") {
+            setErrors([])
+            setStage("crop")
+        }
     }
 
     function updateImage(e) {
         const file = e.target.files[0];
-        setFile(file);
-        e.target.value = null
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+
+        reader.addEventListener("load", () => {
+            setImage(reader.result)
+        })
     }
 
     function dropHandler(e) {
         // stops browser from opening image in new tab
         e.preventDefault()
         if (e.dataTransfer.items) {
+            const reader = new FileReader()
             const file = e.dataTransfer.items[0].getAsFile()
-            setFile(file)
+            reader.readAsDataURL(file)
+
+            reader.addEventListener("load", () => {
+                setImage(reader.result)
+            })
         }
     }
 
@@ -126,10 +159,16 @@ export default function PostForm({ setShowCreatePostModal }) {
         const allowedTypes = ["image/jpg", "image/jpeg", "image/png"]
         const dragOverArea = document.getElementById("drop-zone")
 
+        console.log(image)
+        let fileType
+        if (image) {
+            const firstPart = image.split(';')[0]
+            fileType = firstPart.split(':')[1]
+        }
         // whenever file  changes, check its type and throw error if it's not correct
-        if (file && !allowedTypes.includes(file.type)) {
+        if (image && !allowedTypes.includes(fileType)) {
             setErrors(["Filetype must be jpg, jpeg, or png"])
-        } else if (file && allowedTypes.includes(file.type)) {
+        } else if (image && allowedTypes.includes(fileType)) {
 
             // create new img element
             let img = document.createElement('img')
@@ -142,12 +181,12 @@ export default function PostForm({ setShowCreatePostModal }) {
 
             // if image does load, set the preview to the file and go to caption modal
             img.onload = () => {
-                setImageUrl(URL.createObjectURL(file))
-                setAddCaption(true)
+                setImageUrl(image)
+                setStage("crop")
             }
 
             // add the file as image source
-            img.src = URL.createObjectURL(file)
+            img.src = image
 
         }
 
@@ -155,8 +194,7 @@ export default function PostForm({ setShowCreatePostModal }) {
         if (dragOverArea) {
             dragOverArea.classList.remove("is-active")
         }
-    }, [file])
-
+    }, [image])
 
     if (!sessionUser) {
         return <Redirect to="/" />
@@ -164,18 +202,12 @@ export default function PostForm({ setShowCreatePostModal }) {
 
     return (
         <>
-            {!addCaption &&
+            {stage === "image" &&
 
-                <div className="edit-post-container-main" style={{ width: 600, height: 600 }}>
-                    <div className="edit-post-header-container">
-                        <div className="edit-post-cancel-button-container">
-                            <button onClick={handleCancelImageUpload} className="edit-post-cancel-button">Cancel</button>
-                        </div>
+                <div className="edit-post-container-main" style={{ maxWidth: '40vw', minWidth: '600px', minHeight: '600px', maxHeight: '100vh' }}>
+                    <div className="edit-post-header-container" style={{ display: 'flex', justifyContent: 'center' }}>
                         <div style={{ paddingTop: 3 }} className="edit-post-title-container">
-                            Create a new post
-                        </div>
-                        <div>
-                            <button style={{ fontSize: 14 }} className="edit-post-submit-button" disabled={imageUrl === ''} onClick={nextPage}>Next</button>
+                            Create new post
                         </div>
                     </div>
                     <div id="drop-zone" onDragLeave={dragLeaveHandler} onDragOver={dragOverHandler} onDrop={dropHandler} className="image-upload-container">
@@ -211,42 +243,83 @@ export default function PostForm({ setShowCreatePostModal }) {
                     </div>
                 </div>}
 
-            {
-                addCaption && <form onSubmit={onSubmit} className="edit-post-container-main" >
-                    <div className="edit-post-header-container">
+            {stage === "crop" &&
+                <div className="edit-post-container-main" style={{ maxWidth: '95vw', minWidth: '800px', minHeight: 'auto', maxHeight: '95vh' }}>
+                    <div style={{ height: '42px' }} className="edit-post-header-container">
                         <div className="edit-post-cancel-button-container">
-                            <button onClick={handleCancelPost} className="edit-post-cancel-button">Cancel</button>
+                            <button onClick={handleCancelImageUpload} className="edit-post-cancel-button"><img style={{ width: '24px', height: '24px' }} src={backArrow}></img></button>
                         </div>
-                        <div className="edit-post-title-container">
-                            Create a new post
+                        <div style={{ paddingTop: 3 }} className="edit-post-title-container">
+                            Crop
                         </div>
-                        <div className="edit-post-submit-button-container">
-                            <button className="edit-post-submit-button">Share</button>
+                        <div>
+                            <button style={{ fontSize: 14 }} disabled={uploading === true} className="edit-post-submit-button" onClick={submitCrop}>Upload</button>
                         </div>
                     </div>
-                    <div className="edit-post-container-secondary">
-                        <div className="edit-post-image-container">
-                            <img className="edit-post-image" src={imageUrl} alt='' />
+                    <div style={{ height: '100%', width: '100%' }} className='container'>
+                        <div style={{ height: '90%', padding: '10px' }} className='container-cropper'>
+                            {image ? (
+                                <>
+                                    <div className='cropper' style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+                                        <Cropper
+                                            image={image}
+                                            // cropSize={{ width: 600, height: 600 }}
+                                            objectFit={"vertical-cover"}
+                                            crop={crop}
+                                            zoom={zoom}
+                                            onZoomChange={setZoom}
+                                            aspect={1}
+                                            onCropChange={setCrop}
+                                            onCropComplete={onCropComplete}
+                                        />
+                                    </div>
+
+                                </>
+                            ) : null}
                         </div>
-                        <div className="edit-post-form-container">
-                            <div className="edit-post-username-container">
-                                <div className="post-form-avatar-container">
-                                    <img className="single-post-profile-image" src={sessionAvatar || 'https://nitreo.com/img/igDefaultProfilePic.png'} alt='' />
+                    </div>
+                </div>}
+
+            {stage === "addCaption" &&
+                <>
+                    <form onSubmit={onSubmit} className="edit-post-container-main" >
+                        <div className="edit-post-header-container">
+                            <div className="edit-post-cancel-button-container">
+                                <button onClick={handleCancelImageUpload} className="edit-post-cancel-button"><img style={{ height: '24px', width: '24px' }} src={backArrow}></img></button>
+                            </div>
+                            <div className="edit-post-title-container">
+                                Create New Post
+                            </div>
+                            <div className="edit-post-submit-button-container">
+                                <button className="edit-post-submit-button">Share</button>
+                            </div>
+                        </div>
+                        <div className="edit-post-container-secondary">
+                            <div className="edit-post-image-container">
+                                <img className="edit-post-image" src={imageUrl} alt='' />
+                            </div>
+                            <div className="edit-post-form-container">
+                                <div className="edit-post-username-container">
+                                    <div className="post-form-avatar-container">
+                                        <img className="single-post-profile-image" src={sessionAvatar || 'https://nitreo.com/img/igDefaultProfilePic.png'} alt='' />
+                                    </div>
+                                    <div className="edit-post-username">{sessionUser.username}</div>
                                 </div>
-                                <div className="edit-post-username">{sessionUser.username}</div>
-                            </div>
-                            <div >
-                                <textarea cols='30' rows='15' className="edit-post-input" type="text" value={description} onChange={descriptionChange} placeholder="Write your caption here..."></textarea>
-                            </div>
-                            <div className='errors'>
-                                {errors.map((error, ind) => (
-                                    <div key={ind}>{error}</div>
-                                ))}
+                                <div >
+                                    <textarea cols='30' rows='15' className="edit-post-input" type="text" value={description} onChange={descriptionChange} placeholder="Write a caption..."></textarea>
+                                </div>
+                                <div className='errors'>
+                                    {errors.map((error, ind) => (
+                                        <div key={ind}>{error}</div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </>
             }
+
+
         </>
     )
 }
