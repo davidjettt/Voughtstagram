@@ -29,14 +29,9 @@ def all_comments():
 def update_comment(comment_id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # comment = Comment.query.get(comment_id)
     if form.validate_on_submit():
         data = form.data
-        # update = Comment.update().values(
-        #     comment = data['comment']
-        # ).where(Comment.id == comment_id)
         updated_comment = Comment.query.filter(Comment.id == comment_id).one()
-        # print(updated_comment, "***********************************")
         updated_comment.comment = data['comment']
         db.session.commit()
         return {"updated_comment": updated_comment.comment_to_dict_user()}
