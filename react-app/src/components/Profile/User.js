@@ -73,14 +73,13 @@ function User() {
                 <ShowFollowsModal type='following' list={profileUser.following} />
               }
             </div>
-            <div className='profile-name'>
+          </div>
+          <div className='profile-name'>
               {profileUser.name}
             </div>
-            <div className='profile-bio'>
-              {profileUser.bio}
-            </div>
+          <div className='profile-bio'>
+            {profileUser.bio}
           </div>
-
         </div>
       </div>
       <div className='profile-post-body'>

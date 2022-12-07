@@ -57,6 +57,7 @@
     align-items: flex-start;
     height: 100%;
     width: 50%;
+    gap: 7px;
 }
 
 .profile-info-container {
@@ -65,6 +66,7 @@
     justify-content: flex-start;
     /* justify-content: space-around; */
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .profile-post-body {
@@ -79,6 +81,7 @@
     /* width: 60%; */
     /* justify-content: space-between; */
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .profile-post-image-container {
@@ -123,4 +126,9 @@
     font-weight: 550;
     padding: 5px 10px;
     border-radius: 3px;
+}
+
+.profile-name {
+    font-weight: 650;
+    margin-bottom: -3px;
 }
